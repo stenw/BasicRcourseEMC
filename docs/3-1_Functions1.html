@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="custom.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -540,8 +541,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.638149020 -1.477336337 -0.491813383  0.002060021 -0.769983184
- [6] -1.013374635 -0.303588331 -1.010995799  0.154611784 -1.444606356</code></pre>
+<pre><code> [1]  0.4958805 -1.4641936 -0.6629982  0.7209331 -1.1622086  0.5037744
+ [7]  0.4528523  0.7754621  1.2347043 -1.2766130</code></pre>
 </div>
 </div>
 <p>For a (very long) list of all named functions available in base-R have a look at this website:</p>
@@ -757,22 +758,22 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Ages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  57  43  39  45  30  48  56  49  42  49  35  58  48  51  36 -50  51  43  41
-[20]  39  47  31  43  44  57</code></pre>
+<pre><code> [1]  56  52  52  31  22  41  59  54  62  38  39  42  46  40  52 -50  35  44  42
+[20]  38  55  45  49  43  26</code></pre>
 </div>
 </div>
 <p>There is one value <code>-50</code>, that is clearly an error.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 45.08333</code></pre>
+<pre><code>[1] 44.29167</code></pre>
 </div>
 </div>
 <p>Compare the output with using the standard function <code>mean()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 41.28</code></pre>
+<pre><code>[1] 40.52</code></pre>
 </div>
 </div>
 <p>In the standard <code>mean</code> function, the negative outlier is included and influences the mean!</p>
@@ -788,7 +789,7 @@ Tip
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  30.00   40.50   44.50   45.08   49.50   58.00 </code></pre>
+  22.00   38.75   43.50   44.29   52.00   62.00 </code></pre>
 </div>
 </div>
 <p>Again, let’s compare the output to the standard <code>summary()</code> function.</p>
@@ -796,7 +797,7 @@ Tip
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -50.00   39.00   44.00   41.28   49.00   58.00 </code></pre>
+ -50.00   38.00   43.00   40.52   52.00   62.00 </code></pre>
 </div>
 </div>
 <p>If you have multiple objects to return, you have to put them in an object container, like a list, vector, array or data.frame. It is not possible to return multiple individual objects like this:</p>
@@ -821,7 +822,7 @@ Tip
 [1] 1
 
 [[2]]
-[1] 45.08333</code></pre>
+[1] 44.29167</code></pre>
 </div>
 </div>
 <p>There was <code>1</code> value below zero, as provided by the first element in the list.</p>

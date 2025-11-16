@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -75,7 +109,37 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="custom.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -425,8 +489,8 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
   <li><a href="#matrices-and-data-frames" id="toc-matrices-and-data-frames" class="nav-link" data-scroll-target="#matrices-and-data-frames">Matrices and Data Frames</a></li>
-  <li><a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays">Arrays</a></li>
   <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a></li>
+  <li><a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays">Arrays 🎓</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/1-6_Common_Objects_practical.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
@@ -460,9 +524,9 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="r-packages">R packages</h3>
 <p>In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:</p>
 <ul>
-<li><code>survival</code> (version: 3.7.0)</li>
+<li><code>survival</code> (version: 3.8.3)</li>
 </ul>
-<p><em>R version 4.4.2 (2024-10-31 ucrt)</em></p>
+<p><em>R version 4.5.1 (2025-06-13 ucrt)</em></p>
 </section>
 <section id="dataset" class="level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills anchored" data-anchor-id="dataset">Dataset</h3>
@@ -549,10 +613,10 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="tabset tabset-fade tabset-pills anchored" data-anchor-id="matrices-and-data-frames">Matrices and Data Frames</h3>
 <p>Let’s investigate some matrices and data frames.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Task 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false"><em>Hint 1</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Task 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Hint 1</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
-<p>Create a matrix using the vectors <code>id</code> and <code>age</code> from the <strong>heart</strong> data set. This matrix should have 2 columns where each column represents each variable.</p>
+<p>Create a matrix using the vectors <code>id</code> and <code>age</code> from the <strong>heart</strong> data set. This matrix should have 2 columns where each column represents each variable. An easy way to do this is to first create a long vector combining the data of both variables and then using the <code>matrix</code> function.</p>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
 <p>Use the function matrix(…).</p>
@@ -560,7 +624,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">Task 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false"><em>Hint 2</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">Task 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">Hint 2</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <p>Create a data frame using the vectors <code>id</code>, <code>type</code> and <code>trt</code> from the <strong>retinopathy</strong> data set. This data frame should have 3 columns, where each column represents each variable.</p>
@@ -571,60 +635,81 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="arrays" class="level3 tabset tabset-fade tabset-pills">
-<h3 class="tabset tabset-fade tabset-pills anchored" data-anchor-id="arrays">Arrays</h3>
-<p>Let’s investigate some arrays.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Task 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false"><em>Hint 1</em></a></li></ul>
-<div class="tab-content nav-pills">
-<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
-<p>Create an array that consists of 2 matrices. Matrix 1 will consist of the values 1:4 and matrix 2 will consist of the values 5:8. Both matrices will have 2 columns and 2 rows.</p>
-</div>
-<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<p>Use the function array(…).</p>
-</div>
-</div>
-</div>
-<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">Task 2 *</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false"><em>Hint 2</em> *</a></li></ul>
-<div class="tab-content nav-pills">
-<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
-<p>Give the name <code>ar1</code> to the previous array. Furthermore, investigate the argument dimnames and change the names of the rows, columns and matrices.</p>
-</div>
-<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
-<p>Use the function array(…). Check the help page for the dimnames argument. Note that this must be in a list format.</p>
-</div>
-</div>
-</div>
-</section>
 <section id="lists" class="level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills anchored" data-anchor-id="lists">Lists</h3>
 <p>Let’s investigate some lists.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">Task 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false"><em>Hint 1</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Task 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Hint 1</a></li></ul>
 <div class="tab-content nav-pills">
-<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <p>Create a list using the vectors <code>stop</code> from the <strong>heart</strong> data set and <code>id</code>, <code>risk</code> from the <strong>retinopathy</strong> data set. Give the names <code>stop_heart</code>, <code>id_reti</code> and <code>risk_reti</code>.</p>
 </div>
-<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
 <p>Use the function list(…).</p>
 </div>
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">Task 2 *</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false"><em>Hint 2</em> *</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">Task 2 🎓</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Hint 2 🎓</a></li></ul>
 <div class="tab-content nav-pills">
-<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <p>Create a list using the vectors <code>numbers</code>, <code>numbers_2</code> and <code>treatment</code>. These variables can be taken from the exercise called <code>Vectors</code>. Give the names: <code>numbers</code>, <code>many_numbers</code> and <code>treatment</code>.</p>
 </div>
-<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
 <p>Use the function list(…).</p>
 </div>
 </div>
 </div>
-
-
 </section>
+<section id="arrays" class="level3 tabset tabset-fade tabset-pills callout-advanced">
+<h3 class="tabset tabset-fade tabset-pills anchored" data-anchor-id="arrays">Arrays 🎓</h3>
+<p>An array is a multi-dimensional data structure, perfect for storing data with more than two dimensions (e.g., rows, columns, and “layers”). We will set up a data structure to store grades for 3 students, across 2 different subjects, over 2 academic semesters. An <code>array</code> the perfect tool for this job because our data has three dimensions: students, subjects and Semesters. Let’s build it step-by-step.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">Task 1 🎓</a></li></ul>
+<div class="tab-content nav-pills">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<p>First, we need a single vector containing all the data points (grades) that will fill our array.We have 3 students, 2 subjects, and 2 semesters.The total number of grades we need is <span class="math inline">\(3 \times 2 \times 2 = 12\)</span>.Let’s create a vector with 12 sample grades. R will fill the array “column-wise” (filling the first dimension, then the second, then the third). Create a vector named all_grades containing the following 12 grades.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>all_grades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we need to tell R the shape of our array. This is done with a numeric vector passed to the <code>dim</code> argument of the <code>array</code> function. We want 3 students, 2 subjects, and 2 semesters. Setup the vector <code>dimensions</code> containing the number of students, subjects and semesters in that order.</p>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">Task 2 🎓</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">Hint 2</a></li></ul>
+<div class="tab-content nav-pills">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<p>We can build the array using the <code>array()</code> function. Pass our variables (<code>all_grades</code> and <code>dimensions</code>) to the correct arguments (<code>data</code> and <code>dim</code>). Use <code>?array</code> if you need help. Call the resulting object <code>grades_array</code>.</p>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<p>Use <code>array(data = ... , dim = ...)</code></p>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true">Task 3 🎓</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false"><em>Hint 3</em></a></li></ul>
+<div class="tab-content nav-pills">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
+<p>An array is much more useful if its dimensions have names. Let’;s set up the names for our rows, columns and layers. We use the <code>dimnames</code> argument, which takes a list of character vectors. The order of the list must match the order of our dimensions (students, subjects, semesters). The students are called: Anna, Ben and Clara. The subjects are called: Math and History. The semesters are called: Fall and Spring. Recreate the array <code>grades_array</code> with the correct dimension names.</p>
+</div>
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<p>Use the function <code>array(...)</code>. Check the help page for the <code>dimnames</code> argument. Note that this must be in a <code>list</code> format.</p>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true">Task 4 🎓</a></li></ul>
+<div class="tab-content nav-pills">
+<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+<p>Now that you have created the <code>array</code>, let’s see what it looks like and confirm its structure. Use the <code>print</code>, <code>str</code>, <code>dim</code> and <code>dimnames</code> functions to display the contents, structure, and dimensions of the <code>grades_array</code>.</p>
+<p>```</p>
+</div>
+</div>
+</div>
+</section>
+
+
 </section>
 
 </main> <!-- /main -->

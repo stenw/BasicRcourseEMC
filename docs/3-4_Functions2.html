@@ -106,6 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="custom.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -591,13 +592,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  29.00   36.75   42.50   43.88   50.00   59.00 </code></pre>
+  18.00   38.50   41.50   43.08   47.50   70.00 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x.trim
  0  1 
-10 14 </code></pre>
+12 12 </code></pre>
 </div>
 </div>
 <p>Again, we compare the output with the standard <code>summary()</code> and <code>table()</code> output:</p>
@@ -605,13 +606,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -50.00   36.00   42.00   40.12   50.00   59.00 </code></pre>
+ -50.00   37.00   41.00   39.36   47.00   70.00 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>Sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 -1  0  1 
- 1 10 14 </code></pre>
+ 1 12 12 </code></pre>
 </div>
 </div>
 <p>Apart form nesting <code>if()</code> statements it is also possible to string multiple if statements together like so:</p>
@@ -1019,23 +1020,23 @@ $col3
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>patients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   group    outcome
-1  grp-1 -0.6359148
-2  grp-1 -1.8100946
-3  grp-1  0.8942889
-4  grp-1  0.9586653
-5  grp-1 -0.1159246
-6  grp-1 -0.1768057
-7  grp-2  0.3927919
-8  grp-2 -0.9068441
-9  grp-2 -0.4977774
-10 grp-2 -0.6718686
-11 grp-2 -0.4405903
-12 grp-2  0.9001956</code></pre>
+1  grp-1 -1.2666172
+2  grp-1  0.2315045
+3  grp-1  1.7052881
+4  grp-1  2.4641972
+5  grp-1  1.2357856
+6  grp-1 -1.7564970
+7  grp-2  1.8699940
+8  grp-2  1.1759935
+9  grp-2  0.4430165
+10 grp-2 -1.2292287
+11 grp-2  0.6798912
+12 grp-2  0.4873026</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(patients<span class="sc">$</span>outcome, patients<span class="sc">$</span>group, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     grp-1      grp-2 
--0.1476309 -0.2040155 </code></pre>
+<pre><code>    grp-1     grp-2 
+0.4356102 0.5711615 </code></pre>
 </div>
 </div>
 <p>It is also possible to use multiple factors in a list to create groups, which returns a matrix.</p>
@@ -1046,9 +1047,9 @@ $col3
 <span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(patients<span class="sc">$</span>outcome, <span class="fu">list</span>(patients<span class="sc">$</span>group, patients<span class="sc">$</span>serotype), mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>               A         B
-grp-1 -0.5890077 0.4536760
-grp-2  0.6441408 0.1144166</code></pre>
+<pre><code>              A          B
+grp-1 0.3007496 -1.1799439
+grp-2 0.1715561 -0.5466129</code></pre>
 </div>
 </div>
 <p>These are some (trivial) examples of how you can use the apply family of functions to quickly apply a function to your data. It is possible to do the same thing by using for loops, but apply functions are generally faster to write and read. In some cases using apply to run your function can also increase the speed of your code. More on increasing the speed of your code will follow in later lectures.</p>

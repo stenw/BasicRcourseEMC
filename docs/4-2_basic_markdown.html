@@ -135,6 +135,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="custom.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -503,7 +504,7 @@ window.Quarto = {
 
 <section id="markdown" class="level3">
 <h3 class="anchored">Markdown</h3>
-<p>Quatro files consist of code and markdown. We have discussed how to code in the previous chapters and will discuss markdown here. Markdown is a specific kind of markup language. What we mean by that is that the text in the document also indicates how it should be formatted in the result (For example if we surround a word by double asterikses (like so **bold**) it will <strong>bold</strong> in the resulting output. Below we will discuss the different types of markup that you can use.</p>
+<p>Quarto files consist of code and markdown. We have discussed how to code in the previous chapters and will discuss markdown here. Markdown is a specific kind of markup language. What we mean by that is that the text in the document also indicates how it should be formatted in the result (For example if we surround a word by double asterikses (like so **bold**) it will <strong>bold</strong> in the resulting output. Below we will discuss the different types of markup that you can use.</p>
 <section id="basic-formatting" class="level4">
 <h4 class="anchored" data-anchor-id="basic-formatting">Basic Formatting</h4>
 <table class="caption-top table">
@@ -642,7 +643,7 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>It is also possible to include images in links.</p>
+<p>It is also possible to include images in links (as in <code>[![Caption](Logo.svg)](https://www.erasmusmc.nl/)</code>).</p>
 </section>
 <section id="lists" class="level4">
 <h4 class="anchored" data-anchor-id="lists">Lists</h4>
@@ -743,8 +744,8 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>The first and last pipe character at each row are optional, the ones separating the columns are not although they do not have to be aligned. The header cannot be omitted. The relative width is determined by the number of dashes.</p>
-<p>An alternative way to specify the relative column widths is by including the attribute after the caption, like this:</p>
+<p>These tables use the pipe character (|) to separate columns and they use dashes (-) to separate the header from the rest of the table. As shown in the example the header seperator can also include colons (:) to indicate left, right or center alignment of the columns.</p>
+<p>The first and last pipe character at each row are optional, the ones separating the columns are not although they do not have to be aligned. The header cannot be omitted in a pipe table. The relative width is determined by the number of dashes. An alternative way to specify the relative column widths is by including the attribute after the caption, like this:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>: an optional caption {tbl-colwidths="<span class="co">[</span><span class="ot">40,15,15,15,15</span><span class="co">]</span>"} </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Sometimes it is easiest to directly make the tables from R code.</p>
 </section>
@@ -763,9 +764,9 @@ window.Quarto = {
 <p>Becomes:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="math" class="level4">
+<section id="math" class="level4 callout-advanced">
 <h4 class="anchored" data-anchor-id="math">Math</h4>
-<p>You can use TeX like syntax to format equations. Inline formulas are delimeted by single $s and display math uses double $$s.</p>
+<p>You can use <strong>TeX</strong>-like syntax to format mathematical expressions. This creates good looking formulas and equations in your documents. Note that TeX is a comprehensive typesetting system with extensive capabilities. We cannot posibly cover all of it in this section. Therefore we only provide the bare essentials. For advanced LaTeX features, consult the resources listed at the end of this section. Inline formulas (i.e.&nbsp;formulas that appear in the running text) are delimited by single $s and display math (i.e.&nbsp;formulas that appear on a line of their own) uses double $$s.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -784,9 +785,12 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-
-
+<p>Geek characters can be created by writing their names preceded by a backslash. For example <code>\alpha</code> produces <span class="math inline">\(\alpha\)</span>, <code>\beta</code> produces <span class="math inline">\(\beta\)</span> and so on. Capitals can be generated by writing the first letter of their name in uppercase (So <code>\Omega</code> for <span class="math inline">\(\Omega\)</span>).</p>
+<p>Superscripts can be created using the caret <code>^</code> and subscripts using the underscore <code>_</code>. For example <code>x_i</code> produces <span class="math inline">\(x_i\)</span> and <code>x^{n}</code> produces <span class="math inline">\(x^{n}\)</span>. Fractions can be created using <code>\frac{numerator}{denominator}</code>. For example <code>\frac{a}{b}</code> produces <span class="math inline">\(\frac{a}{b}\)</span>. Use <code>\sqrt{expression}</code> to create square roots. For example <code>\sqrt{x}</code> produces <span class="math inline">\(\sqrt{x}\)</span>. Sums and integrals can be created using <code>\sum</code> and <code>\int</code> respectively. For example <code>\int_{a}^{b} f(x) dx</code> produces <span class="math inline">\(\int_{a}^{b} f(x) dx\)</span>.</p>
+<p>When you want to learn more about TeX, a good resource is the <a href="https://www.amazon.nl/-/en/Mittelbach-Frank/dp/0201362996">The LaTeX Companion</a>.</p>
 </section>
+
+
 </section>
 
 </main> <!-- /main -->

@@ -108,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="custom.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -504,7 +505,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"mySession.RData"</span>)        <span class="co"># load from the working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>When you save and load objects this way, loaded variables will have the same names as when they were stored. There is also a different way of saving objects where loaded objects are assigned explicitly.</p>
+<p>When you save and load objects this way, loaded variables will have the same names as when they were stored, possibly overwriting existing variables. There is also a different way of saving objects where loaded objects are assigned explicitly.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>myobject <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">vec=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">mat=</span><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">2</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(myobject,<span class="at">file =</span> <span class="st">'myfile.rds'</span>)</span>
@@ -524,10 +525,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="at">path=</span><span class="st">'path/to/file/excelworkbook.xls'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This function has an optional argument <code>sheet</code> to indicate the sheet in the excel file if it contains multiple sheets. Optionally, with <code>range</code> a cell range can be indicated.</p>
-<p>Load <code>.Rhistory</code> file to access the history from the console:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">loadhistory</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 
 
 </section>

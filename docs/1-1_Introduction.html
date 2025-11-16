@@ -108,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="custom.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -451,19 +452,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#course-overview" id="toc-course-overview" class="nav-link active" data-scroll-target="#course-overview">Course Overview</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
+  <li><a href="#what-is-r" id="toc-what-is-r" class="nav-link" data-scroll-target="#what-is-r">What is R</a></li>
   <li><a href="#history" id="toc-history" class="nav-link" data-scroll-target="#history">History</a></li>
   </ul></li>
   <li><a href="#get-it" id="toc-get-it" class="nav-link" data-scroll-target="#get-it">Get it</a>
   <ul class="collapse">
   <li><a href="#install-it" id="toc-install-it" class="nav-link" data-scroll-target="#install-it">Install it</a></li>
   </ul></li>
-  <li><a href="#what-is-r-and-how-do-we-use-it" id="toc-what-is-r-and-how-do-we-use-it" class="nav-link" data-scroll-target="#what-is-r-and-how-do-we-use-it">What <strong>is</strong> <code>R</code> and how do we use it</a>
+  <li><a href="#how-do-we-use-r" id="toc-how-do-we-use-r" class="nav-link" data-scroll-target="#how-do-we-use-r">How do we use <code>R</code></a>
   <ul class="collapse">
-  <li><a href="#definitions" id="toc-definitions" class="nav-link" data-scroll-target="#definitions">Definition(s)</a></li>
   <li><a href="#working-with-r" id="toc-working-with-r" class="nav-link" data-scroll-target="#working-with-r">Working with <strong>R</strong></a></li>
   <li><a href="#how-we-interact-with-r" id="toc-how-we-interact-with-r" class="nav-link" data-scroll-target="#how-we-interact-with-r">How we interact with <code>R</code></a></li>
   <li><a href="#rstudio-the-easiest-way-to-work-with-r" id="toc-rstudio-the-easiest-way-to-work-with-r" class="nav-link" data-scroll-target="#rstudio-the-easiest-way-to-work-with-r">RStudio: the easiest way to work with <code>R</code></a></li>
   </ul></li>
+  <li><a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages">R Packages</a></li>
+  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments">Comments</a></li>
   <li><a href="#backslashes" id="toc-backslashes" class="nav-link" data-scroll-target="#backslashes">Backslashes</a></li>
   <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting Help</a>
   <ul class="collapse">
@@ -496,18 +499,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><strong>authors: Karl Brand, Elizabeth Ribble and S. Willemsen</strong></p>
+<div class="callout-advanced">
+<p>test advanced2</p>
+</div>
+<div class="callout-advanced">
+<p>test1 fgf</p>
+</div>
+<div class="callout-xxx">
+<p>test2</p>
+</div>
+<div class="callout-xxx">
+<p>test3</p>
+</div>
+<div class="callout-advanced">
+<p>test advanced3</p>
+</div>
 <section id="course-overview" class="level2">
 <h2 class="anchored" data-anchor-id="course-overview">Course Overview</h2>
-<p>In the first part of the course we are introduced to the <code>R</code> software package, or <strong>environment</strong>, and learn about <code>R</code>, how to interact with it and it’s basic programming elements. In the second part of the course we’ll learn how to use <code>R</code> for it’s intended function: doing statistics quickly and effectively.</p>
-<p>We will cover essential topics including how to use <code>R</code> and why we use it; objects, classes and functions; and creating, importing, saving, manipulating, combining, sub-setting and plotting data.</p>
-<p>By the end of the first couple of introductory days I expect that you can write your own code and have a reasonable understanding of what’s going on when you cut and paste other people’s code, which is typical of how people get started with <code>R</code> (or any other language for that matter).</p>
+<p>In the first part of the course we are introduced to the <code>R</code> software package, or <strong>environment</strong>, and learn about <code>R</code>, how to interact with it and it’s basic programming elements. In the second part of the course you will learn about cleaning data, doing simple statistical analyses and making plot. Throughout the course we will use various illustrate the concepts and methods. The third part of the course focuses more on programming in R using functions and language constructs that control the flow of your program. We will cover essential topics including how to use <code>R</code> and why we use it; objects, classes and functions; and creating, importing, saving, manipulating, combining, sub-setting and plotting data.</p>
+<p>By the end of this course we expect that you can write your own simple scripts and have a reasonable understanding of what’s going on when you cut and paste other people’s code, which is typical of how people get started with <code>R</code> (or any other language for that matter).</p>
+<p>As mentioned, in this chapter we will cover the basics and learn: how to install R and RStudio; the basics of wirking with R and RStudio; how to get help; We will also provide some trouble shooting tips. Then in the next chapters of this part of the course we will discuss the basic objects you will work with in R and to make selections so you can work with subsets of your data.</p>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<section id="history" class="level3">
+<section id="what-is-r" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-r">What is R</h3>
+<p>R is a programming language and software environment that is mainly used for statistics and creating graphics. It runs on all standard computing platforms, including Windows, MacOS and Linux. It is free open source software. So it is available for everybody to download and use without cost. It is also highly extensible, with thousands of packages available for various statistical techniques and data manipulation tasks.</p>
+<p>One of the success factors of <code>R</code> is the large and active user community (especially among statisticians). This means that if you have are problem, it is relatively easy to find help. There are many forums and mailing lists where you can ask questions and get answers from other users. There are also many online resources, such as tutorials, blogs, and documentation, that can help you learn <code>R</code> and solve problems.</p>
+<p>The R language is modular: base R only has limited functionality, but this functionality can be extended by means of various <strong>packages</strong>. Because of the popularity of R among statisticians new statistical methods will frequently be implemented in <code>R</code> first, often by the method’s original author. Nowadays there is an enormous amount of extension packages. And the number of packages still seems to be growing at an exponential rate. The quality of these packages varies although there is some kind of quality control on the packages distributed through the official channel <a href="https://cran.r-project.org/">CRAN</a>.</p>
+</section>
+<section id="history" class="level3 {callout-background}">
 <h3 class="anchored" data-anchor-id="history">History</h3>
-<p>Before <code>R</code> there was the statistical analysis program, <code>S</code>, developed at Bell Laboratories in 1976 by John Chambers. <code>S</code> was later commercialised as <code>S-PLUS</code>. John Chambers is also a current member of the board of the <code>R</code> Foundation for Statistical Computing.</p>
-<p>Ross Ihaka and Robert Gentleman of Dept of Statistics, University of Auckland, New Zealand begin coding (1991) the <code>S</code> clone, <code>R</code>, as an open source alternative for academic use. Together with the <code>R</code> core group’ they released version 1 under the GNU Public License (GPL) v2 and v3 in 2000. The name, <code>R</code>, probably derives from the first letter of the creator’s names. http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f</p>
+<p>Before <code>R</code> there was the statistical analysis program, <code>S</code>, developed at Bell Laboratories in 1976 by John Chambers. It was developed with the purpose of being useful for interactive data analyses and programming. <code>S</code> was later commercialised as <code>S-PLUS</code>. S-PLUS contained some features that made working with the language easier (such as a graphical user interface (GUI)). John Chambers is also a current member of the board of the <code>R</code> Foundation for Statistical Computing.</p>
+<p>In 1991, Ross Ihaka and Robert Gentleman of Dept of Statistics, University of Auckland, New Zealand created the <code>S</code> clone, <code>R</code>, as an open source alternative for academic use. Together with the <code>R</code> core group’ they released version 1 under the GNU Public License (GPL) v2 and v3 in 2000. The name, <code>R</code>, probably derives from the first letter of the creator’s names. http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f</p>
 </section>
 </section>
 <section id="get-it" class="level2">
@@ -528,28 +552,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here’s a full list available editors: https://en.wikipedia.org/wiki/R_(programming_language)#Interfaces</p>
 </section>
 </section>
-<section id="what-is-r-and-how-do-we-use-it" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-r-and-how-do-we-use-it">What <strong>is</strong> <code>R</code> and how do we use it</h2>
-<section id="definitions" class="level3">
-<h3 class="anchored" data-anchor-id="definitions">Definition(s)</h3>
-<ul>
-<li><p><strong>Wikipedia:</strong> `R is a programming language and free software environment for statistical computing and graphics supported by the R Foundation for Statistical Computing. The R language is widely used among statisticians and data miners for developing statistical software[7] and data analysis.’ http://en.wikipedia.org/wiki/R_(programming_language)</p></li>
-<li><p><strong>Comprehensive <code>R</code> Archive Network (CRAN):</strong> `R is ``GNU S’‘, a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering, etc.’ https://cloud.r-project.org/.</p></li>
-<li><p><strong>The R Journal - Facets of R:</strong> `This paper considers six characteristics, which we will call facets. They characterize R as:</p>
-<ul>
-<li>an interface to computational procedures of many kinds;</li>
-<li>interactive, hands-on in real time;</li>
-<li>functional in its model of programming;</li>
-<li>object-oriented, “everything is an object”;</li>
-<li>modular, built from standardized pieces; and,</li>
-<li>collaborative, a world-wide, open-source effort.’</li>
-</ul></li>
-</ul>
-<p>By <a href="https://journal.r-project.org/archive/2009-1/RJournal_2009-1_Chambers.pdf">John M. Chambers</a></p>
-<ul>
-<li><strong>My definition:</strong> A command based, object oriented and functional language; in contrast to excel which is a cell centric, spreadsheet managing graphical user interface (GUI).</li>
-</ul>
-</section>
+<section id="how-do-we-use-r" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-we-use-r">How do we use <code>R</code></h2>
 <section id="working-with-r" class="level3">
 <h3 class="anchored" data-anchor-id="working-with-r">Working with <strong>R</strong></h3>
 <p>You type commands, also known as `<code>expressions,'' into a text editor or terminal and send them to</code>R<code>for evaluation.</code>R` evaluates the command, prints the command (by default), then the result of the evaluated command, if any.</p>
@@ -577,6 +581,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [1] 5
 &gt; five + 1
 [1] 6</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that when we write five at the R command promt, R will print the value of the variable, that is the value stored in this variable. When we wanted to print the exact text <code>five</code> we should have put it in quotes, like this:</p>
+<pre><code>&gt; "five" 
+[1] "five"</code></pre>
+</div>
+</div>
+<p>In R it does not matter if you use single or double quotes as long as they match. Working with text values will be further discussed in the next section.</p>
+<p>As we will see an advantage of using R is that we can do calculations on multiple values (or vectors) at once. For example:</p>
+<pre><code>&gt; c(1, 2)  + c(1, 3) 
+[1] 2 5</code></pre>
+<p>This is of course very convinient in the common setting where we are working on a data set with many observations where we want to do the same calculation on all observations. This will be further discussed later.</p>
 </section>
 <section id="how-we-interact-with-r" class="level3">
 <h3 class="anchored" data-anchor-id="how-we-interact-with-r">How we interact with <code>R</code></h3>
@@ -602,6 +626,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
+<section id="r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="r-packages">R Packages</h2>
+<p>Base <strong>R</strong> has many factions but many more are come from various extension packages. These can be installed using <code>install.packages()</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"packageName"</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">lib =</span> <span class="st">"/directory/to/my custom R library"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">repos =</span> <span class="st">"http://cran.xl-mirror.nl"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># usually lib and repos can be omitted (left at the default)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The package name must be quoted when installing.</p>
+<p>Later when you want to use the package you have to load it first using <code>library()</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"packageName"</span>)      <span class="do">## quotes are optional when loading a package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have to install a package only once, but you have to load it every time you start a new R session and want to use it. Usually somewhere at the top of a script, you will find a section with these library commands so it is clear which packages are needed to run in. It is considered bad practice to use <code>install.packages()</code> inside a script because it may install packages without the user’s consent.</p>
+</div>
+</div>
+</section>
+<section id="comments" class="level2">
+<h2 class="anchored" data-anchor-id="comments">Comments</h2>
+<p>To make your scripts more clear you can add comments, to explain what the code is doing, and why it is doing this. Text that represents a comment is indicated by the hash (#) symbol. For example in the code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the survival package because we will need the data sets</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The first line does not actually do anything (it is skipped by the interpreter). But it explains to the user why the <code>library()</code> call on the next line is included. It is also possible to add comments at the end of a line of code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival) <span class="co"># for data sets</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="backslashes" class="level2">
 <h2 class="anchored" data-anchor-id="backslashes">Backslashes</h2>
 <p>One more thing I want to mention is how <code>R</code> interprets backslashes and forwardslashes, i.e.&nbsp;\ and / respectively, as relates to defining the locations of files on your PC. James McDonald does a better job of clarifying this than I otherwise would http://cran.r-project.org/doc/contrib/Lemon-kickstart/kr_scrpt.html:</p>
@@ -615,12 +680,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Online help. The first place to look. Also works when you’re actually <strong>offline</strong>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?help</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(help)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>?help</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(help)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>??help</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"help"</span>)              <span class="co"># quotes are needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>??help</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"help"</span>)              <span class="co"># quotes are needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It’s fun, try them out!</p>
 <ul>
@@ -636,18 +701,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Clean your environment and start again to be sure your messy environment isn’t the cause of your issue. In RStudio, click the broom in the Environment tab; in any R session you can also run:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())                 </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()           <span class="co"># quotes are needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())                 </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()           <span class="co"># quotes are needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout-advanced">
+<p>If the above does not work, try these:</p>
 <ul>
 <li>Start <code>R</code> without any customisations, i.e., omit loading the <code>.Rprofile</code> and <code>.Renviron</code> customisation files. From the command line:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--vanilla</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--vanilla</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>trace.back()</code> function: very helpful pinpointing the source of an error, and thus its cause.</li>
 </ul>
+</div>
 </section>
 <section id="further-resources" class="level3">
 <h3 class="anchored" data-anchor-id="further-resources">Further resources</h3>
