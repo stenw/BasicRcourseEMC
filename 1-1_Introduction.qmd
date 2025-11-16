@@ -1,26 +1,6 @@
 # Introduction and History
 **authors: Karl Brand, Elizabeth Ribble and S. Willemsen**
 
-::: callout-advanced
-test advanced2
-:::
-
-::: callout-advanced
-test1 fgf
-:::
-
-::: callout-xxx
-test2
-:::
-
-::: callout-xxx
-test3
-:::
-
-::: callout-advanced
-test advanced3
-:::
-
 ## Course Overview
 
 In the first part of the course we are introduced to the `R` software package, or **environment**, and learn about `R`, how to interact with it and it's basic programming elements. In the second part of the course you will learn about cleaning data, doing simple statistical analyses and making plot. Throughout the course we will use various illustrate the concepts and methods. The third part of the course focuses more on programming in R using functions and language constructs that control the flow of your program. We will cover essential topics including how to use `R` and why we use it; objects, classes and functions; and creating, importing, saving, manipulating, combining, sub-setting and plotting data.
