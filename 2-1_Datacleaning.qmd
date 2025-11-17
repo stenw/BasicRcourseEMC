@@ -80,15 +80,11 @@ dim(data)
 str(data)
 ```
 
-
-
 Obtain the variable names
 
 ```{r echo = T, eval=T}
 names(data)
 ```
-
-
 
 ### Rename variables
 
@@ -107,7 +103,6 @@ Remember: never use spaces or special characters in variable names!
 ::: callout-tip
 Use unique but short names for your variables (and data sets)
 :::
-
 
 This variable in a `test` data set is named very inconvenient, because there are spaces in the name:
 
@@ -130,12 +125,9 @@ Better rename it:
 names(test)[names(test) == "miles per gallon"] <- "mpg"
 ```
 
-
-
 ### Change type of variable
 
 The type of your variable can be changed.
-
 
 -   From `numeric` to `factor`
 
@@ -144,6 +136,7 @@ Use variable `vs`, which is a numeric dummy variable (0/1).
 ```{r echo = T, eval=T}
 str(data$vs)
 ```
+
 Change it to a factor with `as.factor()`. (`factor()` is also possible)
 
 ```{r echo = T, eval=T}
@@ -154,7 +147,7 @@ data$vs_factor
 str(data$vs_factor)
 ```
 
--   From `factor` to `numeric` 
+-   From `factor` to `numeric`
 
 Change it back to numeric, with `as.numeric()`.
 
@@ -175,7 +168,6 @@ data$vs_numeric
 
 str(data$vs_numeric)
 ```
-
 
 ### Round variables
 
@@ -215,7 +207,6 @@ head(data[, c("cyl", "hp","cyl2", "hp10", "cyl2_hp10")])
 
 ### Make a subset of your data
 
-
 Remove observations with missings (`NA`) in "mpg" and "cyl"
 
 ```{r echo = T, eval=T}
@@ -226,7 +217,7 @@ data2 <- subset(data, !is.na(data$mpg) & !is.na(data$cyl))
 Create a new data set with a new name. Otherwise you might lose important information in your data.
 :::
 
- 
+?
 
 Make a new data set, including only mpg values \> 20. (Don't forget the comma in the code!)
 
@@ -234,7 +225,7 @@ Make a new data set, including only mpg values \> 20. (Don't forget the comma in
 data2 <- data[data$mpg > 20, ]
 ```
 
- 
+?
 
 #### Remove duplicates
 
@@ -244,14 +235,13 @@ This can be used if there are multiple measurement per patient, but you want to 
 data_short <- data[!duplicated(data$gear),]
 ```
 
- 
+?
 
 #### Make a subset: Remove variables
 
 ```{r echo = T, eval=T}
 data2 <- data[, -c(1, 2)]
 ```
-
 
 Or
 
@@ -273,7 +263,7 @@ data2 <- subset(data, select = c(mpg, cyl))
 
 ```
 
- 
+?
 
 #### Sort data
 
@@ -282,7 +272,7 @@ data2 <- data[order(data$mpg),]
 head(data2)
 ```
 
- 
+?
 
 ### Longitudinal data
 
@@ -329,9 +319,7 @@ Orthodont_w <- dcast(setDT(Orthodont), Subject + Sex ~ age, value.var = "distanc
 -   `age` indicates when the repeated measure is measured
 -   `distance` is the value of this measurement
 
-
-`setDT()` is needed to make a `data.table` out of your data. This can be seen as an improved version of a `data.frame` object. 
-
+`setDT()` is needed to make a `data.table` out of your data. This can be seen as an improved version of a `data.frame` object.
 
 ```{r , echo = T, eval = T}
 head(Orthodont_w)
@@ -374,7 +362,8 @@ dw <- read.table(header=T, text='
 
 dw
 ```
- The code below reshapes the data to long format
+
+The code below reshapes the data to long format
 
 ```{r , echo = T, eval = T}
 
@@ -386,14 +375,13 @@ dw.long <- melt(setDT(dw), id = "ID",
 dw.long
 ```
 
-The function `patterns` can be used if my repeatedly measured variables are measured with high frequency.  By using `patterns("age")`, all variables with `age` are stacked.  
+The function `patterns` can be used if my repeatedly measured variables are measured with high frequency. By using `patterns("age")`, all variables with `age` are stacked.
+
 ```{r , echo = F, eval = T}
 names(Orthodont_w)[3:6] <- paste0("age_", names(Orthodont_w)[3:6])
 head(Orthodont_w)
 
 ```
-
-
 
 ```{r , echo = T, eval = T}
 dw.long <- melt(setDT(Orthodont_w), id = c("Subject", "Sex"),
@@ -407,14 +395,13 @@ head(dw.long, 10)
 
 ### Merge data sets
 
-Data sets can be combined in different ways. 
+Data sets can be combined in different ways.
 
 -   Add new observations (same variables)
 -   Add new variables (same observations)
 -   Complex combining
 
 Let us simulate a few separate data sets. With this code you can replicate the analyses.
-
 
 ```{r , echo = T, eval = T}
 set.seed(61) # To obtain the exact same numbers each time.
@@ -439,6 +426,7 @@ df_4 <- data.frame(ID = c(ID[-c(5, 10, 15)],21:25), Status = c(Status[-c(5, 10, 
 
 
 ```
+
 #### Add new observations
 
 Data `df_1` and `df_2` represent data from two centers (`Center 1` and `Center 2`). Both data sets have 10 observations and 2 baseline variables (`BMI` and `CRP`).
@@ -457,16 +445,17 @@ data_baseline <- merge(df_1, df_2, all = TRUE)
 str(data_baseline)
 data_baseline
 ```
-`data_baseline` now has all 20 observations. 
 
-:::callout-important
+`data_baseline` now has all 20 observations.
+
+::: callout-important
 The function `rbind()` can also be used, because this combines by pasting rows. You have to be careful to have the exact same variable names.
 :::
-
 
 #### Add variables
 
 For all 20 cases, a specific outcome (`Status`) is collected in a different data set (`df_3`)
+
 ```{r , echo = T, eval = T}
 head(df_3)
 ```
@@ -480,21 +469,19 @@ str(data_complete)
 data_complete
 ```
 
-:::callout-important
+::: callout-important
 We can also use `cbind()` to add variables. Be very careful that your observations are in the exact same order. The function cbind does not match, but simply pastes variables to your data set.
 :::
 
-
 #### Complex merging
 
-Sometimes  combining data sets is more complicated. In `data1` and `data2` examples below, there are differences in variables, but also cases. They can be merged in four different ways. Think beforehand which way is desirable for your analyses.
-
+Sometimes combining data sets is more complicated. In `data1` and `data2` examples below, there are differences in variables, but also cases. They can be merged in four different ways. Think beforehand which way is desirable for your analyses.
 
 ```{r , echo = FALSE, out.width="75%", fig.align='center'}
 include_graphics("Pictures/Merging.png")
 ```
 
-The corresponding code to the four ways is: 
+The corresponding code to the four ways is:
 
 ```{r , echo = T, eval = F}
 data_inner <- merge(data1, data2, by = "ID")                 # Inner join
@@ -526,8 +513,8 @@ data_full
 ```
 
 #### Merge multiple data sets
-It is possible to merge multiple data sets by creating a list of data set and using the function `Reduce()`.
-We can merge `df_1`, `df_2` and `df_3` in one go:
+
+It is possible to merge multiple data sets by creating a list of data set and using the function `Reduce()`. We can merge `df_1`, `df_2` and `df_3` in one go:
 
 ```{r , echo = T, eval = T}
 df_list <- list(df_1, df_2, df_3)
@@ -537,7 +524,7 @@ df_complete <- Reduce(function(x,y) merge(x,y, all = TRUE), df_list)
 df_complete
 ```
 
-:::callout-note
+::: callout-note
 After the lectures on functions, the function will make more sense!
 :::
 
@@ -549,7 +536,7 @@ After the lectures on functions, the function will make more sense!
 summary(data)
 ```
 
- 
+?
 
 ### Obtain the summaries of one variable
 

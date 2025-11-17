@@ -38,7 +38,10 @@ library(survival)
 
 ## Preface {data-progressive="FALSE"}
 
-Open Rstudio to do the practicals. Note that tasks with \* are optional.
+By the end of this practical, you will be able to:
+  - Create vectors of different data types (numeric, character, logical)
+  - Identify and work with different R object types (vectors, matrices, data frames, lists)
+Open Rstudio to do the practicals. 
 
 ### R packages
 
@@ -185,6 +188,8 @@ Use  `matrix(c(..., ...), ncol=...)`. Fill in the dots.
 
 ```{r mat-solution-1, solution = TRUE}
 matrix(c(heart$id, heart$age), ncol=2) 
+# or easier 
+cbind(heart$id, heart$age)
 ```
 :::
 

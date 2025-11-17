@@ -1,13 +1,5 @@
 # Introduction and History
-**authors: Karl Brand, Elizabeth Ribble and S. Willemsen**
-
-## Course Overview
-
-In the first part of the course we are introduced to the `R` software package, or **environment**, and learn about `R`, how to interact with it and it's basic programming elements. In the second part of the course you will learn about cleaning data, doing simple statistical analyses and making plot. Throughout the course we will use various illustrate the concepts and methods. The third part of the course focuses more on programming in R using functions and language constructs that control the flow of your program. We will cover essential topics including how to use `R` and why we use it; objects, classes and functions; and creating, importing, saving, manipulating, combining, sub-setting and plotting data.
-
-By the end of this course we expect that you can write your own simple scripts and have a reasonable understanding of what's going on when you cut and paste other people's code, which is typical of how people get started with `R` (or any other language for that matter).
-
-As mentioned, in this chapter we will cover the basics and learn: how to install R and RStudio; the basics of wirking with R and RStudio; how to get help; We will also provide some trouble shooting tips. Then in the next chapters of this part of the course we will discuss the basic objects you will work with in R and to make selections so you can work with subsets of your data.
+**Authors: Karl Brand, Elizabeth Ribble and S. Willemsen**
 
 ## Introduction
 
@@ -33,11 +25,11 @@ In 1991, Ross Ihaka and Robert Gentleman of Dept of Statistics, University of Au
 
 To get `R` on your PC **first** you need to install the core `R` application. Of course you'll need to download the version for your operating system and architecture first.
 
--   For Linux: https://cran.r-project.org/bin/linux/
+-   For Linux: <https://cran.r-project.org/bin/linux/>
 
--   For Mac: https://cran.r-project.org/bin/macosx/
+-   For Mac: <https://cran.r-project.org/bin/macosx/>
 
--   For Windows: https://cran.r-project.org/bin/windows/
+-   For Windows: <https://cran.r-project.org/bin/windows/>
 
 Although `R` for Windows (and Mac?) ships with a basic text editor, and it's possible to execute code from the terminal under linux, a fully featured editor increases convenience and productivity. Grab an awesome text editor:
 
@@ -49,7 +41,7 @@ Positron: https://github.com/posit-dev/positron
 
 Emacs/ESS: http://ess.r-project.org/index.php?Section=download
 
-Here's a full list available editors: https://en.wikipedia.org/wiki/R\_(programming_language)#Interfaces
+Here's a full list available editors: https://en.wikipedia.org/wiki/R_(programming_language)#Interfaces
 
 ## How do we use `R`
 
@@ -143,7 +135,7 @@ A few other things about RStudio:
 
 ## R Packages
 
-Base **R** has many factions but many more are come from various extension packages. These can be installed using `install.packages()` :
+Base **R** has many fuctions but many more are come from various extension packages. These can be installed using `install.packages()` :
 
 ```{r}
 #| eval: false
@@ -210,15 +202,15 @@ apropos("help")              # quotes are needed
 
 It's fun, try them out!
 
--   Google. And when you're actually **online**, often the **first** place and \*\*last\*\* place you'll go when you have no idea is (Google)\[href{https://www.google.com\].
+-   Google. And when you're actually **online**, often the **first** place and \*\*last\*\* place you'll go when you have no idea is [Google (https://www.google.com)](https://www.google.com).
 
--   Package Vignette's. Where the online help is devoid of the context often needed to grasp the full potential and logical use of functions, vignette's is the best place to find such information, with extended examples, and often more. For example, see the limma http://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf
+-   Package Vignette's. Where the online help is devoid of the context often needed to grasp the full potential and logical use of functions, vignette's is the best place to find such information, with extended examples, and often more. For example, see the limma <http://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf>
 
--   Mailing Lists. R-help http://www.r-project.org/mail.html. Do check first using Google or the R-help searchable archives http://tolstoy.newcastle.edu.au/\~rking/R/ first if your question has already been asked and has the answer to solve your issue.
+-   Mailing Lists. R-help <http://www.r-project.org/mail.html>. Do check first using Google or the R-help searchable archives <http://tolstoy.newcastle.edu.au/\~rking/R/> first if your question has already been asked and has the answer to solve your issue.
 
--   Other lists: https://stat.ethz.ch/mailman/listinfo
+-   Other lists: <https://stat.ethz.ch/mailman/listinfo>
 
--   Stack Overflow https://stackoverflow.com. Probably more questions and answers posted here than on the mailing list.
+-   Stack Overflow <https://stackoverflow.com>. Probably more questions and answers posted here than on the mailing list.
 
 ### Trouble shooting
 
@@ -247,23 +239,23 @@ R --vanilla
 
 ### Further resources
 
--   `R` focused search engine: http://www.Rseek.org
+-   `R` focused search engine: <http://www.Rseek.org>
 
--   Aggregator of all R blogs: http://www.r-bloggers.com
+-   Aggregator of all R blogs: <http://www.r-bloggers.com>
 
--   Quick-R: https://www.datacamp.com/doc/r/category/r-documentation
+-   Quick-R: <https://www.datacamp.com/doc/r/category/r-documentation>
 
--   `R` Course in one hour: https://www.youtube.com/watch?v=eR-XRSKsuR4
+-   `R` Course in one hour: <https://www.youtube.com/watch?v=eR-XRSKsuR4>
 
--   *The* list of reference texts: http://www.r-project.org/doc/bib/R-publications.html
+-   *The* list of reference texts: <http://www.r-project.org/doc/bib/R-publications.html>
 
--   The Big Book of R: https://www.bigbookofr.com/
+-   The Big Book of R: <https://www.bigbookofr.com/>
 
--   This course not enough? There's a excellent free online introduction to R here: https://www.computerworld.com/article/2497143/business-intelligence-beginner-s-guide-to-r-introduction.html
+-   This course not enough? There's a excellent free online introduction to R here: <https://www.computerworld.com/article/2497143/business-intelligence-beginner-s-guide-to-r-introduction.html>
 
 -   And more..
 
-    -   http://www.ats.ucla.edu/stat/r/
-    -   http://zoonek2.free.fr/UNIX/48_R/02.html
+    -   <http://www.ats.ucla.edu/stat/r/>
+    -   <http://zoonek2.free.fr/UNIX/48_R/02.html>
 
 -   **A First Course in Statistical Programming with R.** W. John Braun and Duncan J. Murdoch. Cambridge University Press, 2007\\ I love this book, beautifully explores the programming aspects of `R`.

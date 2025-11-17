@@ -75,7 +75,7 @@ class(FALSE)
 mode(TRUE)
 ```
 
-Often logical values are he result of comparisons:
+Often logical values are the result of comparisons:
 
 | Operator | Meaning                  |
 |----------|--------------------------|
@@ -86,7 +86,7 @@ Often logical values are he result of comparisons:
 | \>=      | Greater than or equal to |
 | \<=      | Smaller than or equal to |
 
-Logival values can be combined using `&` (and) and `|` or, and inverted using `!` (not).
+Logical values can be combined using `&` (and) and `|` or, and inverted using `!` (not).
 
 ```{r}
 true_val <- TRUE
@@ -138,6 +138,8 @@ c(1, 2, 3) * c(4, 5)
 c(1, 2, 3, 4) * c(4, 5)
 ```
 
+**Best practice**: Always make sure your vectors have the lengths you expect. If you're unsure, check before performing operations.
+
 We can also give names to the elements of a vector:
 
 ```{r}
@@ -153,15 +155,15 @@ When we try to create a vector that consists of different data types they will b
 c("eleven", 12)
 ```
 
-The second element of the resulting vector is now also of type `character`. In general it is better not to trust this implicit conversion. Instead to it explicitly, in this case by using the function `as.character()`.
+The second element of the resulting vector is now also of type `character`. In general, it is better not to trust this implicit conversion. Instead, do it explicitly—in this case by using the function `as.character()`.
 
-An other way to create a vector is by using the function `vector`. `vector('numeric', 8)` creates a numeric vector of length 8. The `vector` function is often used to pre-allocate room where the results of future computations can be stored.
+Another way to create a vector is by using the function `vector`. `vector('numeric', 8)` creates a numeric vector of length 8. The `vector` function is often used to pre-allocate room where the results of future computations can be stored.
 
 One kind of vector that is often used is a sequence of numbers. One way to create them is by using the colon operator `:`. A syntax `a:b` will create a sequence of integers from `a` up to and including `b`. For example `1:4` is equal to the vector `c(1, 2, 3, 4)`.
 
 ## Matrices
 
-Vectors have just a single dimension (every element is characterized by a single number (index) that indicates its position within the vector). They can be generalized to vectors that are two dimensional, that is they have both rows and columns. Like simple vectors all elements of a matrix have the same \emph{mode}.
+Vectors have just a single dimension (every element is characterized by a single number (index) that indicates its position within the vector). They can be generalized to objects that are two-dimensional, that is they have both rows and columns. Like simple vectors, all elements of a matrix have the same mode.
 
 ```{r}
 my_matrix <- matrix(data = c(1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12))
@@ -253,11 +255,12 @@ A `factor`is a special kind of vector for categorical data. The factor contains 
 
 ```{r}
 f <- c('male', 'female', 'male')
-factor(f)
-levels(f)
+f_factor <- factor(f)
+f_factor
+levels(f_factor)
 ```
 
-When a `factor` is displayed R also shows us the unique values the variable can take. These are called the 'levels' of the factor.
+When a `factor` is displayed, R also shows us the unique values the variable can take. These are called the 'levels' of the factor.
 
 ## functions
 
@@ -270,7 +273,7 @@ print(mode)
 # do not worry if you do not understand the meaning of what is printed yet
 ```
 
-Note that operators are functions to. When you want to use them in the same way as normal functions just put them between back-ticks ("\`"):
+Note that operators are functions too. When you want to use them in the same way as normal functions, just put them between back-ticks ("\`"):
 
 ```{r}
 mode(`+`)   
@@ -297,7 +300,7 @@ These kind of functions are called **generic** functions in R. We will not go in
 
 ## Missing values
 
-Whenever the value of a variable is missing this is denoted by `NA` in R. Usually this means that the values exists however we do not know it. Sometimes the result of a calculation is not finite (for example when we define a positive or negative number by zero). In this case the result is defined to be `Inf` of `-Inf` in R. 
+Whenever the value of a variable is missing, this is denoted by `NA` in R. Usually this means that the value exists; however, we do not know it. Sometimes the result of a calculation is not finite (for example when we divide a positive or negative number by zero). In this case the result is defined to be `Inf` or `-Inf` in R.
 
 ```{r}
 a <- NA

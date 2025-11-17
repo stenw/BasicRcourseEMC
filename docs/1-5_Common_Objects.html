@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Overview{.unnumbered}</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./1-2_Working_with_R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -622,7 +622,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "logical"</code></pre>
 </div>
 </div>
-<p>Often logical values are he result of comparisons:</p>
+<p>Often logical values are the result of comparisons:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -657,7 +657,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Logival values can be combined using <code>&amp;</code> (and) and <code>|</code> or, and inverted using <code>!</code> (not).</p>
+<p>Logical values can be combined using <code>&amp;</code> (and) and <code>|</code> or, and inverted using <code>!</code> (not).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>true_val <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>false_val <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
@@ -763,6 +763,7 @@ shorter object length</code></pre>
 <pre><code>[1]  4 10 12 20</code></pre>
 </div>
 </div>
+<p><strong>Best practice</strong>: Always make sure your vectors have the lengths you expect. If you’re unsure, check before performing operations.</p>
 <p>We can also give names to the elements of a vector:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>named_v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">foo=</span><span class="dv">1</span>, <span class="at">bar=</span><span class="dv">2</span>)</span>
@@ -787,13 +788,13 @@ shorter object length</code></pre>
 <pre><code>[1] "eleven" "12"    </code></pre>
 </div>
 </div>
-<p>The second element of the resulting vector is now also of type <code>character</code>. In general it is better not to trust this implicit conversion. Instead to it explicitly, in this case by using the function <code>as.character()</code>.</p>
-<p>An other way to create a vector is by using the function <code>vector</code>. <code>vector('numeric', 8)</code> creates a numeric vector of length 8. The <code>vector</code> function is often used to pre-allocate room where the results of future computations can be stored.</p>
+<p>The second element of the resulting vector is now also of type <code>character</code>. In general, it is better not to trust this implicit conversion. Instead, do it explicitly—in this case by using the function <code>as.character()</code>.</p>
+<p>Another way to create a vector is by using the function <code>vector</code>. <code>vector('numeric', 8)</code> creates a numeric vector of length 8. The <code>vector</code> function is often used to pre-allocate room where the results of future computations can be stored.</p>
 <p>One kind of vector that is often used is a sequence of numbers. One way to create them is by using the colon operator <code>:</code>. A syntax <code>a:b</code> will create a sequence of integers from <code>a</code> up to and including <code>b</code>. For example <code>1:4</code> is equal to the vector <code>c(1, 2, 3, 4)</code>.</p>
 </section>
 <section id="matrices" class="level2">
 <h2 class="anchored" data-anchor-id="matrices">Matrices</h2>
-<p>Vectors have just a single dimension (every element is characterized by a single number (index) that indicates its position within the vector). They can be generalized to vectors that are two dimensional, that is they have both rows and columns. Like simple vectors all elements of a matrix have the same .</p>
+<p>Vectors have just a single dimension (every element is characterized by a single number (index) that indicates its position within the vector). They can be generalized to objects that are two-dimensional, that is they have both rows and columns. Like simple vectors, all elements of a matrix have the same mode.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>))</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -971,17 +972,18 @@ shorter object length</code></pre>
 <p>A <code>factor</code>is a special kind of vector for categorical data. The factor contains different integers one for every category. Each unique value has an associated ‘label’ that tell us what the code means. Factors are frequently used when we model categorical data. An advantage of a factor over a <code>character</code> is that we can limit the number of possible outcomes. It is also less likely to make mistakes due to typing errors. Factors can be created by means of the function <code>factor()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'male'</span>, <span class="st">'female'</span>, <span class="st">'male'</span>)</span>
-<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>f_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(f)</span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>f_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] male   female male  
 Levels: female male</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(f_factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
+<pre><code>[1] "female" "male"  </code></pre>
 </div>
 </div>
-<p>When a <code>factor</code> is displayed R also shows us the unique values the variable can take. These are called the ‘levels’ of the factor.</p>
+<p>When a <code>factor</code> is displayed, R also shows us the unique values the variable can take. These are called the ‘levels’ of the factor.</p>
 </section>
 <section id="functions" class="level2">
 <h2 class="anchored" data-anchor-id="functions">functions</h2>
@@ -1008,12 +1010,12 @@ Levels: female male</code></pre>
     else switch(tx &lt;- typeof(x), double = , integer = "numeric", 
         closure = , builtin = , special = "function", tx)
 }
-&lt;bytecode: 0x000002714db8bc08&gt;
+&lt;bytecode: 0x000001a774c13c08&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do not worry if you do not understand the meaning of what is printed yet</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that operators are functions to. When you want to use them in the same way as normal functions just put them between back-ticks (“`”):</p>
+<p>Note that operators are functions too. When you want to use them in the same way as normal functions, just put them between back-ticks (“`”):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(<span class="st">`</span><span class="at">+</span><span class="st">`</span>)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1062,7 +1064,7 @@ Levels: female male</code></pre>
 </section>
 <section id="missing-values" class="level2">
 <h2 class="anchored" data-anchor-id="missing-values">Missing values</h2>
-<p>Whenever the value of a variable is missing this is denoted by <code>NA</code> in R. Usually this means that the values exists however we do not know it. Sometimes the result of a calculation is not finite (for example when we define a positive or negative number by zero). In this case the result is defined to be <code>Inf</code> of <code>-Inf</code> in R.</p>
+<p>Whenever the value of a variable is missing, this is denoted by <code>NA</code> in R. Usually this means that the value exists; however, we do not know it. Sometimes the result of a calculation is not finite (for example when we divide a positive or negative number by zero). In this case the result is defined to be <code>Inf</code> or <code>-Inf</code> in R.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
 <span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

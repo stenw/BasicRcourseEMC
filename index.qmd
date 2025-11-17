@@ -1,3 +1,8 @@
-# Welcome {.unnumbered}
+# Course Overview{.unnumbered}
 
-Hi, welcome to the Basic R Course manual.
+In the first part of the course we are introduced to the `R` software package, or **environment**, and learn about `R`, how to interact with it and its basic programming elements. In the second part of the course you will learn about cleaning data and doing simple statistical analyses. The third part of the course focuses more on programming in R using functions and language constructs that control the flow of your program. 
+We will cover essential topics including how to use `R` and why we use it; objects, classes and functions; and creating, importing, saving, manipulating, combining, sub-setting and plotting data.
+
+By the end of this course we expect that you can write your own simple scripts and have a reasonable understanding of what's going on when you cut and paste other people's code, which is typical of how people get started with `R` (or any other language for that matter).
+
+As mentioned, in this chapter we will cover the basics and learn: how to install R and RStudio; the basics of working with R and RStudio; how to get help; We will also provide some trouble shooting tips. Then in the next chapters of this part of the course we will discuss the basic objects you will work with in R and to make selections so you can work with subsets of your data.

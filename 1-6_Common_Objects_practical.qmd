@@ -38,7 +38,11 @@ library(survival)
 
 ## Preface {data-progressive="FALSE"}
 
-Open Rstudio to do the practicals. Note that tasks with \* are optional.
+By the end of this practical, you will be able to:
+  - Create vectors of different data types (numeric, character, logical)
+  - Identify and work with different R object types (vectors, matrices, data frames, lists)
+Open Rstudio to do the practicals. 
+
 
 ### R packages
 
@@ -113,7 +117,7 @@ Create a numerical vector that takes the integer values from 1 until 200. Give t
 
 #### *Hint 4*
 
-Use the c(...) function. Replace the dots with the numbers.
+Use the `:` operator. For example, `1:10` creates a vector from 1 to 10.
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -133,7 +137,7 @@ Let's investigate some matrices and data frames.
 ::: {.panel-tabset .nav-pills}
 #### Task 1
 
-Create a matrix using the vectors `id` and `age` from the **heart** data set. This matrix should have 2 columns where each column represents each variable. An easy way to do this is to first create a long vector combining the data of both variables and then using the `matrix` function.
+Create a matrix using the vectors `id` and `age` from the **heart** data set. This matrix should have 2 columns where each column represents each variable. An easy way to do this is to first create a long vector combining the data of both variables and then using the `matrix` function. Another option would be to use the `cbind()` function. 
 
 #### Hint 1
 
@@ -200,7 +204,7 @@ Next, we need to tell R the shape of our array. This is done with a numeric vect
 
 We can build the array using the `array()` function. Pass our variables (`all_grades` and `dimensions`) to the correct arguments (`data` and `dim`). Use `?array` if you need help. Call the resulting object `grades_array`.
 
-#### Hint 2 
+#### *Hint 2* 
 
 Use `array(data = ... , dim = ...)`
 :::
@@ -208,7 +212,7 @@ Use `array(data = ... , dim = ...)`
 ::: {.panel-tabset .nav-pills}
 #### Task 3 🎓
 
-An array is much more useful if its dimensions have names. Let';s set up the names for our rows, columns and layers. We use the `dimnames` argument, which takes a list of character vectors. The order of the list must match the order of our dimensions (students, subjects, semesters). The students are called: Anna, Ben and Clara. The subjects are called: Math and History. The semesters are called: Fall and Spring. Recreate the array `grades_array` with the correct dimension names.
+An array is much more useful if its dimensions have names. Let's set up the names for our rows, columns and layers. We use the `dimnames` argument, which takes a list of character vectors. The order of the list must match the order of our dimensions (students, subjects, semesters). The students are called: Anna, Ben and Clara. The subjects are called: Math and History. The semesters are called: Fall and Spring. Recreate the array `grades_array` with the correct dimension names.
 
 #### *Hint 3* 
 

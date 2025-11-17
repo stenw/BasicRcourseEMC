@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Importing and Saving Data – Basic R Course</title>
+<title>2&nbsp; Importing and Saving Data – Basic R Course</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1-1_Introduction.html">Introduction and History</a></li><li class="breadcrumb-item"><a href="./1-2_Working_with_R.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1-1_Introduction.html">Introduction and History</a></li><li class="breadcrumb-item"><a href="./1-2_Working_with_R.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Overview{.unnumbered}</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./1-2_Working_with_R.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -449,17 +449,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#creating-and-saving-an-r-script" id="toc-creating-and-saving-an-r-script" class="nav-link active" data-scroll-target="#creating-and-saving-an-r-script"><span class="header-section-number">1.1</span> Creating and saving an R script</a></li>
-  <li><a href="#saving-and-restoring-your-session" id="toc-saving-and-restoring-your-session" class="nav-link" data-scroll-target="#saving-and-restoring-your-session"><span class="header-section-number">1.2</span> Saving and restoring your session</a></li>
+  <li><a href="#creating-and-saving-an-r-script" id="toc-creating-and-saving-an-r-script" class="nav-link active" data-scroll-target="#creating-and-saving-an-r-script"><span class="header-section-number">2.1</span> Creating and saving an R script</a></li>
+  <li><a href="#saving-and-restoring-your-session" id="toc-saving-and-restoring-your-session" class="nav-link" data-scroll-target="#saving-and-restoring-your-session"><span class="header-section-number">2.2</span> Saving and restoring your session</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/1-2_Working_with_R.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1-1_Introduction.html">Introduction and History</a></li><li class="breadcrumb-item"><a href="./1-2_Working_with_R.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1-1_Introduction.html">Introduction and History</a></li><li class="breadcrumb-item"><a href="./1-2_Working_with_R.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></h1>
 </div>
 
 
@@ -477,12 +477,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Because the typical way of using <code>R</code> involves writing text into a file with the <code>.r</code> or <code>.R</code> extension (e.g.&nbsp;<code>my-r-file.r</code>). Hopefully you’re you are also doing this for the R commands you will use for this course. Sometimes you will also want to save your data.</p>
-<section id="creating-and-saving-an-r-script" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="creating-and-saving-an-r-script"><span class="header-section-number">1.1</span> Creating and saving an R script</h2>
+<section id="creating-and-saving-an-r-script" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="creating-and-saving-an-r-script"><span class="header-section-number">2.1</span> Creating and saving an R script</h2>
 <p>You can create a new R file using the menu (File &gt; New File &gt; R script) or by using the keyboard combination <kbd aria-hidden="true" data-mac="Cmd+Shift+N" data-windows="Ctrl+Shift+N"></kbd><span class="visually-hidden"></span>. You are then prompted for a file name. When you want to save the file you can do so using the menu again (File &gt; Save) or by pressing <kbd aria-hidden="true" data-mac="Cmd+S" data-windows="Ctrl+S"></kbd><span class="visually-hidden"></span>. Selecting ‘File &gt; Save as …’ saves the active file under another name.</p>
 </section>
-<section id="saving-and-restoring-your-session" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="saving-and-restoring-your-session"><span class="header-section-number">1.2</span> Saving and restoring your session</h2>
+<section id="saving-and-restoring-your-session" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="saving-and-restoring-your-session"><span class="header-section-number">2.2</span> Saving and restoring your session</h2>
 <p>Save all objects to the working directory in a file called <code>.RData</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

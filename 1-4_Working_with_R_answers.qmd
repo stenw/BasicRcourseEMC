@@ -119,9 +119,9 @@ d <- (a - b) * c
 
 `a`, `b`, `c`, and `d` are variables. To see their values, you can just type the variable name (e.g. `a`) and hit {{< kbd Ctrl-Enter >}} or use the command `print(a)`.
 
-#### Solution 2 {r abc, solution = TRUE, eval=FALSE, .unnumbered}
+#### Solution 2 { .unnumbered}
 
-```{r}
+```{r sol2, solution = TRUE, eval=FALSE}
 a <- 45
 b <- 2
 c <- 3
@@ -156,9 +156,9 @@ v1 <- c(3, 4)
 
 
 
-#### Solution 3 {r vectorscalc, solution = TRUE, eval=FALSE, .unnumbered}
+#### Solution 3 {.unnumbered}
 
-```{r}
+```{r sol3, solution = TRUE, eval=FALSE }
 v1 <- c(3, 4) # the c(.) fucntion combines the arguments 3 and 4 into a vector
 v1^2
 v2 <- c(1, 2)
@@ -174,7 +174,7 @@ A type of vector that is used often is simply a sequence of numbers
 
 #### Task 4
 
-Create a vector of numbers using the function call `seq(1, 9)`. Theck that `1:9` does the same thing. What do `seq(1, 9, by=2)` and `9:1` do?
+Create a vector of numbers using the function call `seq(1, 9)`. Check that `1:9` does the same thing. What do `seq(1, 9, by=2)` and `9:1` do?
 
 #### Hint 4
 
@@ -183,9 +183,9 @@ Create a vector of numbers using the function call `seq(1, 9)`. Theck that `1:9`
 # Just type in the given code fragments and see what they do.
 ```
 
-#### Solution 4 {r vectorscalc, solution = TRUE, eval=FALSE, .unnumbered}
+#### Solution 4 {.unnumbered}
 
-```{r}
+```{r sol4, solution = TRUE, eval=FALSE}
 seq(1, 9)
 1:9
 seq(1, 9, by=2)

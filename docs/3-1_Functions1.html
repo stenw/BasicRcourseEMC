@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Overview{.unnumbered}</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./1-2_Working_with_R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -541,8 +541,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.5281459  2.0716368  1.2466320 -0.4190697 -0.1290606  0.4860666
- [7]  0.3917345  0.2380383  0.4058709  0.4285302</code></pre>
+<pre><code> [1] -0.003505304 -1.771072527 -0.029837369  2.536364860 -0.475357175
+ [6] -0.855542659  0.358845617 -0.092592492  0.631402549 -0.352832132</code></pre>
 </div>
 </div>
 <p>For a (very long) list of all named functions available in base-R have a look at this website:</p>
@@ -758,22 +758,22 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Ages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  47  40  57  52  41  14  51  49  43  41  45  54  38  36  52 -50  34  48  22
-[20]  40  52  45  42  29  54</code></pre>
+<pre><code> [1]  63  50  43  44  38  33  59  49  27  28  50  50  61  60  28 -50  30  46  49
+[20]  56  39  38  61  37  50</code></pre>
 </div>
 </div>
 <p>There is one value <code>-50</code>, that is clearly an error.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 42.75</code></pre>
+<pre><code>[1] 45.375</code></pre>
 </div>
 </div>
 <p>Compare the output with using the standard function <code>mean()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 39.04</code></pre>
+<pre><code>[1] 41.56</code></pre>
 </div>
 </div>
 <p>In the standard <code>mean</code> function, the negative outlier is included and influences the mean!</p>
@@ -789,7 +789,7 @@ Tip
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  14.00   39.50   44.00   42.75   51.25   57.00 </code></pre>
+  27.00   37.75   47.50   45.38   51.50   63.00 </code></pre>
 </div>
 </div>
 <p>Again, let’s compare the output to the standard <code>summary()</code> function.</p>
@@ -797,7 +797,7 @@ Tip
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -50.00   38.00   43.00   39.04   51.00   57.00 </code></pre>
+ -50.00   37.00   46.00   41.56   50.00   63.00 </code></pre>
 </div>
 </div>
 <p>If you have multiple objects to return, you have to put them in an object container, like a list, vector, array or data.frame. It is not possible to return multiple individual objects like this:</p>
@@ -822,7 +822,7 @@ Tip
 [1] 1
 
 [[2]]
-[1] 42.75</code></pre>
+[1] 45.375</code></pre>
 </div>
 </div>
 <p>There was <code>1</code> value below zero, as provided by the first element in the list.</p>

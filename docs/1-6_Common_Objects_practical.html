@@ -184,7 +184,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Overview{.unnumbered}</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -199,7 +199,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./1-2_Working_with_R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -519,7 +519,7 @@ window.Quarto = {
 
 <section id="preface" class="level2" data-progressive="FALSE">
 <h2 data-progressive="FALSE" class="anchored" data-anchor-id="preface">Preface</h2>
-<p>Open Rstudio to do the practicals. Note that tasks with * are optional.</p>
+<p>By the end of this practical, you will be able to: - Create vectors of different data types (numeric, character, logical) - Identify and work with different R object types (vectors, matrices, data frames, lists) Open Rstudio to do the practicals.</p>
 <section id="r-packages" class="level3">
 <h3 class="anchored" data-anchor-id="r-packages">R packages</h3>
 <p>In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:</p>
@@ -593,7 +593,7 @@ window.Quarto = {
 <p>Create a numerical vector that takes the integer values from 1 until 200. Give the name <code>numbers_2</code> to this new vector.</p>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<p>Use the c(…) function. Replace the dots with the numbers.</p>
+<p>Use the <code>:</code> operator. For example, <code>1:10</code> creates a vector from 1 to 10.</p>
 </div>
 </div>
 </div>
@@ -616,7 +616,7 @@ window.Quarto = {
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Task 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Hint 1</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
-<p>Create a matrix using the vectors <code>id</code> and <code>age</code> from the <strong>heart</strong> data set. This matrix should have 2 columns where each column represents each variable. An easy way to do this is to first create a long vector combining the data of both variables and then using the <code>matrix</code> function.</p>
+<p>Create a matrix using the vectors <code>id</code> and <code>age</code> from the <strong>heart</strong> data set. This matrix should have 2 columns where each column represents each variable. An easy way to do this is to first create a long vector combining the data of both variables and then using the <code>matrix</code> function. Another option would be to use the <code>cbind()</code> function.</p>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
 <p>Use the function matrix(…).</p>
@@ -677,7 +677,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">Task 2 🎓</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">Hint 2</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">Task 2 🎓</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false"><em>Hint 2</em></a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
 <p>We can build the array using the <code>array()</code> function. Pass our variables (<code>all_grades</code> and <code>dimensions</code>) to the correct arguments (<code>data</code> and <code>dim</code>). Use <code>?array</code> if you need help. Call the resulting object <code>grades_array</code>.</p>
@@ -691,7 +691,7 @@ window.Quarto = {
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true">Task 3 🎓</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false"><em>Hint 3</em></a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
-<p>An array is much more useful if its dimensions have names. Let’;s set up the names for our rows, columns and layers. We use the <code>dimnames</code> argument, which takes a list of character vectors. The order of the list must match the order of our dimensions (students, subjects, semesters). The students are called: Anna, Ben and Clara. The subjects are called: Math and History. The semesters are called: Fall and Spring. Recreate the array <code>grades_array</code> with the correct dimension names.</p>
+<p>An array is much more useful if its dimensions have names. Let’s set up the names for our rows, columns and layers. We use the <code>dimnames</code> argument, which takes a list of character vectors. The order of the list must match the order of our dimensions (students, subjects, semesters). The students are called: Anna, Ben and Clara. The subjects are called: Math and History. The semesters are called: Fall and Spring. Recreate the array <code>grades_array</code> with the correct dimension names.</p>
 </div>
 <div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
 <p>Use the function <code>array(...)</code>. Check the help page for the <code>dimnames</code> argument. Note that this must be in a <code>list</code> format.</p>

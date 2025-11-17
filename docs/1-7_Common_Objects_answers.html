@@ -184,7 +184,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Overview{.unnumbered}</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -199,7 +199,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./1-2_Working_with_R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Importing and Saving Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -519,7 +519,7 @@ window.Quarto = {
 
 <section id="preface" class="level2" data-progressive="FALSE">
 <h2 data-progressive="FALSE" class="anchored" data-anchor-id="preface">Preface</h2>
-<p>Open Rstudio to do the practicals. Note that tasks with * are optional.</p>
+<p>By the end of this practical, you will be able to: - Create vectors of different data types (numeric, character, logical) - Identify and work with different R object types (vectors, matrices, data frames, lists) Open Rstudio to do the practicals.</p>
 <section id="r-packages" class="level3">
 <h3 class="anchored" data-anchor-id="r-packages">R packages</h3>
 <p>In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:</p>
@@ -949,6 +949,183 @@ Levels: right left</code></pre>
 [171,]  102  -7.60848734
 [172,]  103  -8.68446270</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or easier </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(heart<span class="sc">$</span>id, heart<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       [,1]         [,2]
+  [1,]    1 -17.15537303
+  [2,]    2   3.83572895
+  [3,]    3   6.29705681
+  [4,]    3   6.29705681
+  [5,]    4  -7.73716632
+  [6,]    4  -7.73716632
+  [7,]    5 -27.21423682
+  [8,]    6   6.59548255
+  [9,]    7   2.86926762
+ [10,]    7   2.86926762
+ [11,]    8  -2.65023956
+ [12,]    9  -0.83778234
+ [13,]   10  -5.49760438
+ [14,]   10  -5.49760438
+ [15,]   11  -0.01916496
+ [16,]   11  -0.01916496
+ [17,]   12   5.19370294
+ [18,]   13   6.57357974
+ [19,]   13   6.57357974
+ [20,]   14   6.01232033
+ [21,]   14   6.01232033
+ [22,]   15   5.81519507
+ [23,]   16   1.44832307
+ [24,]   16   1.44832307
+ [25,]   17 -27.66872005
+ [26,]   18   8.84873374
+ [27,]   18   8.84873374
+ [28,]   19  11.12388775
+ [29,]   20   7.27994524
+ [30,]   20   7.27994524
+ [31,]   21  -4.65708419
+ [32,]   21  -4.65708419
+ [33,]   22  -5.21560575
+ [34,]   22  -5.21560575
+ [35,]   23  10.35728953
+ [36,]   23  10.35728953
+ [37,]   24   3.80013689
+ [38,]   24   3.80013689
+ [39,]   25 -14.77618070
+ [40,]   25 -14.77618070
+ [41,]   26 -17.46475017
+ [42,]   27 -39.21423682
+ [43,]   28   6.02327173
+ [44,]   28   6.02327173
+ [45,]   29   2.43394935
+ [46,]   30  -3.08829569
+ [47,]   30  -3.08829569
+ [48,]   31   6.88569473
+ [49,]   32  16.40793977
+ [50,]   32  16.40793977
+ [51,]   33   0.90349076
+ [52,]   33   0.90349076
+ [53,]   34  -7.44695414
+ [54,]   34  -7.44695414
+ [55,]   35  -4.53388090
+ [56,]   36   0.92539357
+ [57,]   36   0.92539357
+ [58,]   37  13.50034223
+ [59,]   37  13.50034223
+ [60,]   38  -6.52977413
+ [61,]   38  -6.52977413
+ [62,]   39   2.51882272
+ [63,]   39   2.51882272
+ [64,]   40   0.48186174
+ [65,]   40   0.48186174
+ [66,]   41  -2.69678303
+ [67,]   41  -2.69678303
+ [68,]   42 -11.55920602
+ [69,]   43  -4.60780287
+ [70,]   44  -5.42094456
+ [71,]   45 -11.81656400
+ [72,]   45 -11.81656400
+ [73,]   46   0.61054073
+ [74,]   46   0.61054073
+ [75,]   47  -0.90075291
+ [76,]   47  -0.90075291
+ [77,]   48   8.03559206
+ [78,]   49 -11.34565366
+ [79,]   49 -11.34565366
+ [80,]   50  -2.11362081
+ [81,]   50  -2.11362081
+ [82,]   51   0.73374401
+ [83,]   51   0.73374401
+ [84,]   52  -6.75154004
+ [85,]   53  -0.65708419
+ [86,]   53  -0.65708419
+ [87,]   54  -0.20807666
+ [88,]   55   4.45448323
+ [89,]   55   4.45448323
+ [90,]   56  -9.25667351
+ [91,]   56  -9.25667351
+ [92,]   57  -6.73511294
+ [93,]   58   0.01642710
+ [94,]   58   0.01642710
+ [95,]   59  -6.61738535
+ [96,]   59  -6.61738535
+ [97,]   60   1.05407255
+ [98,]   60   1.05407255
+ [99,]   61   4.56399726
+[100,]   62  -8.64613279
+[101,]   63 -15.34017796
+[102,]   63 -15.34017796
+[103,]   64   0.81587953
+[104,]   64   0.81587953
+[105,]   65   3.29363450
+[106,]   65   3.29363450
+[107,]   66   5.21286790
+[108,]   67 -28.44900753
+[109,]   67 -28.44900753
+[110,]   68  -2.75975359
+[111,]   68  -2.75975359
+[112,]   69  -0.01095140
+[113,]   69  -0.01095140
+[114,]   70   5.00205339
+[115,]   70   5.00205339
+[116,]   71  -0.59137577
+[117,]   71  -0.59137577
+[118,]   72 -21.27310062
+[119,]   72 -21.27310062
+[120,]   73   8.33127995
+[121,]   73   8.33127995
+[122,]   74 -18.83367556
+[123,]   74 -18.83367556
+[124,]   75   4.18069815
+[125,]   76   4.08487337
+[126,]   76   4.08487337
+[127,]   77  -6.88843258
+[128,]   78   0.70362765
+[129,]   78   0.70362765
+[130,]   79   5.78234086
+[131,]   79   5.78234086
+[132,]   80  -1.55509925
+[133,]   80  -1.55509925
+[134,]   81   4.89253936
+[135,]   81   4.89253936
+[136,]   82 -18.79808350
+[137,]   83   5.30869268
+[138,]   83   5.30869268
+[139,]   84  -5.28131417
+[140,]   84  -5.28131417
+[141,]   85  -0.01916496
+[142,]   86   0.91991786
+[143,]   86   0.91991786
+[144,]   87  -1.74674880
+[145,]   87  -1.74674880
+[146,]   88   6.36276523
+[147,]   88   6.36276523
+[148,]   89   3.04722793
+[149,]   89   3.04722793
+[150,]   90   4.03285421
+[151,]   90   4.03285421
+[152,]   91  -0.40520192
+[153,]   92  -3.01711157
+[154,]   92  -3.01711157
+[155,]   93  -0.24914442
+[156,]   93  -0.24914442
+[157,]   94  -4.15879535
+[158,]   94  -4.15879535
+[159,]   95  -7.71800137
+[160,]   95  -7.71800137
+[161,]   96 -21.34976044
+[162,]   96 -21.34976044
+[163,]   97 -24.38329911
+[164,]   97 -24.38329911
+[165,]   98 -19.37029432
+[166,]   98 -19.37029432
+[167,]   99   1.83436003
+[168,]  100 -12.93908282
+[169,]  100 -12.93908282
+[170,]  101   1.51676934
+[171,]  102  -7.60848734
+[172,]  103  -8.68446270</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -964,7 +1141,7 @@ Levels: right left</code></pre>
 </div>
 <div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
 <div class="cell" data-solution="true">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">id =</span> retinopathy<span class="sc">$</span>id, <span class="at">type =</span> retinopathy<span class="sc">$</span>type, <span class="at">trt =</span> retinopathy<span class="sc">$</span>trt) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">id =</span> retinopathy<span class="sc">$</span>id, <span class="at">type =</span> retinopathy<span class="sc">$</span>type, <span class="at">trt =</span> retinopathy<span class="sc">$</span>trt) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      id     type trt
 1      5    adult   1
@@ -1381,7 +1558,7 @@ Levels: right left</code></pre>
 </div>
 <div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
 <div class="cell" data-solution="true">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">stop_heart =</span> heart<span class="sc">$</span>stop, <span class="at">id_reti =</span> retinopathy<span class="sc">$</span>id, <span class="at">risk_reti =</span> retinopathy<span class="sc">$</span>risk)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">stop_heart =</span> heart<span class="sc">$</span>stop, <span class="at">id_reti =</span> retinopathy<span class="sc">$</span>id, <span class="at">risk_reti =</span> retinopathy<span class="sc">$</span>risk)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$stop_heart
   [1]   50.0    6.0    1.0   16.0   36.0   39.0   18.0    3.0   51.0  675.0   40.0   85.0   12.0
@@ -1452,7 +1629,7 @@ $risk_reti
 </div>
 <div id="tabset-10-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-3-tab">
 <div class="cell" data-solution="true">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">numbers =</span> numbers, <span class="at">many_numbers =</span> numbers_2, <span class="at">treatment =</span> treatment)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">numbers =</span> numbers, <span class="at">many_numbers =</span> numbers_2, <span class="at">treatment =</span> treatment)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$numbers
 [1] 34 24 19 23 16
@@ -1485,13 +1662,13 @@ $treatment
 <div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
 <p>First, we need a single vector containing all the data points (grades) that will fill our array.We have 3 students, 2 subjects, and 2 semesters.The total number of grades we need is <span class="math inline">\(3 \times 2 \times 2 = 12\)</span>.Let’s create a vector with 12 sample grades. R will fill the array “column-wise” (filling the first dimension, then the second, then the third). Create a vector named all_grades containing the following 12 grades.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>all_grades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>all_grades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we need to tell R the shape of our array. This is done with a numeric vector passed to the <code>dim</code> argument of the <code>array</code> function. We want 3 students, 2 subjects, and 2 semesters. Setup the vector <code>dimensions</code> containing the number of students, subjects and semesters in that order.</p>
 </div>
 <div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
 <div class="cell" data-solution="true">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dimensions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>dimensions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1507,9 +1684,9 @@ $treatment
 </div>
 <div id="tabset-12-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-3-tab">
 <div class="cell" data-solution="true">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>all_grades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">8</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>dimensions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>grades_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">data =</span> all_grades , <span class="at">dim =</span> dimensions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>all_grades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">8</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>dimensions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>grades_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">data =</span> all_grades , <span class="at">dim =</span> dimensions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1525,17 +1702,17 @@ $treatment
 </div>
 <div id="tabset-13-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-3-tab">
 <div class="cell" data-solution="true">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of names for each dimension</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>student_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Ana"</span>, <span class="st">"Ben"</span>, <span class="st">"Clara"</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>subject_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Math"</span>, <span class="st">"History"</span>)</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>semester_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Fall"</span>, <span class="st">"Spring"</span>)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>dimension_names <span class="ot">&lt;-</span> <span class="fu">list</span>(student_names, subject_names, semester_names)</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>grades_array <span class="ot">&lt;-</span> <span class="fu">array</span>(</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> all_grades,</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim =</span> dimensions,</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimnames =</span> dimension_names</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of names for each dimension</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>student_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Ana"</span>, <span class="st">"Ben"</span>, <span class="st">"Clara"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>subject_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Math"</span>, <span class="st">"History"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>semester_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Fall"</span>, <span class="st">"Spring"</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>dimension_names <span class="ot">&lt;-</span> <span class="fu">list</span>(student_names, subject_names, semester_names)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>grades_array <span class="ot">&lt;-</span> <span class="fu">array</span>(</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> all_grades,</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim =</span> dimensions,</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimnames =</span> dimension_names</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1548,8 +1725,8 @@ $treatment
 </div>
 <div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
 <div class="cell" data-solution="true">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Print the array to the console</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(grades_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Print the array to the console</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(grades_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>, , Fall
 
@@ -1565,8 +1742,8 @@ Ana      7       8
 Ben      9       9
 Clara    8       8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Check the structure of the object</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(grades_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Check the structure of the object</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(grades_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> num [1:3, 1:2, 1:2] 8 9 5 8 9 8 7 9 8 8 ...
  - attr(*, "dimnames")=List of 3
@@ -1574,13 +1751,13 @@ Clara    8       8</code></pre>
   ..$ : chr [1:2] "Math" "History"
   ..$ : chr [1:2] "Fall" "Spring"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Check the dimensions</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(grades_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Check the dimensions</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(grades_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3 2 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Check the dimension names</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(grades_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Check the dimension names</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(grades_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1] "Ana"   "Ben"   "Clara"
