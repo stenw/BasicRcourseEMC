@@ -1,0 +1,395 @@
+## Shiny: Solutions {.unnumbered}
+ 
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+ 
+```{r, echo = FALSE, purl = FALSE}
+knitr::knit_hooks$set(purl = knitr::hook_purl)
+ 
+options(purl = FALSE)
+ 
+knitr::opts_chunk$set(purl = FALSE)
+```
+ 
+```{r, include = FALSE}
+knitr::opts_hooks$set(eval = function(opt) {
+  if (any(opt$exercise))
+    opt$eval <- opt$include <- FALSE
+ 
+  opt
+})
+ 
+ 
+static <- TRUE
+ 
+options(width = 100)
+ 
+```
+ 
+::: callout-note
+## About These Solutions
+ 
+The goal of this practical is to create a Shiny application that displays the [Hoftiezer Birthweight curves](https://www.perined.nl/geboortegewichtcurven) and uses these curves to determine the birthweight percentile of a given infant.
+ 
+These solutions provide complete working code for each question. Try to work through the questions yourself first before consulting the solutions!
+:::
+ 
+::: {.panel-tabset .nav-pills}
+#### Solution 1
+ 
+Download the `hoftiezer.R` file from canvas to get started. This file contains two functions you can use: `phoftiezer` and `qhoftiezer`.
+ 
+**Part 1**: Calculate the birthweight percentile of a boy with gestational age of 200 days that weighs 1500 grams:
+ 
+```{r eval=FALSE}
+# Load the functions
+source('hoftiezer.R')
+ 
+# Calculate percentile for one infant
+phoftiezer(q = 1500, ga = 200, sex = 'male')
+ 
+# Calculate percentiles for weights of 1500g across gestational ages 210-220 days
+percentiles <- phoftiezer(q = 1500, ga = 210:220, sex = 'male')
+percentiles
+ 
+# Or with more detail:
+ga_range <- 210:220
+percentiles_detailed <- data.frame(
+  gestational_age = ga_range,
+  percentile = phoftiezer(q = 1500, ga = ga_range, sex = 'male')
+)
+print(percentiles_detailed)
+```
+ 
+**Part 2**: Calculate median birthweight of a girl at 200 days and P05 for girls at 210-220 days:
+ 
+```{r eval=FALSE}
+# Median (50th percentile) birthweight for a girl at 200 days GA
+median_weight <- qhoftiezer(p = 0.5, ga = 200, sex = 'female')
+median_weight
+ 
+# P05 (5th percentile) for girls for gestational ages 210-220
+p05_weights <- qhoftiezer(p = 0.05, ga = 210:220, sex = 'female')
+p05_weights
+ 
+# With more detail:
+ga_range <- 210:220
+p05_detailed <- data.frame(
+  gestational_age = ga_range,
+  P05_weight = qhoftiezer(p = 0.05, ga = ga_range, sex = 'female')
+)
+print(p05_detailed)
+```
+:::
+ 
+::: {.panel-tabset .nav-pills}
+#### Solution 2
+ 
+Create a new directory for your app, create a new R file, save it as `app.R`, and paste the basic template:
+ 
+```{r eval=FALSE}
+library(shiny)
+ 
+ui <- fluidPage(
+    # Application title
+    titlePanel("Birthweight percentiles")
+)
+ 
+server <- function(input, output) {
+# nothing here yet
+}
+ 
+# Run the application
+shinyApp(ui = ui, server = server)
+```
+ 
+When you save this file, a green "Run App" button should appear in the RStudio toolbar. Click it to launch your app!
+:::
+ 
+::: {.panel-tabset .nav-pills}
+#### Solution 3
+ 
+Source the `hoftiezer.R` file to make the functions available to your app:
+ 
+```{r eval=FALSE}
+library(shiny)
+ 
+# Source the Hoftiezer functions
+source('hoftiezer.R')
+ 
+ui <- fluidPage(
+  # Application title
+  titlePanel("Birthweight percentiles"),
+ 
+  # Test that functions are accessible
+  # Display median birthweight for girl at 220 days GA
+  qhoftiezer(p = 0.5, ga = 220, sex = 'female')
+)
+ 
+server <- function(input, output) {
+  # nothing here yet
+}
+ 
+# Run the application
+shinyApp(ui = ui, server = server)
+```
+ 
+You should see a number displayed in the app showing the median birthweight, confirming the functions are accessible.
+:::
+ 
+::: {.panel-tabset .nav-pills}
+#### Solution 4
+ 
+Modify the layout to use `sidebarLayout` with a `numericInput` control for birthweight:
+ 
+```{r eval=FALSE}
+library(shiny)
+source('hoftiezer.R')
+ 
+ui <- fluidPage(
+    # Application title
+    titlePanel("Birthweight percentiles"),
+ 
+    sidebarLayout(
+        sidebarPanel(
+          numericInput("birthweight",
+                        "Birthweight in grams:",
+                        min = 100,
+                        max = 6000,
+                        value = 1000)
+    ),
+        # Show percentile
+        mainPanel(
+        qhoftiezer(p = 0.5, ga = 220, sex = 'female')
+        )
+    )
+)
+ 
+server <- function(input, output) {
+  # nothing here yet
+}
+ 
+# Run the application
+shinyApp(ui = ui, server = server)
+```
+ 
+The app now has a sidebar on the left where users can input birthweight, and a main panel on the right. Currently the main panel still shows a static value.
+:::
+ 
+::: {.panel-tabset .nav-pills}
+#### Solution 5
+ 
+Update the server function to calculate the percentile based on user input:
+ 
+```{r eval=FALSE}
+library(shiny)
+source('hoftiezer.R')
+ 
+ui <- fluidPage(
+    # Application title
+    titlePanel("Birthweight percentiles"),
+ 
+    sidebarLayout(
+        sidebarPanel(
+          numericInput("birthweight",
+                        "Birthweight in grams:",
+                        min = 100,
+                        max = 6000,
+                        value = 1000)
+    ),
+        # Show percentile
+        mainPanel(
+          textOutput("percentile")
+        )
+    )
+)
+ 
+server <- function(input, output) {
+  output$percentile <- renderText({
+    percentile_value <- phoftiezer(q = input$birthweight,
+                                   ga = 220,
+                                   sex = 'female')
+    # Format the output nicely
+    paste0("Percentile: ", round(percentile_value * 100, 1), "%")
+  })
+}
+ 
+# Run the application
+shinyApp(ui = ui, server = server)
+```
+ 
+Now the app responds to changes in the birthweight input! Try entering different values and watch the percentile update.
+:::
+ 
+::: {.panel-tabset .nav-pills}
+#### Solution 6
+ 
+Add controls for gestational age (slider) and sex (dropdown select):
+ 
+```{r eval=FALSE}
+library(shiny)
+source('hoftiezer.R')
+ 
+ui <- fluidPage(
+    # Application title
+    titlePanel("Birthweight percentiles"),
+ 
+    sidebarLayout(
+        sidebarPanel(
+          numericInput("birthweight",
+                        "Birthweight in grams:",
+                        min = 100,
+                        max = 6000,
+                        value = 1000),
+ 
+          sliderInput("ga",
+                      "Gestational age (days):",
+                      min = 161,
+                      max = 294,
+                      value = 220),
+ 
+          selectInput("sex",
+                      "Sex:",
+                      choices = c("Female" = "female", "Male" = "male"),
+                      selected = "female")
+    ),
+        # Show percentile
+        mainPanel(
+          textOutput("percentile")
+        )
+    )
+)
+ 
+server <- function(input, output) {
+  output$percentile <- renderText({
+    percentile_value <- phoftiezer(q = input$birthweight,
+                                   ga = input$ga,
+                                   sex = input$sex)
+    # Format the output nicely
+    paste0("Percentile: ", round(percentile_value * 100, 1), "%",
+           " (", input$sex, ", ", input$ga, " days GA)")
+  })
+}
+ 
+# Run the application
+shinyApp(ui = ui, server = server)
+```
+ 
+The app now allows full customization! Try different combinations of birthweight, gestational age, and sex.
+:::
+ 
+::: {.panel-tabset .nav-pills}
+#### Solution 7
+ 
+Add a plot showing the birthweight curves with the user's input highlighted:
+ 
+```{r eval=FALSE}
+library(shiny)
+source('hoftiezer.R')
+ 
+ui <- fluidPage(
+    # Application title
+    titlePanel("Birthweight percentiles"),
+ 
+    sidebarLayout(
+        sidebarPanel(
+          numericInput("birthweight",
+                        "Birthweight in grams:",
+                        min = 100,
+                        max = 6000,
+                        value = 1000),
+ 
+          sliderInput("ga",
+                      "Gestational age (days):",
+                      min = 161,
+                      max = 294,
+                      value = 220),
+ 
+          selectInput("sex",
+                      "Sex:",
+                      choices = c("Female" = "female", "Male" = "male"),
+                      selected = "female")
+    ),
+        # Show percentile and plot
+        mainPanel(
+          textOutput("percentile"),
+          br(),
+          plotOutput("distPlot")
+        )
+    )
+)
+ 
+server <- function(input, output) {
+  output$percentile <- renderText({
+    percentile_value <- phoftiezer(q = input$birthweight,
+                                   ga = input$ga,
+                                   sex = input$sex)
+    paste0("Percentile: ", round(percentile_value * 100, 1), "%",
+           " (", input$sex, ", ", input$ga, " days GA)")
+  })
+ 
+  output$distPlot <- renderPlot({
+    # Create sequence of gestational ages
+    ga_sequence <- 161:294
+ 
+    # Calculate percentile curves for the selected sex
+    p05 <- qhoftiezer(p = 0.05, ga = ga_sequence, sex = input$sex)
+    p50 <- qhoftiezer(p = 0.5, ga = ga_sequence, sex = input$sex)
+    p95 <- qhoftiezer(p = 0.95, ga = ga_sequence, sex = input$sex)
+ 
+    # Create the plot
+    plot(ga_sequence, p50, type = 'l', lwd = 2, col = 'blue',
+         xlab = 'Gestational Age (days)',
+         ylab = 'Birthweight (grams)',
+         main = paste('Hoftiezer Birthweight Curves -',
+                      tools::toTitleCase(input$sex)),
+         ylim = c(min(p05), max(p95)))
+ 
+    # Add P05 and P95 lines
+    lines(ga_sequence, p05, lty = 2, lwd = 2, col = 'red')
+    lines(ga_sequence, p95, lty = 2, lwd = 2, col = 'red')
+ 
+    # Add legend
+    legend('topleft',
+           legend = c('P50 (Median)', 'P05', 'P95'),
+           col = c('blue', 'red', 'red'),
+           lty = c(1, 2, 2),
+           lwd = 2)
+ 
+    # Add user's input as a point
+    points(input$ga, input$birthweight, pch = 19, cex = 2, col = 'darkgreen')
+ 
+    # Add label for user's point
+    text(input$ga, input$birthweight,
+         labels = paste0(input$birthweight, "g"),
+         pos = 3, col = 'darkgreen', font = 2)
+  })
+}
+ 
+# Run the application
+shinyApp(ui = ui, server = server)
+```
+ 
+The app is now complete! It displays:
+- The calculated percentile as text
+- A plot showing the P05, P50 (median), and P95 curves
+- The user's input highlighted as a green point on the plot
+ 
+Try moving the sliders and watch how the point moves on the curve!
+:::
+ 
+::: callout-tip
+## Enhancements to Try
+ 
+Once you have the basic app working, consider these improvements:
+ 
+1. **Add more percentile curves**: Plot P10, P25, P75, P90 in addition to P05, P50, P95
+2. **Improve styling**: Use different colors for male vs. female curves
+3. **Add validation**: Check that birthweight is reasonable for the gestational age
+4. **Add interpretation**: Display whether the weight is "appropriate for gestational age" (between P10-P90)
+5. **Make it responsive**: Use `plotly` package for interactive plots where users can hover over points
+6. **Add data table**: Show percentile values at different gestational ages in a table
+:::
+ 
+Update Todos
