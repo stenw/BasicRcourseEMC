@@ -271,7 +271,7 @@ dat$log_vitaminB12 <- winsorize(dat$log_vitaminB12)
 It has been discovered that a mistake has been made in the construction of the data set. Some participants have 
 accidentally been excluded while others have been excluded while they should not have been. The file `extra.Rdata` contains data of new participants that should be included. The data `ineexcl.Rdata` contains the `ids` of patients that should be excluded. 
 
-Adjust your data to reflect this new information. Rerun your analysis and adjust your conclusions if needed.
+Adjust your data to reflect this new information. Check for duplicate IDs after the inclusion (e.g. by using `anyDuplicated()`). Rerun your analysis and adjust your conclusions if needed.
 
 #### Hint 10*
  

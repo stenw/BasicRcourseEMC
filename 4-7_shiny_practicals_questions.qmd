@@ -1,11 +1,17 @@
 ## Shiny: Questions {.unnumbered}
 
-The goal of this practical is to create a beautiful shiny application. The app's goal is to show the [Hoftiezer Birthweight curves](https://www.perined.nl/geboortegewichtcurven) and use these curves to determine the birthweight percentile of a certain infant.
+The goal of this practical is to create a beautiful shiny application. The app's goal is to visualize irthweight percentiles using the the [Hoftiezer Birthweight curves](https://www.perined.nl/geboortegewichtcurven). These curves are then used to determine the birthweight percentile of a certain infant widely used for assessing small-for-gestational-age (SGA) infants.
+
+By completing the exercises, you will:
+  * Use an external R function inside a Shiny app.
+  * Create reactive user inputs and outputs.
+  * Calculate percentiles and median curves for specified gestational ages.
+  * Integrate these calculations into a clean, user-friendly Shiny interface.
 
 ::: panel-tabset
 ### Question 1
 
-Download the `hoftiezer.R` file from canvas to get started. This file contains two functions you can use: `phoftiezer` and `qhoftiezer`. The first one calculates Hoftiezer Birthweight percentiles given Birthweight (in grams), gestational age (in days) and sex. The second function does the reverse and calculates Birthweight (in grams) given a percentile, gestational age and sex. Although you don't need to know every detail about this function, being how to use it is crucial for the practical.
+Download the `hoftiezer.R` file from canvas to get started. This file contains two functions you can use: `phoftiezer` and `qhoftiezer`. The first one calculates Hoftiezer Birthweight percentiles given Birthweight (in grams), gestational age (in days) and sex. The second function does the reverse and calculates Birthweight (in grams) given a percentile, gestational age and sex. Although you don't need to know every detail about this function, being how to use it is crucial for the practical. In this question you will practice calling the `hoftiezer()` function outside of Shiny. These results will later be incorporated into the app.
 
 -   Using this function calculate the birthweight percentile of a boy with a gestational age of 200 days that weights 1500 grams. Also try to calculate the percentile for this given weight for all integer gestational ages between 210 and 220 days.
 
