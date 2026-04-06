@@ -3,27 +3,72 @@
 
 ## Introduction
 
+This chapter is here to get you oriented. If you are new to `R`, the main thing I want is for the environment to start feeling less mysterious: what `R` is, why people use it, what it feels like to type a few commands, and how RStudio fits into the picture. We will also look at packages and a few basic survival skills, because in real work the trick is rarely knowing everything in advance. It is knowing how to find your way when you do not.
+
 ### What is R
 
-R is a programming language and software environment that is mainly used for statistics and creating graphics. It runs on all standard computing platforms, including Windows, MacOS and Linux. It is free open source software. So it is available for everybody to download and use without cost. It is also highly extensible, with thousands of packages available for various statistical techniques and data manipulation tasks.
+`R` is a programming language and software environment that is mainly used for statistics, data analysis and creating graphics. It runs on all standard computing platforms, including Windows, MacOS and Linux. It is free and open source software, so everybody can download and use it without cost. It is also highly extensible, with thousands of packages available for statistical techniques, data manipulation and visualisation.
 
-One of the success factors of `R` is the large and active user community (especially among statisticians). This means that if you have are problem, it is relatively easy to find help. There are many forums and mailing lists where you can ask questions and get answers from other users. There are also many online resources, such as tutorials, blogs, and documentation, that can help you learn `R` and solve problems.
+One of the success factors of `R` is its large and active user community, especially in statistics, epidemiology, bioinformatics and data science. This means that if you run into a problem, it is usually possible to find help. There are many forums, tutorials, blog posts and official help pages that can help you learn `R` and solve problems.
 
-The R language is modular: base R only has limited functionality, but this functionality can be extended by means of various **packages**. Because of the popularity of R among statisticians new statistical methods will frequently be implemented in `R` first, often by the method's original author. Nowadays there is an enormous amount of extension packages. And the number of packages still seems to be growing at an exponential rate. The quality of these packages varies although there is some kind of quality control on the packages distributed through the official channel [CRAN](https://cran.r-project.org/). 
+The R language is modular: base R has a lot of core functionality, but it can be extended by means of **packages**. Because of the popularity of R among statisticians, new statistical methods are often implemented in `R` very quickly, sometimes by the method's original author. Nowadays there is an enormous number of extension packages. Their quality varies, although there is some quality control for packages distributed through the official channel [CRAN](https://cran.r-project.org/).
+
+### Why learn R
+
+There are many tools that can be used for data analysis, so it is reasonable to ask why we would spend time learning `R`.
+
+- It allows you to combine data cleaning, analysis, figures and reporting in one workflow.
+- It is script based, which means your work can be saved, checked, shared and repeated later.
+- It is widely used in research, so many examples and methods are already available.
+- It scales well from very simple calculations to advanced analyses.
+
+For this course, an important advantage is that the same code can be rerun later. That makes your work more transparent and easier to check.
+
+## Your first 5 minutes in `R`
+
+Before discussing installation details and history, it is useful to see what working in `R` actually feels like.
+
+### A first success
+
+If you have `R` or RStudio open, try typing the following commands and running them one by one:
+
+```         
+> 2 + 2
+[1] 4
+> sqrt(25)
+[1] 5
+> x <- 10
+> x / 2
+[1] 5
+```
+
+In just a few lines, you have already done three common things in `R`:
+
+- evaluated an expression
+- used a function
+- stored a result in a variable
+
+That is the basic rhythm of working in `R`: type code, run it, inspect the result, and then build on it.
+
+::: callout-tip
+### Common beginner worries
+
+If you are new to programming, it is completely normal if the console, prompts and code syntax feel unfamiliar at first. You do **not** need to understand everything immediately. Early on, the goal is simply to become comfortable with trying small commands, reading the output, and correcting mistakes when needed.
+:::
 
 ::: {callout-background}
 ### History
 
-Before `R` there was the statistical analysis program, `S`, developed at Bell Laboratories in 1976 by John Chambers. It was developed with the purpose of being useful for interactive data analyses and programming. `S` was later commercialised as `S-PLUS`. S-PLUS contained some features that made working with the language easier (such as a graphical user interface (GUI)). John Chambers is also a current member of the board of the `R` Foundation for Statistical Computing.
+Before `R` there was the statistical analysis program `S`, developed at Bell Laboratories in 1976 by John Chambers. It was developed with the purpose of being useful for interactive data analysis and programming. `S` was later commercialised as `S-PLUS`. S-PLUS contained some features that made working with the language easier, such as a graphical user interface (GUI). John Chambers is also a current member of the board of the `R` Foundation for Statistical Computing.
 
-In 1991, Ross Ihaka and Robert Gentleman of Dept of Statistics, University of Auckland, New Zealand created the `S` clone, `R`, as an open source alternative for academic use. Together with the `R` core group' they released version 1 under the GNU Public License (GPL) v2 and v3 in 2000. The name, `R`, probably derives from the first letter of the creator's names. http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f
+In 1991, Ross Ihaka and Robert Gentleman of the Department of Statistics, University of Auckland, New Zealand, created the `S` clone `R` as an open source alternative for academic use. Together with the `R` Core Team they released version 1 under the GNU Public License (GPL) in 2000. The name `R` probably derives from the first letter of the creators' names. See also <http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f>.
 :::
 
 ## Get it
 
 ### Install it
 
-To get `R` on your PC **first** you need to install the core `R` application. Of course you'll need to download the version for your operating system and architecture first.
+To get `R` on your computer, you first need to install the core `R` application. You will need to download the version for your operating system and architecture.
 
 -   For Linux: <https://cran.r-project.org/bin/linux/>
 
@@ -31,23 +76,23 @@ To get `R` on your PC **first** you need to install the core `R` application. Of
 
 -   For Windows: <https://cran.r-project.org/bin/windows/>
 
-Although `R` for Windows (and Mac?) ships with a basic text editor, and it's possible to execute code from the terminal under linux, a fully featured editor increases convenience and productivity. Grab an awesome text editor:
+Although `R` for Windows and Mac ships with a basic interface, and it is possible to execute code directly from a terminal under Linux, a fully featured editor or IDE makes your workflow much easier. A few common options are:
 
-RStudio: https://www.rstudio.com/products/rstudio/
+- RStudio: <https://www.rstudio.com/products/rstudio/>
 
-Visual Studio Code: https://code.visualstudio.com/
+- Visual Studio Code: <https://code.visualstudio.com/>
 
-Positron: https://github.com/posit-dev/positron
+- Positron: <https://github.com/posit-dev/positron>
 
-Emacs/ESS: http://ess.r-project.org/index.php?Section=download
+- Emacs/ESS: <http://ess.r-project.org/index.php?Section=download>
 
-Here's a full list available editors: https://en.wikipedia.org/wiki/R_(programming_language)#Interfaces
+Here is a larger list of interfaces for `R`: <https://en.wikipedia.org/wiki/R_(programming_language)#Interfaces>
 
 ## How do we use `R`
 
 ### Working with **R**
 
-You type commands, also known as \``expressions,'' into a text editor or terminal and send them to`R`for evaluation.`R\` evaluates the command, prints the command (by default), then the result of the evaluated command, if any.
+You type commands, also known as *expressions*, into a text editor or terminal and send them to `R` for evaluation. `R` evaluates the command and then prints the result, if there is one.
 
 The simplest expressions equal simple calculations, similar to those we could do on a hand calculator
 
@@ -62,9 +107,9 @@ The simplest expressions equal simple calculations, similar to those we could do
 [1] 0.6666667
 ```
 
-Here we use '\>' to denote the R prompt. It is used in the console to indicate that R is ready for a new command. The lines in between is the output given by R.
+Here we use `>` to denote the R prompt. In the console, this prompt indicates that `R` is ready for a new command. The lines underneath are the output given by `R`.
 
-But we can also 'call' functions on an object. Most of the functionality in R comes from these functions. There are many functions we can use including the standard mathematical ones:
+But we can also call functions. Most of the functionality in `R` comes from these functions. There are many functions we can use, including standard mathematical ones:
 
 ```         
 >cos(3.1415)
@@ -75,7 +120,7 @@ But we can also 'call' functions on an object. Most of the functionality in R co
 [1] 0
 ```
 
-The results above are displayed but not stored. To do this we must give a name to the result. That is, we store the result in a variable. The results are now no longer displayed but using the variable name we can refer to it later.
+The results above are displayed but not stored. To store a result, we give it a name. In other words, we assign the result to a variable. Once we have done that, we can refer to it later by using the variable name.
 
 Assigning a result in a variable is done using `<-`. For example:
 
@@ -88,7 +133,7 @@ Assigning a result in a variable is done using `<-`. For example:
 ```
 ::: callout-note
 
-Note that when we write five at the R command promt, R will print the value of the variable, that is the value stored in this variable. When we wanted to print the exact text `five` we should have put it in quotes, like this:
+Note that when we write `five` at the `R` command prompt, `R` prints the value stored in that variable. If we want the exact text `five`, we have to put it in quotes:
 
 ``` 
 > "five" 
@@ -97,45 +142,51 @@ Note that when we write five at the R command promt, R will print the value of t
 
 :::
 
-In R it does not matter if you use single or double quotes as long as they match. Working with text values will be further discussed in the next section.
+In `R` it does not matter whether you use single or double quotes, as long as they match. Working with text values will be discussed further in the next section.
 
-As we will see an advantage of using R is that we can do calculations on multiple values (or vectors) at once. For example:
+One advantage of using `R` is that we can do calculations on multiple values, or **vectors**, at once. For example:
 
 ```
 > c(1, 2)  + c(1, 3) 
 [1] 2 5
 ```
 
-This is of course very convinient in the common setting where we are working on a data set with many observations where we want to do the same calculation on all observations. This will be further discussed later.
+This is very convenient when we work with a data set containing many observations and want to do the same calculation for each of them. We will return to this idea later.
 
 ### How we interact with `R`
 
-Not surprisingly everything about `R` is built on the principle of KISS, i.e., keep it simple stupid. \* We get things done in `R` by typing commands and asking `R` to execute them with the {{< kbd ENTER >}} key. Assuming you know the commands, it couldn't be any simpler. \* The **front end** of `R`, the part that receives your *terminal*. You can type your commands directly into the terminal and hit {\tt enter} to do your work. But if you need thousands of commands for a specific task, or want to share your method, this approach gets tiring fast. \* Since the commands are just text, it's easy to write a series of commands using any program built for working with text, i.e., text editors and word processors, to create *code* or a *script*, to get something done. \* The easiest, most efficient way to write `R` code is using a text editor or **integrated development environment**, like RStudio or Emacs/ESS as mentioned earlier.
+Working in `R` is conceptually simple: we type commands and ask `R` to execute them with the {{< kbd ENTER >}} key.
+
+You *can* type commands directly into the console, but once your work becomes longer than a few lines this quickly becomes inconvenient. For that reason, most serious work in `R` is written in a script file. A script gives you a record of what you did, allows you to rerun your work, and makes it much easier to share your analysis with someone else.
+
+Since `R` code is just text, you can write it in any text editor. In practice, the easiest and most efficient way to work is to use an **integrated development environment** (IDE), such as RStudio, where the editor, console, files and plots are all visible together.
 
 ### RStudio: the easiest way to work with `R`
 
-For most users, especially those new to `R`, RStudio is probably the best IDE to use. Like everything about `R`, you're free to choose whatever editor you like. For Windows platforms, you could just use the basic editor that's bundled with the downloadable installer. Let's have a look at an RStudio 'session'.
+For most users, especially those new to `R`, RStudio is probably the easiest IDE to start with. Like everything about `R`, you are free to choose whichever editor you like. Let's have a look at an RStudio session.
 
 ![](Pictures/RStudio.png)
 
 There are four panes:
 
--   The top left is the source pane. **Do your typing in this pane**.
--   The bottom left is your console. This is a window looking into what `R` is actually doing. **Even though it's fine to type your commands in this pane at the `R '>'` prompt, avoid this**: your commands are less conveniently stored and rerun than your source code in the editor pane.
--   Top right: environment pane
--   Bottom left: files pane
+-   The top left is the source pane. **Do most of your typing in this pane.**
+-   The bottom left is the console. This is where you can see what `R` is doing and where output appears.
+-   The top right is the environment pane, which shows the objects currently stored in memory.
+-   The bottom right usually contains files, plots, packages and help.
 
-Type your commands in the source pane and send them to `R` using the keyboard short-cut {{< kbd win=Ctrl+Enter mac=Cmd+Enter >}}. This will send the line of code your cursor is on to `R` if no code is selected; or if there is code selected, then only the selected code is sent. Open RStudio on your PC and try it now. (Alternatively you can also pres the 'Run' icon just below the file tabs). Since programming is all about typing commands using a keyboard, not pointing and clicking, you might appreciate lots of keyboard shortcuts. Here's an awesome cheatsheet of (RStudio keyboard shortcuts)\[https://www.rstudio.com/resources/cheatsheets/\].
+Type your commands in the source pane and send them to `R` using the keyboard shortcut {{< kbd win=Ctrl+Enter mac=Cmd+Enter >}}. This sends the current line, or the selected code, to the console. Open RStudio on your computer and try it now. Alternatively, you can press the `Run` button below the file tabs.
+
+Because programming involves a lot of typing, keyboard shortcuts save a lot of time. A useful reference is the collection of [RStudio cheatsheets](https://www.rstudio.com/resources/cheatsheets/).
 
 A few other things about RStudio:
 
--   move the focus between panes using the key board shortcuts {{< kbd Ctrl+1 >}} and {{< kbd Ctrl+2 >}} for the source and console panes respectively
--   the little asterisk next your source code file name indicates unsaved code
+-   move the focus between panes using the keyboard shortcuts {{< kbd Ctrl+1 >}} and {{< kbd Ctrl+2 >}} for the source and console panes respectively
+-   the little asterisk next to your source code file name indicates unsaved code
 -   **save your source code!**
 
 ## R Packages
 
-Base **R** has many fuctions but many more are come from various extension packages. These can be installed using `install.packages()` :
+Base `R` has many functions, but many more come from extension packages. These can be installed using `install.packages()`:
 
 ```{r}
 #| eval: false
@@ -146,9 +197,9 @@ install.packages("packageName",
 # usually lib and repos can be omitted (left at the default)
 ```
 
-The package name must be quoted when installing. 
+The package name must be quoted when installing.
 
-Later when you want to use the package you have to load it first using `library()` :
+Later, when you want to use the package, you have to load it first using `library()`:
 
 ```{r}
 #| eval: false
@@ -161,15 +212,14 @@ You have to install a package only once, but you have to load it every time you 
 
 ## Comments
 
-
-To make your scripts more clear you can add comments, to explain what the code is doing, and why it is doing this. Text that represents a comment is indicated by the hash (#) symbol. For example in the code:
+To make your scripts clearer, you can add comments to explain what the code is doing and why it is doing this. Text that represents a comment is indicated by the hash (`#`) symbol. For example:
 
 ```{r, eval = FALSE}
 # load the survival package because we will need the data sets
 library(survival)
 ```
 
-The first line does not actually do anything (it is skipped by the interpreter). But it explains to the user why the `library()` call on the next line is included. It is also possible to add comments at the end of a line of code:
+The first line does not actually do anything because it is skipped by the interpreter. However, it explains why the `library()` call on the next line is included. It is also possible to add comments at the end of a line of code:
 
 ```{r, eval = FALSE}
 library(survival) # for data sets
@@ -177,13 +227,31 @@ library(survival) # for data sets
 
 ## Backslashes
 
-One more thing I want to mention is how `R` interprets backslashes and forwardslashes, i.e. \\ and / respectively, as relates to defining the locations of files on your PC. James McDonald does a better job of clarifying this than I otherwise would http://cran.r-project.org/doc/contrib/Lemon-kickstart/kr_scrpt.html:
+One more thing worth mentioning is how `R` interprets backslashes and forward slashes, that is `\\` and `/`, when you specify the location of files on your computer.
 
-> Let's pause to note a little historical bifurcation that has caused Almost as much strife as the question of exactly what the {{< kbd DELETE >}} key should do. The convention that the slash (/) character is used as a separator in the notation for a filesystem path is not universal. PC-DOS, for example, used the backslash \\. Like Fords vs Chevrolets, French vs English, and whether you crack the egg at the big or small end, it doesn't really matter a rat's behind which one you use as long as it works. To make it work in R, however, where the \*NIX convention of using the backslash as an escape character is respected, you will have to double backslashes in paths for them to be read properly. Thus if the filename above was: '\JIM\PSYCH\ADOLDRUG\PARTYUSE1.R' I would have to refer to it as: 'c:\\JIM\\PSYCH\\ADOLDRUG\\PARTYUSE1.R' in an R script.
+On Unix-like systems such as Linux and macOS, the normal separator in file paths is the forward slash (`/`). Windows often displays file paths using backslashes (`\`), but in `R` you can usually still use forward slashes on Windows as well. That is often the simplest option:
+
+```{r}
+#| eval: false
+myfile <- "C:/Users/name/Documents/data.csv"
+```
+
+If you do use backslashes in a character string, you usually need to double them:
+
+```{r}
+#| eval: false
+myfile <- "C:\\Users\\name\\Documents\\data.csv"
+```
+
+The reason is that in `R` strings, the backslash is also used as an **escape character**. For example, `\n` means a new line and `\t` means a tab. If you want an actual backslash character inside a string, you normally have to write it as `\\`.
+
+For beginners, the easiest rule is: when typing file paths in `R`, prefer forward slashes whenever possible.[^mcdonald]
+
+[^mcdonald]: James McDonald gives a longer historical explanation of slashes and backslashes here: <http://cran.r-project.org/doc/contrib/Lemon-kickstart/kr_scrpt.html>
 
 ## Getting Help
 
--   Online help. The first place to look. Also works when you're actually **offline**:
+-   Online help. This is usually the first place to look. It also works when you are actually **offline**:
 
 ```{r}
 #| eval: false
@@ -200,21 +268,21 @@ help(help)
 apropos("help")              # quotes are needed
 ```
 
-It's fun, try them out!
+Try them out and get used to reading help pages early.
 
--   Google. And when you're actually **online**, often the **first** place and \*\*last\*\* place you'll go when you have no idea is [Google (https://www.google.com)](https://www.google.com).
+-   Google. When you are actually **online**, this is often where you go when you have no idea where to start: [Google](https://www.google.com).
 
--   Package Vignette's. Where the online help is devoid of the context often needed to grasp the full potential and logical use of functions, vignette's is the best place to find such information, with extended examples, and often more. For example, see the limma <http://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf>
+-   Package vignettes. When the regular help page does not provide enough context, a vignette often gives a longer explanation with examples. For example, see the limma vignette: <http://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf>
 
--   Mailing Lists. R-help <http://www.r-project.org/mail.html>. Do check first using Google or the R-help searchable archives <http://tolstoy.newcastle.edu.au/\~rking/R/> first if your question has already been asked and has the answer to solve your issue.
+-   Mailing lists. R-help: <http://www.r-project.org/mail.html>. Before posting, check with Google or searchable archives whether your question has already been asked.
 
 -   Other lists: <https://stat.ethz.ch/mailman/listinfo>
 
--   Stack Overflow <https://stackoverflow.com>. Probably more questions and answers posted here than on the mailing list.
+-   Stack Overflow: <https://stackoverflow.com>. There are many `R` questions and answers there, often with practical examples.
 
 ### Trouble shooting
 
--   Clean your environment and start again to be sure your messy environment isn't the cause of your issue. In RStudio, click the broom in the Environment tab; in any R session you can also run:
+-   Clean your environment and start again, so that you can be sure a messy workspace is not the cause of your issue. In RStudio, click the broom in the Environment tab; in any R session you can also run:
 
 ```{r}
 #| eval: false
@@ -259,3 +327,11 @@ R --vanilla
     -   <http://zoonek2.free.fr/UNIX/48_R/02.html>
 
 -   **A First Course in Statistical Programming with R.** W. John Braun and Duncan J. Murdoch. Cambridge University Press, 2007\\ I love this book, beautifully explores the programming aspects of `R`.
+
+## Check yourself
+
+Before moving on, make sure you can answer the following:
+
+1. What is the difference between typing code in the source pane and typing it in the console?
+2. What is the difference between installing a package and loading a package?
+3. How would you ask `R` for help on a function you do not understand?

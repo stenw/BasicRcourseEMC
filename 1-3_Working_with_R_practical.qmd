@@ -38,7 +38,17 @@ library(survival)
 
 ## Preface {data-progressive="FALSE"}
 
-Open Rstudio to do the practicals. Note that tasks with \* are optional.
+Open RStudio to do the practicals. Note that tasks with `*` are optional.
+
+In this practical, you will gradually build a small working script. Try to keep all commands in a single script file instead of typing everything only in the console.
+
+By the end of this practical, you should be able to:
+
+- use `R` as a calculator
+- assign results to variables
+- create simple vectors
+- load a package and read help pages
+- save, load and remove objects from your workspace
 
 ### R packages
 
@@ -57,6 +67,14 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 
 We will learn more about the format of data sets (or `data.frame`s) later.
+
+::: callout-tip
+
+Try to solve the tasks on your own first. If you get stuck, look at the hints and try to understand the code in the hints. If you still do not understand, ask for help. 
+When you work on the the tasks, place your code in a script. This way you can save your work and rerun it later. Also you build good habits right from the start.
+
+As you work through the tasks, occasionally look at the Environment pane in RStudio. It is a useful way to connect the code you run to the objects that now exist in your session.
+:::
 
 ## Basic calculations
 
@@ -82,6 +100,8 @@ Enter the calculations in an R-script and then run the lines using {{< kbd win=C
 #etc
 
 ```
+
+After you run each line, pause briefly and check whether the answer matches what you expected.
 :::
 
 ### Assignment {.tabset .tabset-fade .tabset-pills}
@@ -137,6 +157,12 @@ Execute the following code.
 ```
 :::
 
+::: callout-note
+## Milestone
+
+At this point, your script should contain a few simple calculations, some assignments and at least one vector. If you rerun the script from the top, it should work without errors.
+:::
+
 ## Loading packages and using the help function
 
 ### Loading packages {.tabset .tabset-fade .tabset-pills}
@@ -172,7 +198,17 @@ Also ask for help on the `c`, `ls`, `rm` and `seq` functions. Check if you can a
 
 #### *Hint 3*
 
-Use the `help(...)` fuction, and `?` or `??`.
+Use the `help(...)` function, and `?` or `??`.
+:::
+
+::: callout-note
+## Milestone
+
+You have now used three important habits of good `R` work:
+
+- loading packages explicitly
+- checking documentation when you do not remember syntax
+- exploring functions before using them
 :::
 
 ## Importing and Saving Data
@@ -217,6 +253,8 @@ Use the function `load(...)`.
 
 At this point it is interesting to check the objects that are in the workspace. To do so look at the Environment tab in the upper-right hand pane. You can also use the `ls()` function to list all objects in the workspace.
 
+Try to answer this question before moving on: which objects came from your earlier code, and which appeared only after loading the saved file?
+
 ### Remove your work {.tabset .tabset-fade .tabset-pills}
 
 Remove unnecessary objects.
@@ -241,4 +279,12 @@ Remove the vectors `events` and `eyes`.
 Use the function `rm(...)`.
 :::
 
-At this point you can inspect the History tab in the upper-right hand pane to see the commands you have executed. If you have made a syntax file check if you can run it in it's entirety without any errors (if you have not you can piece it together from the history). Save the file to disk.
+::: callout-note
+## Final check
+
+Before you finish this practical:
+
+- inspect the History tab in the upper-right pane
+- if you wrote a script to work on this practical, check whether your script runs from top to bottom without errors. Also do dot forget to save it to disk!
+- make sure you understand which objects are still present in the workspace and why
+:::

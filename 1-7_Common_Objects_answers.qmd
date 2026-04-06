@@ -38,10 +38,15 @@ library(survival)
 
 ## Preface {data-progressive="FALSE"}
 
-By the end of this practical, you will be able to:
-  - Create vectors of different data types (numeric, character, logical)
-  - Identify and work with different R object types (vectors, matrices, data frames, lists)
-Open Rstudio to do the practicals. 
+Open RStudio to do the practicals. Note that tasks with `*` or `🎓` are optional.
+
+By the end of this practical, you should be able to:
+
+- Create vectors of different data types (numeric, character, logical)
+- Identify and work with different R object types (vectors, matrices, data frames, lists)
+- Inspect objects using functions such as `class()`, `mode()`, `length()`, `dim()` and `str()`
+
+This answer file follows the same structure as the practical. Use it to compare your own code and to check whether you are interpreting each object correctly.
 
 ### R packages
 
@@ -61,6 +66,10 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 
 Always check your data.
 
+::: callout-tip
+As you compare your work with the solutions, keep using inspection functions such as `class(...)`, `mode(...)`, `length(...)`, `dim(...)` and `str(...)`. In this chapter, those checks are often just as important as the code that creates the object.
+:::
+
 ::: {.panel-tabset .nav-pills}
 #### Task 1
 
@@ -79,6 +88,8 @@ tail(heart)
 head(retinopathy)
 tail(retinopathy)
 ```
+
+Looking at the first and last rows is often the fastest way to get an initial sense of what kind of variables a data set contains.
 :::
 
 ## Common R Objects
@@ -104,6 +115,8 @@ Use the dollar sign to select the variables.
 heart$event
 heart$age
 ```
+
+These are both vectors, but they may play different roles in analysis. It is useful to check whether they have the same class and mode.
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -121,6 +134,8 @@ Use the dollar sign to select the variables.
 retinopathy$eye
 retinopathy$risk
 ```
+
+Again, the important point is not only how to extract the variables, but also to notice what kind of vectors they are.
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -137,6 +152,8 @@ Use the c(...) function. Replace the dots with the numbers.
 ```{r vec3-solution, solution = TRUE}
 numbers <- c(34, 24, 19, 23, 16)
 ```
+
+This is a vector you constructed yourself, rather than one extracted from a data set.
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -153,6 +170,8 @@ Use the colon (`:`) operator. `a:b` generates a vector consisting of the sequenc
 ```{r vec4-solution, solution = TRUE}
 numbers_2 <- 1:200
 ```
+
+This is a convenient way to generate a numeric sequence.
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -169,6 +188,18 @@ Use the c(...) function. Replace the dots with the categories.
 ```{r vec5-solution, solution = TRUE}
 treatment <- c("yes", "yes", "no", "no", "no", "yes")
 ```
+
+Although this represents categories, it is still stored here as a character vector unless you convert it to a factor later.
+:::
+
+::: callout-note
+## Milestone
+
+At this point, you should have created several vectors of different kinds. Make sure you can tell the difference between:
+
+- a vector you typed yourself
+- a vector extracted from a data set
+- a numeric vector and a character vector
 :::
 
 ### Matrices and Data Frames {.tabset .tabset-fade .tabset-pills}
@@ -191,6 +222,8 @@ matrix(c(heart$id, heart$age), ncol=2)
 # or easier 
 cbind(heart$id, heart$age)
 ```
+
+Both solutions produce a matrix-like rectangular structure, but the second is often simpler to read.
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -207,6 +240,16 @@ Use the function data.frame(...).
 ```{r dfc-solution, solution = TRUE}
 data.frame(id = retinopathy$id, type = retinopathy$type, trt = retinopathy$trt) 
 ```
+
+This looks superficially similar to a matrix, but a `data.frame` can store different kinds of columns.
+:::
+
+After both tasks, inspect the results and compare them. How is a matrix different from a `data.frame`, even when they look similar on screen?
+
+::: callout-note
+## Milestone
+
+You have now created objects that are all rectangular, but not identical. Make sure you can explain why a matrix and a `data.frame` are not the same thing.
 :::
 
 ### Lists {.tabset .tabset-fade .tabset-pills}
@@ -227,6 +270,8 @@ Use the function list(...).
 ```{r list-solution, solution = TRUE}
 list(stop_heart = heart$stop, id_reti = retinopathy$id, risk_reti = retinopathy$risk)
 ```
+
+The important thing to notice is that a list can group several objects together under names, even when those objects play different roles.
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -243,11 +288,13 @@ Use the function list(...).
 ```{r list2-solution, solution = TRUE}
 list(numbers = numbers, many_numbers = numbers_2, treatment = treatment)
 ```
+
+Use `str(...)` on this result to see how `R` shows a list and its elements.
 :::
 
 ::: callout-advanced
 
-### Arrays {.tabset .tabset-fade .tabset-pills}
+### Arrays 🎓 {.tabset .tabset-fade .tabset-pills}
 
 An array is a multi-dimensional data structure, perfect for storing data with more than two dimensions (e.g., rows, columns, and "layers"). We will set up a data structure to store grades for 3 students, across 2 different subjects, over 2 academic semesters. An `array` the perfect tool for this job because our data has three dimensions:
 students, subjects and Semesters. Let's build it step-by-step.
@@ -255,7 +302,7 @@ students, subjects and Semesters. Let's build it step-by-step.
 
 
 ::: {.panel-tabset .nav-pills}
-#### Task 1
+#### Task 1 🎓
 
 First, we need a single vector containing all the data points (grades) that will fill our array.We have 3 students, 2 subjects, and 2 semesters.The total number of grades we need is $3 \times 2 \times 2 = 12$.Let's create a vector with 12 sample grades. R will fill the array "column-wise" (filling the first dimension, then the second, then the third). Create a vector named all_grades containing the following 12 grades.
 ```{r}
@@ -272,10 +319,12 @@ Next, we need to tell R the shape of our array. This is done with a numeric vect
 ```{r ar-solution-1, solution = TRUE}
 dimensions <- c(3, 2, 2)
 ```
+
+This vector tells `R` the shape of the array: 3 students, 2 subjects and 2 semesters.
 :::
 
 ::: {.panel-tabset .nav-pills}
-#### Task 2
+#### Task 2 🎓
 
 We can build the array using the `array()` function. Pass our variables (`all_grades` and `dimensions`) to the correct arguments (`data` and `dim`). Use `?array` if you need help. Call the resulting object `grades_array`.
 
@@ -293,25 +342,27 @@ all_grades <- c(8, 9, 5, 8, 9, 8, 7, 9, 8, 8, 9, 8)
 dimensions <- c(3, 2, 2)
 grades_array <- array(data = all_grades , dim = dimensions)
 ```
+
+At this point you have a real array, but without meaningful names on the dimensions yet.
 :::
 
 
 
 
 ::: {.panel-tabset .nav-pills}
-#### Task 3 
+#### Task 3 🎓
 
-An array is much more useful if its dimensions have names. Let';s set up the names for our rows, columns and layers. We use the `dimnames` argument, which takes a list of character vectors. The order of the list must match the order of our dimensions (students, subjects, semesters). The students are called: Anna, Ben and Clara. The subjects are called: Math and History. The semesters are called: Fall and Spring. Recreate the array `grades_array` with the correct dimension names.
+An array is much more useful if its dimensions have names. Let's set up the names for our rows, columns and layers. We use the `dimnames` argument, which takes a list of character vectors. The order of the list must match the order of our dimensions (students, subjects, semesters). The students are called: Anna, Ben and Clara. The subjects are called: Math and History. The semesters are called: Fall and Spring. Recreate the array `grades_array` with the correct dimension names.
 
 #### *Hint 3* 
 
 Use the function `array(...)`. Check the help page for the `dimnames` argument. Note that this must be in a `list` format.
 
-#### Solution 3 
+#### Solution 3 🎓
 
 ```{r ar-solution-2, solution = TRUE}
 # Create a list of names for each dimension
-student_names <- c("Ana", "Ben", "Clara")
+student_names <- c("Anna", "Ben", "Clara")
 subject_names <- c("Math", "History")
 semester_names <- c("Fall", "Spring")
 
@@ -323,15 +374,17 @@ grades_array <- array(
 )
 
 ```
+
+Adding dimension names makes the array much easier to interpret.
 :::
 
 ::: {.panel-tabset .nav-pills}
-#### Task 4 
+#### Task 4 🎓
 
 Now that you have created the `array`, let's see what it looks like and confirm its structure. Use 
 the `print`, `str`, `dim` and `dimnames` functions to display the contents, structure, and dimensions of the `grades_array`.
 
-#### Solution 4 
+#### Solution 4 🎓
 
 ```{r ar-solution-2b, solution = TRUE}
 #  Print the array to the console
@@ -346,8 +399,18 @@ dim(grades_array)
 #  Check the dimension names
 dimnames(grades_array)
 ```
+
+This is a good example of using inspection functions not just to check values, but to understand structure.
 :::
 
 :::
 
+::: callout-note
+## Final check
 
+Before you finish this practical:
+
+- identify one example of a vector, matrix, `data.frame`, list and array from your script
+- check that you know which inspection functions are most useful for each one
+- rerun the script from top to bottom and see whether everything still works
+:::

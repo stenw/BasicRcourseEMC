@@ -38,7 +38,16 @@ library(survival)
 
 ## Preface {data-progressive="FALSE"}
 
-Open Rstudio to do the practicals. Note that tasks with \* are optional.
+Open RStudio to do the practicals. Note that tasks with `*` are optional.
+
+By the end of this practical, you should be able to:
+
+- select rows and columns from a `data.frame`
+- extract values from matrices and arrays
+- use logical conditions to create meaningful subsets
+- combine subsetting with summary functions to answer simple data questions
+
+This answer file follows the same structure as the practical. Use it to compare your own code and to check whether you understand what kind of object each subsetting operation returns.
 
 ### R packages
 
@@ -55,6 +64,10 @@ For this practical, we will use the **heart** and **retinopathy** data sets from
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
 
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
+
+::: callout-tip
+When you compare your code with the solutions, pay attention not only to the values returned but also to the class of the result.
+:::
 
 ## Indexing and Subsetting
 
@@ -78,6 +91,8 @@ heart[, c(2, 3)]
 
 
 ```
+
+This task is mainly about becoming comfortable with the row-and-column structure of a `data.frame`.
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -90,7 +105,7 @@ Using the **heart** data set:\
   * As a `data.frame` with a single column using single square brackets and a double index using `drop=FALSE` \
   * As a vector using double square brackets. \
   * As a vector using single square brackets and a double index. \
-  * Using the dolar sign (`$`) operator. \
+  * Using the dollar sign (`$`) operator. \
 - Verify the class of the returned  objects in each case using the `class()` function.
 
 #### Solution 2
@@ -109,6 +124,8 @@ class(d)  # numeric
 class(e)  # numeric  
 
 ```
+
+This is one of the most important comparisons in the chapter: similar-looking syntax can return either a `data.frame` or a vector.
 :::
 
 
@@ -130,6 +147,20 @@ mat[, 1]
 mat[3, 2]
 mat[1:2, 2] # or mat[-3, 2]
 ```
+
+Notice that selecting a single element gives one value back, whereas selecting a row or column returns multiple values.
+:::
+
+::: callout-note
+## Milestone
+
+At this point, you should feel comfortable with the idea that very similar subsetting expressions can return different kinds of objects.
+
+In particular, make sure you can explain the difference between:
+
+- selecting a column as a `data.frame`
+- selecting a column as a vector
+- selecting one value from a matrix versus a whole row or column
 :::
 
 ::: callout-advanced
@@ -147,6 +178,8 @@ i <- matrix(c(1,2,
 mat[i]
 
 ```
+
+This is a more advanced form of indexing, but it shows that matrices can themselves be used to describe positions.
 :::
 
 
@@ -191,6 +224,8 @@ rotterdam_july_temps <- temps_array[, "July", "Rotterdam"]
 print(mean(rotterdam_july_temps))
 
 ```
+
+This task is useful because it combines object construction with meaningful selection from a multi-dimensional structure.
 :::
 
 
@@ -213,6 +248,8 @@ retinopathy$futime[retinopathy$type == "adult"]
 # or use 
 retinopathy[retinopathy$trt == 1, ]
 ```
+
+This is where subsetting starts to look like real data analysis: we are selecting groups defined by study variables.
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -237,6 +274,8 @@ retinopathy[retinopathy$eye == "left", ]
 retinopathy[retinopathy$type == "adult", ]
 retinopathy[!is.na(retinopathy$age), ]
 ```
+
+Several of these tasks are logically similar, but they answer different questions. That is exactly why subsetting matters in practice.
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -262,6 +301,14 @@ mean(retinopathy$age, na.rm = TRUE)
 summary(retinopathy[retinopathy$type == "juvenile", ])
 
 ```
+
+This section shows the typical pattern: first select the relevant observations, then apply a summary function.
+:::
+
+::: callout-note
+## Milestone
+
+You are now using subsetting for its real purpose: answering questions about specific groups in the data.
 :::
 
 ::: callout-advanced
@@ -282,4 +329,15 @@ The output of `colnames(retinopathy[,1])` would also be `NULL`. This is because 
 
 :::
 
+:::
+
+::: callout-note
+## Final check
+
+Before you finish this practical:
+
+- identify one example where subsetting returned a vector
+- identify one example where subsetting returned a `data.frame`
+- check whether you can explain why they differ
+- If you made a script, remember to rerun the script from top to bottom and see whether everything still works
 :::

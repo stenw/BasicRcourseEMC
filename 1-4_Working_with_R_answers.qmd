@@ -38,7 +38,17 @@ library(survival)
 
 ## Preface {data-progressive="FALSE"}
 
-Open Rstudio to do the practicals. Note that tasks with \* are optional.
+Open RStudio to do the practicals. Note that tasks with `*` are optional.
+
+This answer file follows the same structure as the practical. Use it to check both your code and your understanding. Try to compare your own script with the solutions before copying anything over directly.
+
+By the end of this practical, you should be able to:
+
+- use `R` as a calculator
+- assign results to variables
+- create simple vectors
+- load a package and read help pages
+- save, load and remove objects from your workspace
 
 ### R packages
 
@@ -57,6 +67,14 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 
 We will learn more about the format of data sets (or `data.frame`s) later.
+
+::: callout-tip
+
+Try to solve the tasks on your own first. If you get stuck, look at the hints and try to understand the code in the hints. If you still do not understand, ask for help. 
+When you work on the the tasks, place your code in a script. This way you can save your work and rerun it later. Also you build good habits right from the start.
+
+As you work through the tasks, occasionally look at the Environment pane in RStudio. It is a useful way to connect the code you run to the objects that now exist in your session.
+:::
 
 ## Basic calculations
 
@@ -95,6 +113,7 @@ Enter the calculations in an R-script and then run the lines using {{< kbd win=C
 
 ```
 
+Notice that each expression is evaluated immediately. At this stage, you are not storing anything yet; you are simply using `R` to calculate results.
 
 :::
 
@@ -132,6 +151,8 @@ print(c)
 print(d)
 d
 ```
+
+Here the important thing is not only the final value of `d`, but also the fact that the intermediate values are stored and can be reused later.
 :::
 
 
@@ -159,11 +180,13 @@ v1 <- c(3, 4)
 #### Solution 3 {.unnumbered}
 
 ```{r sol3, solution = TRUE, eval=FALSE }
-v1 <- c(3, 4) # the c(.) fucntion combines the arguments 3 and 4 into a vector
+v1 <- c(3, 4) # the c(.) function combines the arguments 3 and 4 into a vector
 v1^2
 v2 <- c(1, 2)
 v1 + v2
 ```
+
+This task introduces a key idea in `R`: many operations work on whole vectors at once.
 
 :::
 
@@ -192,6 +215,14 @@ seq(1, 9, by=2)
 9:1
 ```
 
+The point here is to see that `R` has several convenient ways to generate sequences.
+
+:::
+
+::: callout-note
+## Milestone
+
+At this point, your script should contain a few simple calculations, some assignments and at least one vector. If you rerun the script from the top, it should work without errors.
 :::
 
 ## Loading packages and using the help function
@@ -218,6 +249,8 @@ library(survival)
 # require(survival) is another alternative which does not give an error if the package cannot be found
 ```
 
+The key habit here is to load packages explicitly at the top of your script.
+
 :::
 
 ### Getting help {.tabset .tabset-fade .tabset-pills}
@@ -238,6 +271,8 @@ help("heart")
 ?retinopathy
 ```
 
+Both forms open documentation. It is useful to become comfortable with both.
+
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -247,7 +282,7 @@ Also ask for help on the `c`, `ls`,  `rm` and `seq` functions. Check if you can 
 
 #### *Hint 3*
 
-Use the `help(...)` fuction, and `?` or `??`. 
+Use the `help(...)` function, and `?` or `??`. 
 
 #### Solution 3 {.unnumbered}
 
@@ -260,6 +295,18 @@ Use the `help(...)` fuction, and `?` or `??`.
 # or use help.search('...')
 ```
 
+The main lesson is that you do not need to memorise everything. A large part of learning `R` is learning how to find help efficiently.
+
+:::
+
+::: callout-note
+## Milestone
+
+You have now used three important habits of good `R` work:
+
+- loading packages explicitly
+- checking documentation when you do not remember syntax
+- exploring functions before using them
 :::
 
 ## Importing and Saving Data
@@ -285,24 +332,28 @@ numbers_2 <- c(1:200)
 treatment <- c("yes", "yes", "no", "no", "no", "yes")
 save(numbers, numbers_2, treatment, file = "new_vectors.RData")
 ```
+
+This saves several objects together in a single `.RData` file.
 :::
 
 ::: {.panel-tabset .nav-pills}
-#### Task 2 \*
+#### Task 2
 
 Save the vectors `events <- heart$event` and `eyes <- retinopathy$eye`. Use the name `vectors_survival`.
 
-#### *Hint 2* \*
+#### *Hint 2*
 
 Use the function `save(...)`. Note that you need to set the working directory.
 
-#### Solution 2 \*
+#### Solution 2
 
 ```{r save2-solution, solution = TRUE, eval=FALSE}
 events <- heart$event
 eyes <- retinopathy$eye
 save(events, eyes, file = "vectors_survival.RData")
 ```
+
+This is similar to the previous task, but now the saved objects come from real data sets rather than values you typed yourself.
 :::
 
 ### Load your work {.tabset .tabset-fade .tabset-pills}
@@ -323,9 +374,13 @@ Use the function `load(...)`.
 ```{r load-solution, solution = TRUE, eval=F}
 load("new_vectors.RData")
 ```
+
+After loading, the saved object names reappear directly in the workspace.
 :::
 
 At this point it is interesting to check the objects that are in the workspace. To do so look at the Environment tab in the upper-right hand pane. You can also use the `ls()` function to list all objects in the workspace.
+
+Try to answer this question before moving on: which objects came from your earlier code, and which appeared only after loading the saved file?
 
 ### Remove your work {.tabset .tabset-fade .tabset-pills}
 
@@ -345,23 +400,35 @@ Use the function `rm(...)`.
 ```{r rm-solution, solution = TRUE, eval=F}
 rm(numbers, numbers_2, treatment)
 ```
+
+`rm()` removes objects from the current workspace, but it does not delete your script file or the saved `.RData` file on disk.
 :::
 
 ::: {.panel-tabset .nav-pills}
-#### Task 2 
+#### Task 2 \*
 
 Remove the vectors `events` and `eyes`.
 
-#### *Hint 2* 
+#### *Hint 2* \*
 
 Use the function `rm(...)`.
 
-#### Solution 2 
+#### Solution 2 \*
 
 ```{r, eval=F}
 rm(events, eyes)
 ```
+
+Again, this only removes the objects from memory in the current session.
 :::
 
 
-At this point you can inspect the History tab in the upper-right hand pane to see the commands you have executed. If you have made a syntax file check if you can run it in it's entirety without any errors (if you have not you can piece it together from the history). Save the file to disk.
+::: callout-note
+## Final check
+
+Before you finish this practical:
+
+- inspect the History tab in the upper-right pane
+- if you wrote a script to work on this practical, check whether your script runs from top to bottom without errors. Also do dot forget to save it to disk!
+- make sure you understand which objects are still present in the workspace and why
+:::

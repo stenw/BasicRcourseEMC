@@ -2,17 +2,47 @@
 
 **Authors: Sten Willemsen, Karl Brand and Elizabeth Ribble**
 
-# Objects in R
-
 ## Introduction
 
 All the things we work with in R (such as the numbers in the calculations in the previous section) are called **objects**. All objects have a **mode** and a **class**. The mode (or type) determines how data is stored, and the class determines how functions work with them. For simple objects, these are usually the same. Text variables for example have to be handled differently than numbers, we cannot multiply two words.
 
-Elementary objects can be combined with each other to form more complex objects this leads to several types of containers, like `lists` and `data.frames`
+Elementary objects can be combined to form more complex objects. This leads to several types of containers, such as `lists` and `data.frames`.
 
 The **class** of an object is an attribute that can be used to further specify how an object is used in **R**. For example it can be used to indicate how it should be printed and plotted. For many objects the class will simply be equal to the mode.
 
-Functions are special objects that can do things with other objects, for example the `print` function displays the contents of an object in the console. Functions are the topic of an other chapter but because we obviously want to do something with the various objects we will see we cannot avoid them altogether.
+Functions are special objects that can do things with other objects, for example the `print` function displays the contents of an object in the console. Functions are the topic of another chapter, but because we obviously want to do something with the various objects we will see, we cannot avoid them altogether.
+
+This is one of those chapters that saves people a lot of frustration later. In `R`, you are almost never working with loose values for long. Very quickly, everything becomes an object of some kind. If you can recognise what sort of object you are looking at, a lot of code suddenly becomes easier to read. If you cannot, even simple errors start to feel strange.
+
+So this chapter is really about learning to look at data structures with the right questions in mind. We will work through the common object types, talk a little about `mode` and `class`, and get used to inspecting unfamiliar objects instead of guessing what they are.
+
+::: callout-tip
+### A useful habit
+
+Whenever you encounter an unfamiliar object, start by asking a few simple questions:
+
+- `class(x)`
+- `mode(x)`
+- `length(x)`
+- `dim(x)`
+- `str(x)`
+
+You do not always need all of these, but together they often tell you almost everything you need to know.
+:::
+
+## A quick comparison
+
+Before going into the details, it helps to have a rough mental map:
+
+| Object type | Can mix data types? | Has dimensions? | Typical use |
+|---|---|---|---|
+| vector | No | Usually one dimension | One variable or one sequence of values |
+| matrix | No | Two dimensions | Numeric or character grid with rows and columns |
+| array | No | Two or more dimensions | Higher-dimensional data |
+| list | Yes | Not necessarily rectangular | Mixed results, nested structures |
+| `data.frame` | Yes, by column | Two dimensions | Most rectangular data sets |
+
+This table is only a first orientation. The sections below provide more detail and examples.
 
 ## The elementary data types
 
@@ -31,6 +61,8 @@ The simplest variables just have a single value of a certain data type (Or mode[
 Let's examine variables of these data types in a bit more detail:
 
 ### Numbers
+
+Numbers are used for measurements, counts, scores, times and many other quantities. In statistical work, numeric variables are extremely common.
 
 ```{r}
 mode(1)    
@@ -54,6 +86,8 @@ class(1L) # explicit integer
 ```
 
 ### Text
+
+Text values are stored as `character` data. These are useful for names, labels or descriptions.
 
 ```{r}
 # character values should be surrounded by quotes "or '
@@ -106,6 +140,8 @@ false_val | false_val
 ## Vectors
 
 Vectors of these data types are the most elementary data structure in R. All other structures (like the `data.table`) are constructed using these vectors. In R there is also no structure that is smaller than a vector. A single number is not treated differently from a numeric vector of length ten; In fact R sees the single number simply as a numeric vector of length 1. The `length()` of a vector can be obtained by using the function `length()`.
+
+In practice, you can think of a vector as "one variable" or "one ordered collection of values". For example, the ages of all patients in a study may be stored as one numeric vector.
 
 A vector can be created using the function `c()`. (The `c` stands for 'concatenate', 'coerce' or 'combine')
 
@@ -161,9 +197,17 @@ Another way to create a vector is by using the function `vector`. `vector('numer
 
 One kind of vector that is often used is a sequence of numbers. One way to create them is by using the colon operator `:`. A syntax `a:b` will create a sequence of integers from `a` up to and including `b`. For example `1:4` is equal to the vector `c(1, 2, 3, 4)`.
 
+::: callout-note
+### What to remember about vectors
+
+Vectors are the foundation of many other structures in `R`. If you understand vectors well, later topics such as subsetting, data frames and functions become much easier.
+:::
+
 ## Matrices
 
 Vectors have just a single dimension (every element is characterized by a single number (index) that indicates its position within the vector). They can be generalized to objects that are two-dimensional, that is they have both rows and columns. Like simple vectors, all elements of a matrix have the same mode.
+
+Matrices are useful when your data truly forms a rectangular grid and all values are of the same type. Many mathematical functions in `R` expect matrices.
 
 ```{r}
 my_matrix <- matrix(data = c(1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12))
@@ -206,6 +250,8 @@ An array with two dimensions is equivalent to a matrix.
 
 Elements of a vector, matrix or array are always of the same type. A `list` differs from a vector by also allowing its elements to be of a different type.  We can make a `list` using the function `list`.
 
+Lists are one of the most flexible object types in `R`. They are often used when different pieces of information belong together, but do not naturally fit in a single rectangular table.
+
 ```{r}
 list1 <- list("eleven", 12)
 mode(list1)
@@ -238,6 +284,8 @@ This versatility makes that `list`s are used in many contexts in R. As an exampl
 
 We saved this data structure for last. But when we will perform data analyses we will work with `data.frame`s a lot. This is a rectangular table in which every column contains a variable and every row an observation. They are similar to the spreadsheets: a series, or `list` of equal length columns, or `vectors`. Notably, the columns (`vector`s) can be of different classes, **unlike** a matrix or array.
 
+For most students, the `data.frame` will become the most important structure in this course. A typical data set has one row per patient and one column per variable, which fits perfectly with the `data.frame` idea.
+
 ```{r}
 my_df <- data.frame("vec" = c(12, 48), "lets" = letters[1:12])
 my_df
@@ -261,6 +309,8 @@ levels(f_factor)
 ```
 
 When a `factor` is displayed, R also shows us the unique values the variable can take. These are called the 'levels' of the factor.
+
+If you are unsure whether a variable should be a `character` or a `factor`, a useful question is this: are these free text labels, or are they categories with a limited set of allowed values?
 
 ## functions
 
@@ -324,3 +374,12 @@ l
 ```
 
 :::
+
+## Check yourself
+
+Before moving on, make sure you can answer the following:
+
+1. Which object type would you normally use for a single variable such as patient age?
+2. What is the key difference between a matrix and a `data.frame`?
+3. Why might a statistical model return a `list` rather than a vector?
+4. Which functions would you use first to inspect an unfamiliar object?

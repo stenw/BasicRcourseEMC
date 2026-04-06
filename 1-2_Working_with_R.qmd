@@ -1,10 +1,45 @@
 # Importing and Saving Data
 
-Because the typical way of using `R` involves writing text into a file with the `.r` or `.R` extension (e.g. `my-r-file.r`). Hopefully you're you are also doing this for the R commands you will use for this course. Sometimes you will also want to save your data.
+Most work in `R` is done by writing commands into a file with the `.r` or `.R` extension, for example `my_analysis.R`. Hopefully, you are already doing this for the commands you use in this course. In addition to saving your code, you will sometimes want to save data or objects so you can use them again later.
+
+Very quickly, every `R` user runs into the same practical questions. Where should the code live? What belongs in the script, and what belongs in saved data files? Which objects should be re-created by running the code, and which ones are worth storing? And how do you bring data in when it starts life as a CSV, an Excel file or something from another program?
+
+The confusing part is that beginners often mix up three different things: the script, the workspace and the data files on disk. Once those are kept separate, a lot of `R` starts to make more sense. A good script records what you did. The workspace is just the temporary collection of objects for the current session. The imported and saved files are the raw materials and results that your script works with.
 
 ## Creating and saving an R script
 
-You can create a new R file using the menu (File \> New File \> R script) or by using the keyboard combination {{< kbd win=Ctrl+Shift+N mac=Cmd+Shift+N >}}. You are then prompted for a file name. When you want to save the file you can do so using the menu again (File \> Save) or by pressing {{< kbd win=Ctrl+S mac=Cmd+S >}}. Selecting 'File \> Save as ...' saves the active file under another name.
+You can create a new `R` file using the menu (`File > New File > R Script`) or by using the keyboard combination {{< kbd win=Ctrl+Shift+N mac=Cmd+Shift+N >}}.
+
+When you want to save the file, use the menu again (`File > Save`) or press {{< kbd win=Ctrl+S mac=Cmd+S >}}. Selecting `File > Save As ...` saves the active file under another name.
+
+It is good practice to choose informative file names. For example:
+
+- `01_data_cleaning.R`
+- `02_descriptives.R`
+- `practice_day1.R`
+
+These names are much more helpful than generic names such as `script1.R` or `test.R`.
+
+::: callout-tip
+### Good habit
+
+Try to write your commands in a script even when you are only experimenting. If something works, you will already have a record of how you did it.
+:::
+
+## Scripts versus your workspace
+
+Your script file is saved on disk. Your workspace is the collection of objects currently loaded in memory during your `R` session.
+
+For example, if your script contains:
+
+```{r}
+x <- 1:5
+y <- mean(x)
+```
+
+then `x` and `y` will exist in your workspace after you run those lines. If you close `R`, those objects may disappear unless you save them explicitly. The script, however, remains available as a file and can be rerun.
+
+In general, a script is more important than a saved workspace, because a good script allows you to recreate your work from the beginning.
 
 ## Saving and restoring your session
 
@@ -29,9 +64,11 @@ Save all commands entered into the `R` console during your session to the workin
 savehistory()
 ```
 
-Such a file may be hidden by default in some file browsers, including linux.
+Note that such a file (starting with a period) may be hidden by default in some file browsers, including those used with Linux.
 
-Note that this typically occurs (console dependent) by default when you quit your `R` session. If an `.Rhistory` file already exists from a previous session, the current session is appended to the end of this file and saved. Thus, by design, a complete log of your work is saved together with your script file, if your console session contains less than 512 lines.
+Saving the session history often happens automatically, depending on your setup, when you quit your `R` session. If an `.Rhistory` file already exists from a previous session, the current session may be appended to it.
+
+Saving the full workspace can be convenient while learning, because it allows you to continue where you left off. However, for reproducible work it is often better to rely on scripts that recreate the objects you need.
 
 Save specific objects:
 
@@ -47,7 +84,9 @@ Restore or load previous sessions or objects:
 load("mySession.RData")        # load from the working directory
 ```
 
-When you save and load objects this way, loaded variables will have the same names as when they were stored, possibly overwriting existing variables. There is also a different way of saving objects where loaded objects are assigned explicitly.
+When you save and load objects this way, loaded variables keep the same names they had when they were stored. This means they may overwrite existing variables with the same name. That is convenient sometimes, but it can also lead to confusion.
+
+There is also a different way of saving objects in which the loaded object is assigned explicitly:
 
 ```{r}
 myobject <- list(vec=c(1, 2, 3), mat=matrix(1:4,2))
@@ -56,7 +95,24 @@ object2 <- readRDS('myfile.rds')
 identical(myobject, object2)
 ```
 
-Often the data we want to use is not in any 'R-format' but in another format. We will then have to import this data. Much of this functionality is included in the `foreign` package. To open data from spss you can use the `read.spss` command from this package. The syntax is:
+With `saveRDS()` and `readRDS()`, you decide the new object name yourself. That makes this format especially useful when you want to store a single object safely and load it back in a controlled way.
+
+::: callout-note
+### `save()` or `saveRDS()`?
+
+Both are useful.
+
+- Use `save()` when you want to store multiple objects together.
+- Use `saveRDS()` when you want to store one object and reload it under a name you choose yourself.
+
+In practice, many analysts prefer `saveRDS()` for intermediate results because it gives more control.
+:::
+
+## Importing data from other formats
+
+Often the data we want to use is not in an `R` format, but in another format such as SPSS, CSV or Excel. We then have to import this data into `R`.
+
+Much of this functionality is available through packages. To open data from SPSS, you can use the `read.spss` command from the `foreign` package:
 
 ```{r}
 #| eval: false
@@ -64,11 +120,134 @@ library(foreign)
 read.spss(file = 'path/to/file/thespssfile.sav', to.data.frame = TRUE)
 ```
 
-Using the argument `to.data.frame` we indicate that we want the result as a data.frame. Another format that is often used is excel sheets; for this we can use the `read_excel` function from the `readxl` package.
+Using the argument `to.data.frame`, we indicate that we want the result as a `data.frame`.
+
+Another format that is often used is Excel. For this we can use the `read_excel()` function from the `readxl` package:
 
 ```{r}
 #| eval: false
 read_excel(path='path/to/file/excelworkbook.xls')
 ```
 
-This function has an optional argument `sheet` to indicate the sheet in the excel file if it contains multiple sheets. Optionally, with `range` a cell range can be indicated.
+This function has an optional argument `sheet` to indicate the sheet in the Excel file if it contains multiple sheets. Optionally, `range` can be used to indicate a cell range.
+
+In many projects, comma-separated text files (`.csv`) are also very common:
+
+```{r}
+#| eval: false
+dat <- read.csv("Data/mydata.csv")
+```
+
+## Working directories and file paths
+
+Whenever you load or save a file, `R` needs to know where that file is located. If you provide only a file name, `R` will look in the current **working directory**.
+
+That means the following command only works if the file is in the working directory:
+
+```{r}
+#| eval: false
+load("mySession.RData")
+```
+
+If the file is somewhere else, you need to provide a path:
+
+```{r}
+#| eval: false
+load("Data/mySession.RData")
+```
+
+You can ask `R` which working directory is currently active with:
+
+```{r}
+#| eval: false
+getwd()
+```
+
+If needed, you can also change the working directory with `setwd()`:
+
+```{r}
+#| eval: false
+setwd("C:/Users/name/MyProject")
+```
+
+It is important to understand what this does and does not do. The working directory is a setting for the current `R` session. It tells `R` where to look by default when you read or write files. It does **not** move your script, and it does **not** automatically make your analysis more reproducible.
+
+When students first learn `R`, it is often helpful to set the working directory to the main folder of the project they are working in. In other words, set it to the file path that contains your script and the folders that belong to that piece of work. Then paths such as `"Data/mydata.csv"` or `"Output/results.csv"` become much easier to read.
+
+For example, if your project is organised like this:
+
+```         
+MyProject/
+  Data/
+  Scripts/
+  Output/
+```
+
+then it is sensible to set the working directory to `MyProject/`, not to `Data/` or `Scripts/` separately. That way, your script can refer to files relative to the project folder, for example:
+
+```{r}
+#| eval: false
+dat <- read.csv("Data/mydata.csv")
+saveRDS(dat, file = "Output/mydata.rds")
+```
+
+This makes it much easier to find files later and to understand where your work is being read from and saved to.
+
+::: callout-note
+### Why `setwd()` is not always the best long-term solution
+
+Using `setwd()` can be convenient while learning, but it also has a drawback: if you write a script with a hard-coded path such as `setwd("C:/Users/name/MyProject")`, that script may fail on another computer or even on your own computer if the folder is moved.
+
+For that reason, many analysts prefer to work in an `R` project and avoid putting `setwd()` inside the script itself. Instead, they open the project so the working directory is set appropriately for that session.[^here]
+:::
+
+[^here]: A more advanced alternative is the `here` package, which helps build paths relative to the project folder without hard-coding full file locations.
+
+## A simple workflow to aim for
+
+As you work through this course, it helps to separate what you do in the editor from what you put inside the script.
+
+### Outside the script
+
+These are the setup actions you do in RStudio or in your `R` session:
+
+1. Open your project folder or script.
+2. Check or set the working directory if needed.
+3. Save the script with a clear file name.
+
+### Inside the script
+
+These are the steps that should usually appear as code in the script itself:
+
+1. Load the packages you need.
+2. Import the data you need.
+3. Create or modify objects.
+4. Save important intermediate results when useful.
+5. Rerun the script from top to bottom when you want to check that the workflow is reproducible.
+
+The more your work is captured in the script, the easier it is to rerun and explain later. The general aim is that the script records the analysis, while the editor and working directory help you manage the session in which that script is run.
+
+## Building a Workflow that Works
+When you start a new task—whether it’s a course practical or an analysis of your dataset of your research project, think of your script as a clean slate. It’s tempting to keep adding lines to an old file, but a fresh task deserves a fresh script. This keeps your thoughts organized and prevents "code bleed," where variables from a previous exercise accidentally interfere with your current work.
+
+A good script tells a story that R can read from top to bottom. To keep things from getting messy, try to follow this natural rhythm:
+
+* Always start by loading your tools. Putting your library() calls at the very top is a gift to your future self; you’ll know exactly what’s needed to make the code run before you even get started.
+
+* Next, bring in your files. If the data import is at the top, anyone (including you, three weeks from now) can run the script and get straight to the results. Once you have imported the data do the necessary data transformation steps to get it into a format that is ready for analysis. This might include cleaning, filtering, or reshaping the data. By doing this early on, you ensure that the rest of your script can focus on analysis and visualization without worrying about data issues.
+
+* Now, we can finally get to the heart of the matter: the analysis. This is where you do your calculations, build your models, and create your visualizations. By keeping this section focused on the core work, you make it easier to understand and debug later. I like to always like to start this section by providing a short overview of some descriptive statistics and visualizations to get a sense of the data before diving into more complex analyses.
+
+* In the last part of the code the results are often written to file especially if they take a long time to recalculate.
+
+Do not to forget to save your script regularly as you work. It’s easy to lose hours of work if you forget to save and something goes wrong. A good habit is to save after every significant change or addition to the script. Also remember to use informative file names for your scripts.
+
+The ultimate goal here is reproducibility. Every once in a while, try clearing your environment and running your script from line one to the very end. If it runs without a hitch and recreates your results exactly, you’ve built a solid workflow. If it doesn't, you know exactly where the "story" broke.
+
+## Check yourself
+
+Before moving on, make sure you can explain the following:
+
+1. What is the difference between an `.R` script and an `.RData` file?
+2. When would `saveRDS()` be safer or clearer than `save()`?
+3. Why is it helpful to keep a consistent folder structure for scripts, data and outputs?

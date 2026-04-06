@@ -38,7 +38,19 @@ library(survival)
 
 ## Preface {data-progressive="FALSE"}
 
-Open Rstudio to do the practicals. Note that tasks with \* are optional.
+Open RStudio to do the practicals. Note that tasks with `*` are optional.
+
+By the end of this practical, you should be able to:
+
+- select rows and columns from a `data.frame`
+- extract values from matrices and arrays
+- use logical conditions to create meaningful subsets
+- combine subsetting with summary functions to answer simple data questions
+
+Try to keep your work in a single script. For each task, it is useful to ask yourself two questions:
+
+1. What kind of object will this code return?
+2. Why is this subset scientifically or practically interesting?
 
 ### R packages
 
@@ -55,6 +67,10 @@ For this practical, we will use the **heart** and **retinopathy** data sets from
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
 
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
+
+::: callout-tip
+When you subset an object, do not only look at the values that come back. Also check the class of the result when that is not obvious.
+:::
 
 ## Indexing and Subsetting
 
@@ -74,14 +90,14 @@ Using the **heart** data set:\
 ::: {.panel-tabset .nav-pills}
 #### Task 2
 
-Create a matrix that takes the values 1:6 and has 3 rows and 2 columns. You can name Using the **heart** data set:\
+Using the **heart** data set:\
 
 -   Select the column `surgery` of the `data.frame` in multiple ways: \
   * As a `data.frame` with a single column using single square brackets and a single index
   * As a `data.frame` with a single column using single square brackets and a double index using `drop=FALSE` \
   * As a vector using double square brackets. \
   * As a vector using single square brackets and a double index. \
-  * Using the dolar sign (`$`) operator. \
+  * Using the dollar sign (`$`) operator. \
 - Verify the class of the returned  objects in each case using the `class()` function.
 :::
 
@@ -92,6 +108,19 @@ Create a matrix that takes the values 1:6 and has 3 rows and 2 columns. You can 
 - Select the second row of all columns.
 - Select the first column.
 - Select the element in the 3rd row and 2nd column.
+- If you have time, also select the first and second row of the second column.
+:::
+
+::: callout-note
+## Milestone
+
+At this point, you should feel comfortable with the idea that very similar subsetting expressions can return different kinds of objects.
+
+In particular, make sure you can explain the difference between:
+
+- selecting a column as a `data.frame`
+- selecting a column as a vector
+- selecting one value from a matrix versus a whole row or column
 :::
 
 
@@ -158,4 +187,33 @@ Using the **retinopathy** data set:\
 -   Create a `summary` of the juvenile patients.
 
 
+:::
+
+::: callout-note
+## Milestone
+
+You are now using subsetting for its real purpose: answering questions about specific groups in the data.
+:::
+
+::: callout-advanced
+
+::: {.panel-tabset .nav-pills}
+#### Task 4
+
+- Why does `colnames(retinopathy[1])` return `id`, while `colnames(retinopathy[[1]])` returns `NULL`?
+- Without executing the code, try to determine what the output of `colnames(retinopathy[,1])` would be.
+
+:::
+
+:::
+
+::: callout-note
+## Final check
+
+Before you finish this practical:
+
+- identify one example where subsetting returned a vector
+- identify one example where subsetting returned a `data.frame`
+- check whether you can explain why they differ
+- If you made a script, remember to rerun the script from top to bottom and see whether everything still works
 :::

@@ -1,8 +1,43 @@
 # Indexing and Subsetting {.unnumbered}
 
-**Author: {Karl Brand, Elizabeth Ribble and Sten Willemsen**
+**Authors: Karl Brand, Elizabeth Ribble and Sten Willemsen**
 
-Often we want to calculate some things only for a specific subgroup of our patient group. (For example we want to calculate the average for the variables age and weight, but only for the women in the data set and not for the men). So it is important to select specific variables and observations. In R making these selections is called indexing. We start by showing how we can make selections within a vector. Afterwards we will see how selecting variables and observations in more complex data structures such as matrices, `data.frame`s and `list`s.
+## Introduction
+
+Subsetting is one of the practical skills in `R` that you end up using all the time. In real analyses, we almost never want the whole data set in exactly the form it arrived. We want to select the adult patients, exclude the rows with missing values, or to use only a few variables for the next step. We want one element from a list, one column from a table, or one slice of a matrix. That is what this chapter is about.
+
+Once this starts to feel natural, a lot of later work becomes easier. Data cleaning, plotting and modelling (things we will discuss in the next couple of days) all depend on being able to pull out the part you actually need. We will begin with vectors and then move to matrices, arrays, lists and `data.frame`s, because the basic idea stays the same even though the objects become richer.
+
+## A quick cheat sheet
+
+Before diving into the details, it helps to keep the most common patterns in one place:
+
+| Pattern | Meaning |
+|---|---|
+| `x[i]` | select element(s) from a vector by position |
+| `x[name]` | select element(s) from a named vector by name |
+| `x[condition]` | select element(s) where the condition is `TRUE` |
+| `m[row, col]` | select from a matrix |
+| `a[i, j, k]` | select from an array |
+| `lst[i]` | select element(s) from a list and keep the result as a list |
+| `lst[[i]]` | extract a single list element itself |
+| `lst$name` | extract a named list element |
+| `df[row, col]` | select rows and columns from a `data.frame` |
+| `df["col"]` | select one column as a `data.frame` |
+| `df[["col"]]` or `df$col` | select one column as a vector |
+
+::: callout-warning
+### A common source of confusion
+
+Two pieces of code can look almost the same but return different kinds of objects:
+
+- `df["age"]` returns a one-column `data.frame`
+- `df[["age"]]` returns the vector itself
+- `df[, "age"]` often returns a vector
+- `df[, "age", drop = FALSE]` keeps the result as a `data.frame`
+
+When in doubt, check with `class(...)` or `str(...)`.
+:::
 
 ## Indexing a vector
 
@@ -14,7 +49,7 @@ There are three ways in which we can make a selection:
 
 ### Using numeric values
 
-The easiest way of selecting elements in a vector is by specify positions or **indices i** in numbers of the data we wish to select using square brackets which are the `extract' function, i.e.,`object\[i\]\`.
+The easiest way of selecting elements in a vector is by specifying positions, or **indices** `i`, using square brackets, that is `object[i]`.
 
 ```{r}
 v <- c(11, 13, 17, 15, 9)
@@ -43,7 +78,7 @@ v[-2]
 
 ```
 
-Note that positive and negative indexes cannot be combined.
+Note that positive and negative indices cannot be combined.
 
 ### Using character values
 
@@ -105,7 +140,7 @@ ages > 65
 which(ages > 65)  # gives the TRUE indices
 ```
 
-Note that when we aply filtering on a factor variable the possible levels are not changed:
+Note that when we apply filtering on a factor variable the possible levels are not changed:
 
 ```{r}
 levels(sex[sex == 'Female'] )
@@ -113,7 +148,7 @@ levels(sex[sex == 'Female'] )
 
 ## Making selections in a matrix or array
 
-Making selections on a matrix works more or less the same as for vectors. But because we have two dimensions we need two indices, the first for the rows and the second for columns
+Making selections on a matrix works more or less the same as for vectors. However, because a matrix has two dimensions, we need two indices: the first for the rows and the second for the columns.
 
 ```{r}
 m <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), ncol = 3)
@@ -124,7 +159,7 @@ m[ , -c(1, 3)]   # negative indices
 m[m[ , 1]>=3, ] #logical indices
 ```
 
-Note that when a single row or column is selected the object is converted to a vector; a frequent source of errors. if you want to prevent this you can use `drop=FALSE`.
+Note that when a single row or column is selected, the object is converted to a vector. This is a frequent source of errors. If you want to prevent this, you can use `drop = FALSE`.
 
 ```{r}
 m[1, , drop=FALSE]
@@ -138,7 +173,7 @@ m
 m["A", ]
 ```
 
-As shown above we usually use two indices to select elements in a matrix. However, there it is also possible to use a single index. In this case R treats the matrix as a vector by stacking the columns on top of each other.
+As shown above, we usually use two indices to select elements in a matrix. However, it is also possible to use a single index. In this case, `R` treats the matrix as a vector by stacking the columns on top of each other.
 
 ```{r}
 m[6]
@@ -149,7 +184,7 @@ m[6]
 
 ## Using a single index
 
-There exist a special way of using a matrix with two columns to select individual elements out of a matrix based on their two-dimensional coordinates.
+There is a special way of using a matrix with two columns to select individual elements from another matrix based on two-dimensional coordinates.
 
 ```{r}
 a <- matrix(c(2,3,3,2), ncol = 2)
@@ -196,7 +231,10 @@ mylist[c(1,2,3)==2]
 mylist['bar']
 ```
 
-We can also use double square brackets and the dollar sign for a `list`. There are two important differences between using single and double square brackets: 1. Using double square brackets only allows us to select a single element from the `list`. 2. The result of a selection with double brackets is the element itself, while if we make the selection with single brackets the result is a `list` consisting of the selected elements.
+We can also use double square brackets and the dollar sign for a `list`. There are two important differences between using single and double square brackets:
+
+1. Using double square brackets only allows us to select a single element from the `list`.
+2. The result of a selection with double brackets is the element itself, while if we make the selection with single brackets the result is a `list` consisting of the selected elements.
 
 ```{r}
 mylist[[1]]
@@ -224,11 +262,11 @@ mydata[['treatm']]
 mydata[[1]]
 ```
 
-It is not possible to select more than one element using double brackets; The result will always be a vector (instead of a `data.frame`)
+It is not possible to select more than one element using double brackets. The result will be the extracted element itself, rather than a `data.frame` or `list`.
 
 ## Selecting observations and variables in a `data.frame`
 
-making selections in a `data.frame` sometimes behaves in a similar way as making selections in a matrix, but sometimes it behaves like a list. When we use a double index selecting observations and variables in a `data.frame` works more or less the same for `data.frames` as for a `matrix`. Because a `data.frame` is two dimensional we can two indices between the square brackets. The first one corresponds to the observations (rows) and the second corresponds to the variables (columns). So, as an example, we can select the first two observations from the third variable in the `data.frame` using the syntax:
+Making selections in a `data.frame` sometimes behaves like making selections in a matrix, but sometimes it behaves like selecting from a list. When we use a double index, selecting observations and variables in a `data.frame` works much like in a matrix. Because a `data.frame` is two-dimensional, we can place two indices between the square brackets. The first corresponds to the observations (rows) and the second corresponds to the variables (columns). For example, we can select the first two observations from the third variable in the `data.frame` using:
 
 ```{r}
 mydata <- data.frame(id=c(1, 2, 3, 4, 5),
@@ -258,7 +296,7 @@ mydata[2 , ]
 
 ```
 
-We can also use a single index between the square brackets. This works as if the `data.frame` was a list of variables (it's columns).
+We can also use a single index between the square brackets. This works as if the `data.frame` were a list of variables, that is, its columns.
 
 ```{r}
 mydata[1]
@@ -362,3 +400,12 @@ is.na(z)
 which(is.na(z))
 z[!is.na(z)]
 ```
+
+## Check yourself
+
+Before moving on, make sure you can answer the following:
+
+1. What is the difference between `x[2]` and `x[c(2, 3)]`?
+2. What is the difference between `df["age"]`, `df[["age"]]` and `df[, "age"]`?
+3. Why is `drop = FALSE` sometimes important?
+4. When would you use a logical condition inside brackets?
