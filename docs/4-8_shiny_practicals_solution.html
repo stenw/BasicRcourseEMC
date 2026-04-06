@@ -401,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -424,23 +424,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -482,14 +471,14 @@ About These Solutions
 </div>
 <div class="callout-body-container callout-body">
 <p>The goal of this practical is to create a Shiny application that displays the <a href="https://www.perined.nl/geboortegewichtcurven">Hoftiezer Birthweight curves</a> and uses these curves to determine the birthweight percentile of a given infant.</p>
-<p>These solutions provide complete working code for each question. Try to work through the questions yourself first before consulting the solutions!</p>
+<p>These solutions provide complete working code for each question. Try to work through the questions yourself first before consulting the solutions.</p>
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Solution 1</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Download the <code>hoftiezer.R</code> file from canvas to get started. This file contains two functions you can use: <code>phoftiezer</code> and <code>qhoftiezer</code>.</p>
+<p>Download the <code>hoftiezer.R</code> file from Canvas to get started. This file contains two functions you can use: <code>phoftiezer</code> and <code>qhoftiezer</code>.</p>
 <p><strong>Part 1</strong>: Calculate the birthweight percentile of a boy with gestational age of 200 days that weighs 1500 grams:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the functions</span></span>
@@ -528,6 +517,7 @@ About These Solutions
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p05_detailed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>This first step is important because it separates the clinical calculation from the Shiny machinery. Once the calculation works outside the app, it is much easier to place it inside the app.</p>
 </div>
 </div>
 </div>
@@ -552,6 +542,19 @@ About These Solutions
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When you save this file, a green “Run App” button should appear in the RStudio toolbar. Click it to launch your app!</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Milestone
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At this point, you should have a working but very simple Shiny app that launches successfully.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -622,6 +625,19 @@ About These Solutions
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The app now has a sidebar on the left where users can input birthweight, and a main panel on the right. Currently the main panel still shows a static value.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Milestone
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At this point, your app should have a proper layout with a sidebar and a main panel, even if the result is still static.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -667,6 +683,19 @@ About These Solutions
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now the app responds to changes in the birthweight input! Try entering different values and watch the percentile update.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Milestone
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At this point, your app should react when the user changes the birthweight.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -724,6 +753,24 @@ About These Solutions
 <span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The app now allows full customization! Try different combinations of birthweight, gestational age, and sex.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Milestone
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At this point, your app should respond to three user inputs:</p>
+<ul>
+<li>birthweight</li>
+<li>gestational age</li>
+<li>sex</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -844,7 +891,25 @@ Enhancements to Try
 </ol>
 </div>
 </div>
-<p>Update Todos</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Final check
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you finish this practical:</p>
+<ul>
+<li>run the app once more from top to bottom</li>
+<li>check that the app starts without errors</li>
+<li>verify that the text output changes when the controls change</li>
+<li>verify that the plotted point moves when the controls change</li>
+</ul>
+</div>
+</div>
 
 
 
@@ -1420,8 +1485,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./4-9_looseends.html" class="pagination-link" aria-label="Loose ends">
-        <span class="nav-page-text">Loose ends</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./4-9_looseends.html" class="pagination-link" aria-label="Tidyverse">
+        <span class="nav-page-text">Tidyverse</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

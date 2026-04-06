@@ -397,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -420,23 +420,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -447,9 +436,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#objects-in-r" id="toc-objects-in-r" class="nav-link active" data-scroll-target="#objects-in-r">Objects in R</a>
-  <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#a-quick-comparison" id="toc-a-quick-comparison" class="nav-link" data-scroll-target="#a-quick-comparison">A quick comparison</a></li>
   <li><a href="#the-elementary-data-types" id="toc-the-elementary-data-types" class="nav-link" data-scroll-target="#the-elementary-data-types">The elementary data types</a>
   <ul class="collapse">
   <li><a href="#numbers" id="toc-numbers" class="nav-link" data-scroll-target="#numbers">Numbers</a></li>
@@ -468,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#factors" id="toc-factors" class="nav-link" data-scroll-target="#factors">factors</a></li>
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">functions</a></li>
   <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values">Missing values</a></li>
-  </ul></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/1-5_Common_Objects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -495,14 +483,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><strong>Authors: Sten Willemsen, Karl Brand and Elizabeth Ribble</strong></p>
-<section id="objects-in-r" class="level1">
-<h1>Objects in R</h1>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>All the things we work with in R (such as the numbers in the calculations in the previous section) are called <strong>objects</strong>. All objects have a <strong>mode</strong> and a <strong>class</strong>. The mode (or type) determines how data is stored, and the class determines how functions work with them. For simple objects, these are usually the same. Text variables for example have to be handled differently than numbers, we cannot multiply two words.</p>
-<p>Elementary objects can be combined with each other to form more complex objects this leads to several types of containers, like <code>lists</code> and <code>data.frames</code></p>
+<p>Elementary objects can be combined to form more complex objects. This leads to several types of containers, such as <code>lists</code> and <code>data.frames</code>.</p>
 <p>The <strong>class</strong> of an object is an attribute that can be used to further specify how an object is used in <strong>R</strong>. For example it can be used to indicate how it should be printed and plotted. For many objects the class will simply be equal to the mode.</p>
-<p>Functions are special objects that can do things with other objects, for example the <code>print</code> function displays the contents of an object in the console. Functions are the topic of an other chapter but because we obviously want to do something with the various objects we will see we cannot avoid them altogether.</p>
+<p>Functions are special objects that can do things with other objects, for example the <code>print</code> function displays the contents of an object in the console. Functions are the topic of another chapter, but because we obviously want to do something with the various objects we will see, we cannot avoid them altogether.</p>
+<p>This is one of those chapters that saves people a lot of frustration later. In <code>R</code>, you are almost never working with loose values for long. Very quickly, everything becomes an object of some kind. If you can recognise what sort of object you are looking at, a lot of code suddenly becomes easier to read. If you cannot, even simple errors start to feel strange.</p>
+<p>So this chapter is really about learning to look at data structures with the right questions in mind. We will work through the common object types, talk a little about <code>mode</code> and <code>class</code>, and get used to inspecting unfamiliar objects instead of guessing what they are.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A useful habit
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Whenever you encounter an unfamiliar object, start by asking a few simple questions:</p>
+<ul>
+<li><code>class(x)</code></li>
+<li><code>mode(x)</code></li>
+<li><code>length(x)</code></li>
+<li><code>dim(x)</code></li>
+<li><code>str(x)</code></li>
+</ul>
+<p>You do not always need all of these, but together they often tell you almost everything you need to know.</p>
+</div>
+</div>
+</section>
+<section id="a-quick-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="a-quick-comparison">A quick comparison</h2>
+<p>Before going into the details, it helps to have a rough mental map:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object type</th>
+<th>Can mix data types?</th>
+<th>Has dimensions?</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>vector</td>
+<td>No</td>
+<td>Usually one dimension</td>
+<td>One variable or one sequence of values</td>
+</tr>
+<tr class="even">
+<td>matrix</td>
+<td>No</td>
+<td>Two dimensions</td>
+<td>Numeric or character grid with rows and columns</td>
+</tr>
+<tr class="odd">
+<td>array</td>
+<td>No</td>
+<td>Two or more dimensions</td>
+<td>Higher-dimensional data</td>
+</tr>
+<tr class="even">
+<td>list</td>
+<td>Yes</td>
+<td>Not necessarily rectangular</td>
+<td>Mixed results, nested structures</td>
+</tr>
+<tr class="odd">
+<td><code>data.frame</code></td>
+<td>Yes, by column</td>
+<td>Two dimensions</td>
+<td>Most rectangular data sets</td>
+</tr>
+</tbody>
+</table>
+<p>This table is only a first orientation. The sections below provide more detail and examples.</p>
 </section>
 <section id="the-elementary-data-types" class="level2">
 <h2 class="anchored" data-anchor-id="the-elementary-data-types">The elementary data types</h2>
@@ -536,6 +598,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s examine variables of these data types in a bit more detail:</p>
 <section id="numbers" class="level3">
 <h3 class="anchored" data-anchor-id="numbers">Numbers</h3>
+<p>Numbers are used for measurements, counts, scores, times and many other quantities. In statistical work, numeric variables are extremely common.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(<span class="dv">1</span>)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -580,6 +643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="text" class="level3">
 <h3 class="anchored" data-anchor-id="text">Text</h3>
+<p>Text values are stored as <code>character</code> data. These are useful for names, labels or descriptions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># character values should be surrounded by quotes "or '</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -707,6 +771,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="vectors" class="level2">
 <h2 class="anchored" data-anchor-id="vectors">Vectors</h2>
 <p>Vectors of these data types are the most elementary data structure in R. All other structures (like the <code>data.table</code>) are constructed using these vectors. In R there is also no structure that is smaller than a vector. A single number is not treated differently from a numeric vector of length ten; In fact R sees the single number simply as a numeric vector of length 1. The <code>length()</code> of a vector can be obtained by using the function <code>length()</code>.</p>
+<p>In practice, you can think of a vector as “one variable” or “one ordered collection of values”. For example, the ages of all patients in a study may be stored as one numeric vector.</p>
 <p>A vector can be created using the function <code>c()</code>. (The <code>c</code> stands for ‘concatenate’, ‘coerce’ or ‘combine’)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -791,10 +856,24 @@ shorter object length</code></pre>
 <p>The second element of the resulting vector is now also of type <code>character</code>. In general, it is better not to trust this implicit conversion. Instead, do it explicitly—in this case by using the function <code>as.character()</code>.</p>
 <p>Another way to create a vector is by using the function <code>vector</code>. <code>vector('numeric', 8)</code> creates a numeric vector of length 8. The <code>vector</code> function is often used to pre-allocate room where the results of future computations can be stored.</p>
 <p>One kind of vector that is often used is a sequence of numbers. One way to create them is by using the colon operator <code>:</code>. A syntax <code>a:b</code> will create a sequence of integers from <code>a</code> up to and including <code>b</code>. For example <code>1:4</code> is equal to the vector <code>c(1, 2, 3, 4)</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What to remember about vectors
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vectors are the foundation of many other structures in <code>R</code>. If you understand vectors well, later topics such as subsetting, data frames and functions become much easier.</p>
+</div>
+</div>
 </section>
 <section id="matrices" class="level2">
 <h2 class="anchored" data-anchor-id="matrices">Matrices</h2>
 <p>Vectors have just a single dimension (every element is characterized by a single number (index) that indicates its position within the vector). They can be generalized to objects that are two-dimensional, that is they have both rows and columns. Like simple vectors, all elements of a matrix have the same mode.</p>
+<p>Matrices are useful when your data truly forms a rectangular grid and all values are of the same type. Many mathematical functions in <code>R</code> expect matrices.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>))</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -890,6 +969,7 @@ shorter object length</code></pre>
 <section id="lists" class="level2">
 <h2 class="anchored" data-anchor-id="lists">Lists</h2>
 <p>Elements of a vector, matrix or array are always of the same type. A <code>list</code> differs from a vector by also allowing its elements to be of a different type. We can make a <code>list</code> using the function <code>list</code>.</p>
+<p>Lists are one of the most flexible object types in <code>R</code>. They are often used when different pieces of information belong together, but do not naturally fit in a single rectangular table.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"eleven"</span>, <span class="dv">12</span>)</span>
 <span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(list1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -927,6 +1007,7 @@ shorter object length</code></pre>
 <section id="data.frames" class="level3">
 <h3 class="anchored" data-anchor-id="data.frames">data.frames</h3>
 <p>We saved this data structure for last. But when we will perform data analyses we will work with <code>data.frame</code>s a lot. This is a rectangular table in which every column contains a variable and every row an observation. They are similar to the spreadsheets: a series, or <code>list</code> of equal length columns, or <code>vectors</code>. Notably, the columns (<code>vector</code>s) can be of different classes, <strong>unlike</strong> a matrix or array.</p>
+<p>For most students, the <code>data.frame</code> will become the most important structure in this course. A typical data set has one row per patient and one column per variable, which fits perfectly with the <code>data.frame</code> idea.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"vec"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">48</span>), <span class="st">"lets"</span> <span class="ot">=</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>])</span>
 <span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -984,6 +1065,7 @@ Levels: female male</code></pre>
 </div>
 </div>
 <p>When a <code>factor</code> is displayed, R also shows us the unique values the variable can take. These are called the ‘levels’ of the factor.</p>
+<p>If you are unsure whether a variable should be a <code>character</code> or a <code>factor</code>, a useful question is this: are these free text labels, or are they categories with a limited set of allowed values?</p>
 </section>
 <section id="functions" class="level2">
 <h2 class="anchored" data-anchor-id="functions">functions</h2>
@@ -1010,7 +1092,7 @@ Levels: female male</code></pre>
     else switch(tx &lt;- typeof(x), double = , integer = "numeric", 
         closure = , builtin = , special = "function", tx)
 }
-&lt;bytecode: 0x000001c120c52c08&gt;
+&lt;bytecode: 0x0000024d0fd0fc08&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do not worry if you do not understand the meaning of what is printed yet</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1101,9 +1183,18 @@ Levels: female male</code></pre>
 </div>
 </div>
 </div>
-
-
 </section>
+<section id="check-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<p>Before moving on, make sure you can answer the following:</p>
+<ol type="1">
+<li>Which object type would you normally use for a single variable such as patient age?</li>
+<li>What is the key difference between a matrix and a <code>data.frame</code>?</li>
+<li>Why might a statistical model return a <code>list</code> rather than a vector?</li>
+<li>Which functions would you use first to inspect an unfamiliar object?</li>
+</ol>
+
+
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>

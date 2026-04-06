@@ -397,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -420,23 +420,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -592,13 +581,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  28.00   41.75   49.50   47.83   56.25   64.00 </code></pre>
+  26.00   36.75   45.50   44.38   51.25   58.00 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x.trim
  0  1 
- 9 15 </code></pre>
+12 12 </code></pre>
 </div>
 </div>
 <p>Again, we compare the output with the standard <code>summary()</code> and <code>table()</code> output:</p>
@@ -606,13 +595,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -50.00   38.00   49.00   43.92   56.00   64.00 </code></pre>
+  -50.0    36.0    45.0    40.6    51.0    58.0 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>Sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 -1  0  1 
- 1  9 15 </code></pre>
+ 1 12 12 </code></pre>
 </div>
 </div>
 <p>Apart form nesting <code>if()</code> statements it is also possible to string multiple if statements together like so:</p>
@@ -1020,23 +1009,23 @@ $col3
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>patients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   group    outcome
-1  grp-1  0.4117761
-2  grp-1  0.1981324
-3  grp-1  1.7098084
-4  grp-1  0.3088080
-5  grp-1 -1.8095357
-6  grp-1 -0.2864613
-7  grp-2  0.6098370
-8  grp-2 -0.7286980
-9  grp-2  0.2319770
-10 grp-2 -0.1243566
-11 grp-2 -0.1434469
-12 grp-2  0.6401841</code></pre>
+1  grp-1  1.2134385
+2  grp-1 -0.1639052
+3  grp-1 -0.1466575
+4  grp-1 -1.3363014
+5  grp-1 -1.3266890
+6  grp-1  2.0478842
+7  grp-2  1.0517725
+8  grp-2  0.3173760
+9  grp-2 -0.8649320
+10 grp-2  0.5644391
+11 grp-2  0.2512036
+12 grp-2 -1.5901018</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(patients<span class="sc">$</span>outcome, patients<span class="sc">$</span>group, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     grp-1      grp-2 
-0.08875466 0.08091608 </code></pre>
+<pre><code>      grp-1       grp-2 
+ 0.04796159 -0.04504043 </code></pre>
 </div>
 </div>
 <p>It is also possible to use multiple factors in a list to create groups, which returns a matrix.</p>
@@ -1048,8 +1037,8 @@ $col3
 <span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(patients<span class="sc">$</span>outcome, <span class="fu">list</span>(patients<span class="sc">$</span>group, patients<span class="sc">$</span>serotype), mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               A          B
-grp-1  0.8586746 -0.5495262
-grp-2 -0.7552932 -0.6926064</code></pre>
+grp-1 -0.6472638  0.1283583
+grp-2 -0.8044709 -0.3127001</code></pre>
 </div>
 </div>
 <p>These are some (trivial) examples of how you can use the apply family of functions to quickly apply a function to your data. It is possible to do the same thing by using for loops, but apply functions are generally faster to write and read. In some cases using apply to run your function can also increase the speed of your code. More on increasing the speed of your code will follow in later lectures.</p>

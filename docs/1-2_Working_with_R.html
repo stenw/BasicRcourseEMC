@@ -399,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -422,23 +422,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -450,7 +439,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#creating-and-saving-an-r-script" id="toc-creating-and-saving-an-r-script" class="nav-link active" data-scroll-target="#creating-and-saving-an-r-script"><span class="header-section-number">2.1</span> Creating and saving an R script</a></li>
-  <li><a href="#saving-and-restoring-your-session" id="toc-saving-and-restoring-your-session" class="nav-link" data-scroll-target="#saving-and-restoring-your-session"><span class="header-section-number">2.2</span> Saving and restoring your session</a></li>
+  <li><a href="#scripts-versus-your-workspace" id="toc-scripts-versus-your-workspace" class="nav-link" data-scroll-target="#scripts-versus-your-workspace"><span class="header-section-number">2.2</span> Scripts versus your workspace</a></li>
+  <li><a href="#saving-and-restoring-your-session" id="toc-saving-and-restoring-your-session" class="nav-link" data-scroll-target="#saving-and-restoring-your-session"><span class="header-section-number">2.3</span> Saving and restoring your session</a></li>
+  <li><a href="#importing-data-from-other-formats" id="toc-importing-data-from-other-formats" class="nav-link" data-scroll-target="#importing-data-from-other-formats"><span class="header-section-number">2.4</span> Importing data from other formats</a></li>
+  <li><a href="#working-directories-and-file-paths" id="toc-working-directories-and-file-paths" class="nav-link" data-scroll-target="#working-directories-and-file-paths"><span class="header-section-number">2.5</span> Working directories and file paths</a></li>
+  <li><a href="#a-simple-workflow-to-aim-for" id="toc-a-simple-workflow-to-aim-for" class="nav-link" data-scroll-target="#a-simple-workflow-to-aim-for"><span class="header-section-number">2.6</span> A simple workflow to aim for</a>
+  <ul class="collapse">
+  <li><a href="#outside-the-script" id="toc-outside-the-script" class="nav-link" data-scroll-target="#outside-the-script">Outside the script</a></li>
+  <li><a href="#inside-the-script" id="toc-inside-the-script" class="nav-link" data-scroll-target="#inside-the-script">Inside the script</a></li>
+  </ul></li>
+  <li><a href="#building-a-workflow-that-works" id="toc-building-a-workflow-that-works" class="nav-link" data-scroll-target="#building-a-workflow-that-works"><span class="header-section-number">2.7</span> Building a Workflow that Works</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself"><span class="header-section-number">2.8</span> Check yourself</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/1-2_Working_with_R.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -476,57 +475,221 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Because the typical way of using <code>R</code> involves writing text into a file with the <code>.r</code> or <code>.R</code> extension (e.g.&nbsp;<code>my-r-file.r</code>). Hopefully you’re you are also doing this for the R commands you will use for this course. Sometimes you will also want to save your data.</p>
+<p>Most work in <code>R</code> is done by writing commands into a file with the <code>.r</code> or <code>.R</code> extension, for example <code>my_analysis.R</code>. Hopefully, you are already doing this for the commands you use in this course. In addition to saving your code, you will sometimes want to save data or objects so you can use them again later.</p>
+<p>Very quickly, every <code>R</code> user runs into the same practical questions. Where should the code live? What belongs in the script, and what belongs in saved data files? Which objects should be re-created by running the code, and which ones are worth storing? And how do you bring data in when it starts life as a CSV, an Excel file or something from another program?</p>
+<p>The confusing part is that beginners often mix up three different things: the script, the workspace and the data files on disk. Once those are kept separate, a lot of <code>R</code> starts to make more sense. A good script records what you did. The workspace is just the temporary collection of objects for the current session. The imported and saved files are the raw materials and results that your script works with.</p>
 <section id="creating-and-saving-an-r-script" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="creating-and-saving-an-r-script"><span class="header-section-number">2.1</span> Creating and saving an R script</h2>
-<p>You can create a new R file using the menu (File &gt; New File &gt; R script) or by using the keyboard combination <kbd aria-hidden="true" data-mac="Cmd+Shift+N" data-windows="Ctrl+Shift+N"></kbd><span class="visually-hidden"></span>. You are then prompted for a file name. When you want to save the file you can do so using the menu again (File &gt; Save) or by pressing <kbd aria-hidden="true" data-mac="Cmd+S" data-windows="Ctrl+S"></kbd><span class="visually-hidden"></span>. Selecting ‘File &gt; Save as …’ saves the active file under another name.</p>
+<p>You can create a new <code>R</code> file using the menu (<code>File &gt; New File &gt; R Script</code>) or by using the keyboard combination <kbd aria-hidden="true" data-mac="Cmd+Shift+N" data-windows="Ctrl+Shift+N"></kbd><span class="visually-hidden"></span>.</p>
+<p>When you want to save the file, use the menu again (<code>File &gt; Save</code>) or press <kbd aria-hidden="true" data-mac="Cmd+S" data-windows="Ctrl+S"></kbd><span class="visually-hidden"></span>. Selecting <code>File &gt; Save As ...</code> saves the active file under another name.</p>
+<p>It is good practice to choose informative file names. For example:</p>
+<ul>
+<li><code>01_data_cleaning.R</code></li>
+<li><code>02_descriptives.R</code></li>
+<li><code>practice_day1.R</code></li>
+</ul>
+<p>These names are much more helpful than generic names such as <code>script1.R</code> or <code>test.R</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Good habit
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try to write your commands in a script even when you are only experimenting. If something works, you will already have a record of how you did it.</p>
+</div>
+</div>
 </section>
-<section id="saving-and-restoring-your-session" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="saving-and-restoring-your-session"><span class="header-section-number">2.2</span> Saving and restoring your session</h2>
+<section id="scripts-versus-your-workspace" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="scripts-versus-your-workspace"><span class="header-section-number">2.2</span> Scripts versus your workspace</h2>
+<p>Your script file is saved on disk. Your workspace is the collection of objects currently loaded in memory during your <code>R</code> session.</p>
+<p>For example, if your script contains:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>then <code>x</code> and <code>y</code> will exist in your workspace after you run those lines. If you close <code>R</code>, those objects may disappear unless you save them explicitly. The script, however, remains available as a file and can be rerun.</p>
+<p>In general, a script is more important than a saved workspace, because a good script allows you to recreate your work from the beginning.</p>
+</section>
+<section id="saving-and-restoring-your-session" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="saving-and-restoring-your-session"><span class="header-section-number">2.3</span> Saving and restoring your session</h2>
 <p>Save all objects to the working directory in a file called <code>.RData</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Or give the file a name:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="st">"mySession.RData"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="st">"mySession.RData"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Save all commands entered into the <code>R</code> console during your session to the working directory in a file called <code>.Rhistory</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">savehistory</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">savehistory</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Such a file may be hidden by default in some file browsers, including linux.</p>
-<p>Note that this typically occurs (console dependent) by default when you quit your <code>R</code> session. If an <code>.Rhistory</code> file already exists from a previous session, the current session is appended to the end of this file and saved. Thus, by design, a complete log of your work is saved together with your script file, if your console session contains less than 512 lines.</p>
+<p>Note that such a file (starting with a period) may be hidden by default in some file browsers, including those used with Linux.</p>
+<p>Saving the session history often happens automatically, depending on your setup, when you quit your <code>R</code> session. If an <code>.Rhistory</code> file already exists from a previous session, the current session may be appended to it.</p>
+<p>Saving the full workspace can be convenient while learning, because it allows you to continue where you left off. However, for reproducible work it is often better to rely on scripts that recreate the objects you need.</p>
 <p>Save specific objects:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(object_1, object_2, object_3, <span class="at">file =</span> <span class="st">"rObjects123.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(object_1, object_2, object_3, <span class="at">file =</span> <span class="st">"rObjects123.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Restore or load previous sessions or objects:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"mySession.RData"</span>)        <span class="co"># load from the working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"mySession.RData"</span>)        <span class="co"># load from the working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>When you save and load objects this way, loaded variables will have the same names as when they were stored, possibly overwriting existing variables. There is also a different way of saving objects where loaded objects are assigned explicitly.</p>
+<p>When you save and load objects this way, loaded variables keep the same names they had when they were stored. This means they may overwrite existing variables with the same name. That is convenient sometimes, but it can also lead to confusion.</p>
+<p>There is also a different way of saving objects in which the loaded object is assigned explicitly:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>myobject <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">vec=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">mat=</span><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">2</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(myobject,<span class="at">file =</span> <span class="st">'myfile.rds'</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>object2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">'myfile.rds'</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(myobject, object2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>myobject <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">vec=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">mat=</span><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">2</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(myobject,<span class="at">file =</span> <span class="st">'myfile.rds'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>object2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">'myfile.rds'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(myobject, object2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<p>Often the data we want to use is not in any ‘R-format’ but in another format. We will then have to import this data. Much of this functionality is included in the <code>foreign</code> package. To open data from spss you can use the <code>read.spss</code> command from this package. The syntax is:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.spss</span>(<span class="at">file =</span> <span class="st">'path/to/file/thespssfile.sav'</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>With <code>saveRDS()</code> and <code>readRDS()</code>, you decide the new object name yourself. That makes this format especially useful when you want to store a single object safely and load it back in a controlled way.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Using the argument <code>to.data.frame</code> we indicate that we want the result as a data.frame. Another format that is often used is excel sheets; for this we can use the <code>read_excel</code> function from the <code>readxl</code> package.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="at">path=</span><span class="st">'path/to/file/excelworkbook.xls'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+<code>save()</code> or <code>saveRDS()</code>?
 </div>
-<p>This function has an optional argument <code>sheet</code> to indicate the sheet in the excel file if it contains multiple sheets. Optionally, with <code>range</code> a cell range can be indicated.</p>
+</div>
+<div class="callout-body-container callout-body">
+<p>Both are useful.</p>
+<ul>
+<li>Use <code>save()</code> when you want to store multiple objects together.</li>
+<li>Use <code>saveRDS()</code> when you want to store one object and reload it under a name you choose yourself.</li>
+</ul>
+<p>In practice, many analysts prefer <code>saveRDS()</code> for intermediate results because it gives more control.</p>
+</div>
+</div>
+</section>
+<section id="importing-data-from-other-formats" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="importing-data-from-other-formats"><span class="header-section-number">2.4</span> Importing data from other formats</h2>
+<p>Often the data we want to use is not in an <code>R</code> format, but in another format such as SPSS, CSV or Excel. We then have to import this data into <code>R</code>.</p>
+<p>Much of this functionality is available through packages. To open data from SPSS, you can use the <code>read.spss</code> command from the <code>foreign</code> package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.spss</span>(<span class="at">file =</span> <span class="st">'path/to/file/thespssfile.sav'</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the argument <code>to.data.frame</code>, we indicate that we want the result as a <code>data.frame</code>.</p>
+<p>Another format that is often used is Excel. For this we can use the <code>read_excel()</code> function from the <code>readxl</code> package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="at">path=</span><span class="st">'path/to/file/excelworkbook.xls'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This function has an optional argument <code>sheet</code> to indicate the sheet in the Excel file if it contains multiple sheets. Optionally, <code>range</code> can be used to indicate a cell range.</p>
+<p>In many projects, comma-separated text files (<code>.csv</code>) are also very common:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Data/mydata.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="working-directories-and-file-paths" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="working-directories-and-file-paths"><span class="header-section-number">2.5</span> Working directories and file paths</h2>
+<p>Whenever you load or save a file, <code>R</code> needs to know where that file is located. If you provide only a file name, <code>R</code> will look in the current <strong>working directory</strong>.</p>
+<p>That means the following command only works if the file is in the working directory:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"mySession.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If the file is somewhere else, you need to provide a path:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"Data/mySession.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can ask <code>R</code> which working directory is currently active with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If needed, you can also change the working directory with <code>setwd()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/name/MyProject"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It is important to understand what this does and does not do. The working directory is a setting for the current <code>R</code> session. It tells <code>R</code> where to look by default when you read or write files. It does <strong>not</strong> move your script, and it does <strong>not</strong> automatically make your analysis more reproducible.</p>
+<p>When students first learn <code>R</code>, it is often helpful to set the working directory to the main folder of the project they are working in. In other words, set it to the file path that contains your script and the folders that belong to that piece of work. Then paths such as <code>"Data/mydata.csv"</code> or <code>"Output/results.csv"</code> become much easier to read.</p>
+<p>For example, if your project is organised like this:</p>
+<pre><code>MyProject/
+  Data/
+  Scripts/
+  Output/</code></pre>
+<p>then it is sensible to set the working directory to <code>MyProject/</code>, not to <code>Data/</code> or <code>Scripts/</code> separately. That way, your script can refer to files relative to the project folder, for example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Data/mydata.csv"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dat, <span class="at">file =</span> <span class="st">"Output/mydata.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This makes it much easier to find files later and to understand where your work is being read from and saved to.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why <code>setwd()</code> is not always the best long-term solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using <code>setwd()</code> can be convenient while learning, but it also has a drawback: if you write a script with a hard-coded path such as <code>setwd("C:/Users/name/MyProject")</code>, that script may fail on another computer or even on your own computer if the folder is moved.</p>
+<p>For that reason, many analysts prefer to work in an <code>R</code> project and avoid putting <code>setwd()</code> inside the script itself. Instead, they open the project so the working directory is set appropriately for that session.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</div>
+</div>
+</section>
+<section id="a-simple-workflow-to-aim-for" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="a-simple-workflow-to-aim-for"><span class="header-section-number">2.6</span> A simple workflow to aim for</h2>
+<p>As you work through this course, it helps to separate what you do in the editor from what you put inside the script.</p>
+<section id="outside-the-script" class="level3">
+<h3 class="anchored" data-anchor-id="outside-the-script">Outside the script</h3>
+<p>These are the setup actions you do in RStudio or in your <code>R</code> session:</p>
+<ol type="1">
+<li>Open your project folder or script.</li>
+<li>Check or set the working directory if needed.</li>
+<li>Save the script with a clear file name.</li>
+</ol>
+</section>
+<section id="inside-the-script" class="level3">
+<h3 class="anchored" data-anchor-id="inside-the-script">Inside the script</h3>
+<p>These are the steps that should usually appear as code in the script itself:</p>
+<ol type="1">
+<li>Load the packages you need.</li>
+<li>Import the data you need.</li>
+<li>Create or modify objects.</li>
+<li>Save important intermediate results when useful.</li>
+<li>Rerun the script from top to bottom when you want to check that the workflow is reproducible.</li>
+</ol>
+<p>The more your work is captured in the script, the easier it is to rerun and explain later. The general aim is that the script records the analysis, while the editor and working directory help you manage the session in which that script is run.</p>
+</section>
+</section>
+<section id="building-a-workflow-that-works" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="building-a-workflow-that-works"><span class="header-section-number">2.7</span> Building a Workflow that Works</h2>
+<p>When you start a new task—whether it’s a course practical or an analysis of your dataset of your research project, think of your script as a clean slate. It’s tempting to keep adding lines to an old file, but a fresh task deserves a fresh script. This keeps your thoughts organized and prevents “code bleed,” where variables from a previous exercise accidentally interfere with your current work.</p>
+<p>A good script tells a story that R can read from top to bottom. To keep things from getting messy, try to follow this natural rhythm:</p>
+<ul>
+<li><p>Always start by loading your tools. Putting your library() calls at the very top is a gift to your future self; you’ll know exactly what’s needed to make the code run before you even get started.</p></li>
+<li><p>Next, bring in your files. If the data import is at the top, anyone (including you, three weeks from now) can run the script and get straight to the results. Once you have imported the data do the necessary data transformation steps to get it into a format that is ready for analysis. This might include cleaning, filtering, or reshaping the data. By doing this early on, you ensure that the rest of your script can focus on analysis and visualization without worrying about data issues.</p></li>
+<li><p>Now, we can finally get to the heart of the matter: the analysis. This is where you do your calculations, build your models, and create your visualizations. By keeping this section focused on the core work, you make it easier to understand and debug later. I like to always like to start this section by providing a short overview of some descriptive statistics and visualizations to get a sense of the data before diving into more complex analyses.</p></li>
+<li><p>In the last part of the code the results are often written to file especially if they take a long time to recalculate.</p></li>
+</ul>
+<p>Do not to forget to save your script regularly as you work. It’s easy to lose hours of work if you forget to save and something goes wrong. A good habit is to save after every significant change or addition to the script. Also remember to use informative file names for your scripts.</p>
+<p>The ultimate goal here is reproducibility. Every once in a while, try clearing your environment and running your script from line one to the very end. If it runs without a hitch and recreates your results exactly, you’ve built a solid workflow. If it doesn’t, you know exactly where the “story” broke.</p>
+</section>
+<section id="check-yourself" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="check-yourself"><span class="header-section-number">2.8</span> Check yourself</h2>
+<p>Before moving on, make sure you can explain the following:</p>
+<ol type="1">
+<li>What is the difference between an <code>.R</code> script and an <code>.RData</code> file?</li>
+<li>When would <code>saveRDS()</code> be safer or clearer than <code>save()</code>?</li>
+<li>Why is it helpful to keep a consistent folder structure for scripts, data and outputs?</li>
+</ol>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>A more advanced alternative is the <code>here</code> package, which helps build paths relative to the project folder without hard-coding full file locations.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

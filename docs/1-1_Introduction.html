@@ -399,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -422,23 +422,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -452,6 +441,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
   <li><a href="#what-is-r" id="toc-what-is-r" class="nav-link" data-scroll-target="#what-is-r">What is R</a></li>
+  <li><a href="#why-learn-r" id="toc-why-learn-r" class="nav-link" data-scroll-target="#why-learn-r">Why learn R</a></li>
+  </ul></li>
+  <li><a href="#your-first-5-minutes-in-r" id="toc-your-first-5-minutes-in-r" class="nav-link" data-scroll-target="#your-first-5-minutes-in-r">Your first 5 minutes in <code>R</code></a>
+  <ul class="collapse">
+  <li><a href="#a-first-success" id="toc-a-first-success" class="nav-link" data-scroll-target="#a-first-success">A first success</a></li>
   <li><a href="#history" id="toc-history" class="nav-link" data-scroll-target="#history">History</a></li>
   </ul></li>
   <li><a href="#get-it" id="toc-get-it" class="nav-link" data-scroll-target="#get-it">Get it</a>
@@ -472,6 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#trouble-shooting" id="toc-trouble-shooting" class="nav-link" data-scroll-target="#trouble-shooting">Trouble shooting</a></li>
   <li><a href="#further-resources" id="toc-further-resources" class="nav-link" data-scroll-target="#further-resources">Further resources</a></li>
   </ul></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/1-1_Introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -500,41 +495,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Authors: Karl Brand, Elizabeth Ribble and S. Willemsen</strong></p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This chapter is here to get you oriented. If you are new to <code>R</code>, the main thing I want is for the environment to start feeling less mysterious: what <code>R</code> is, why people use it, what it feels like to type a few commands, and how RStudio fits into the picture. We will also look at packages and a few basic survival skills, because in real work the trick is rarely knowing everything in advance. It is knowing how to find your way when you do not.</p>
 <section id="what-is-r" class="level3">
 <h3 class="anchored" data-anchor-id="what-is-r">What is R</h3>
-<p>R is a programming language and software environment that is mainly used for statistics and creating graphics. It runs on all standard computing platforms, including Windows, MacOS and Linux. It is free open source software. So it is available for everybody to download and use without cost. It is also highly extensible, with thousands of packages available for various statistical techniques and data manipulation tasks.</p>
-<p>One of the success factors of <code>R</code> is the large and active user community (especially among statisticians). This means that if you have are problem, it is relatively easy to find help. There are many forums and mailing lists where you can ask questions and get answers from other users. There are also many online resources, such as tutorials, blogs, and documentation, that can help you learn <code>R</code> and solve problems.</p>
-<p>The R language is modular: base R only has limited functionality, but this functionality can be extended by means of various <strong>packages</strong>. Because of the popularity of R among statisticians new statistical methods will frequently be implemented in <code>R</code> first, often by the method’s original author. Nowadays there is an enormous amount of extension packages. And the number of packages still seems to be growing at an exponential rate. The quality of these packages varies although there is some kind of quality control on the packages distributed through the official channel <a href="https://cran.r-project.org/">CRAN</a>.</p>
+<p><code>R</code> is a programming language and software environment that is mainly used for statistics, data analysis and creating graphics. It runs on all standard computing platforms, including Windows, MacOS and Linux. It is free and open source software, so everybody can download and use it without cost. It is also highly extensible, with thousands of packages available for statistical techniques, data manipulation and visualisation.</p>
+<p>One of the success factors of <code>R</code> is its large and active user community, especially in statistics, epidemiology, bioinformatics and data science. This means that if you run into a problem, it is usually possible to find help. There are many forums, tutorials, blog posts and official help pages that can help you learn <code>R</code> and solve problems.</p>
+<p>The R language is modular: base R has a lot of core functionality, but it can be extended by means of <strong>packages</strong>. Because of the popularity of R among statisticians, new statistical methods are often implemented in <code>R</code> very quickly, sometimes by the method’s original author. Nowadays there is an enormous number of extension packages. Their quality varies, although there is some quality control for packages distributed through the official channel <a href="https://cran.r-project.org/">CRAN</a>.</p>
+</section>
+<section id="why-learn-r" class="level3">
+<h3 class="anchored" data-anchor-id="why-learn-r">Why learn R</h3>
+<p>There are many tools that can be used for data analysis, so it is reasonable to ask why we would spend time learning <code>R</code>.</p>
+<ul>
+<li>It allows you to combine data cleaning, analysis, figures and reporting in one workflow.</li>
+<li>It is script based, which means your work can be saved, checked, shared and repeated later.</li>
+<li>It is widely used in research, so many examples and methods are already available.</li>
+<li>It scales well from very simple calculations to advanced analyses.</li>
+</ul>
+<p>For this course, an important advantage is that the same code can be rerun later. That makes your work more transparent and easier to check.</p>
+</section>
+</section>
+<section id="your-first-5-minutes-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="your-first-5-minutes-in-r">Your first 5 minutes in <code>R</code></h2>
+<p>Before discussing installation details and history, it is useful to see what working in <code>R</code> actually feels like.</p>
+<section id="a-first-success" class="level3">
+<h3 class="anchored" data-anchor-id="a-first-success">A first success</h3>
+<p>If you have <code>R</code> or RStudio open, try typing the following commands and running them one by one:</p>
+<pre><code>&gt; 2 + 2
+[1] 4
+&gt; sqrt(25)
+[1] 5
+&gt; x &lt;- 10
+&gt; x / 2
+[1] 5</code></pre>
+<p>In just a few lines, you have already done three common things in <code>R</code>:</p>
+<ul>
+<li>evaluated an expression</li>
+<li>used a function</li>
+<li>stored a result in a variable</li>
+</ul>
+<p>That is the basic rhythm of working in <code>R</code>: type code, run it, inspect the result, and then build on it.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Common beginner worries
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are new to programming, it is completely normal if the console, prompts and code syntax feel unfamiliar at first. You do <strong>not</strong> need to understand everything immediately. Early on, the goal is simply to become comfortable with trying small commands, reading the output, and correcting mistakes when needed.</p>
+</div>
+</div>
 </section>
 <section id="history" class="level3 {callout-background}">
 <h3 class="anchored" data-anchor-id="history">History</h3>
-<p>Before <code>R</code> there was the statistical analysis program, <code>S</code>, developed at Bell Laboratories in 1976 by John Chambers. It was developed with the purpose of being useful for interactive data analyses and programming. <code>S</code> was later commercialised as <code>S-PLUS</code>. S-PLUS contained some features that made working with the language easier (such as a graphical user interface (GUI)). John Chambers is also a current member of the board of the <code>R</code> Foundation for Statistical Computing.</p>
-<p>In 1991, Ross Ihaka and Robert Gentleman of Dept of Statistics, University of Auckland, New Zealand created the <code>S</code> clone, <code>R</code>, as an open source alternative for academic use. Together with the <code>R</code> core group’ they released version 1 under the GNU Public License (GPL) v2 and v3 in 2000. The name, <code>R</code>, probably derives from the first letter of the creator’s names. http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f</p>
+<p>Before <code>R</code> there was the statistical analysis program <code>S</code>, developed at Bell Laboratories in 1976 by John Chambers. It was developed with the purpose of being useful for interactive data analysis and programming. <code>S</code> was later commercialised as <code>S-PLUS</code>. S-PLUS contained some features that made working with the language easier, such as a graphical user interface (GUI). John Chambers is also a current member of the board of the <code>R</code> Foundation for Statistical Computing.</p>
+<p>In 1991, Ross Ihaka and Robert Gentleman of the Department of Statistics, University of Auckland, New Zealand, created the <code>S</code> clone <code>R</code> as an open source alternative for academic use. Together with the <code>R</code> Core Team they released version 1 under the GNU Public License (GPL) in 2000. The name <code>R</code> probably derives from the first letter of the creators’ names. See also <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f" class="uri">http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f</a>.</p>
 </section>
 </section>
 <section id="get-it" class="level2">
 <h2 class="anchored" data-anchor-id="get-it">Get it</h2>
 <section id="install-it" class="level3">
 <h3 class="anchored" data-anchor-id="install-it">Install it</h3>
-<p>To get <code>R</code> on your PC <strong>first</strong> you need to install the core <code>R</code> application. Of course you’ll need to download the version for your operating system and architecture first.</p>
+<p>To get <code>R</code> on your computer, you first need to install the core <code>R</code> application. You will need to download the version for your operating system and architecture.</p>
 <ul>
 <li><p>For Linux: <a href="https://cran.r-project.org/bin/linux/" class="uri">https://cran.r-project.org/bin/linux/</a></p></li>
 <li><p>For Mac: <a href="https://cran.r-project.org/bin/macosx/" class="uri">https://cran.r-project.org/bin/macosx/</a></p></li>
 <li><p>For Windows: <a href="https://cran.r-project.org/bin/windows/" class="uri">https://cran.r-project.org/bin/windows/</a></p></li>
 </ul>
-<p>Although <code>R</code> for Windows (and Mac?) ships with a basic text editor, and it’s possible to execute code from the terminal under linux, a fully featured editor increases convenience and productivity. Grab an awesome text editor:</p>
-<p>RStudio: https://www.rstudio.com/products/rstudio/</p>
-<p>Visual Studio Code: https://code.visualstudio.com/</p>
-<p>Positron: https://github.com/posit-dev/positron</p>
-<p>Emacs/ESS: http://ess.r-project.org/index.php?Section=download</p>
-<p>Here’s a full list available editors: https://en.wikipedia.org/wiki/R_(programming_language)#Interfaces</p>
+<p>Although <code>R</code> for Windows and Mac ships with a basic interface, and it is possible to execute code directly from a terminal under Linux, a fully featured editor or IDE makes your workflow much easier. A few common options are:</p>
+<ul>
+<li><p>RStudio: <a href="https://www.rstudio.com/products/rstudio/" class="uri">https://www.rstudio.com/products/rstudio/</a></p></li>
+<li><p>Visual Studio Code: <a href="https://code.visualstudio.com/" class="uri">https://code.visualstudio.com/</a></p></li>
+<li><p>Positron: <a href="https://github.com/posit-dev/positron" class="uri">https://github.com/posit-dev/positron</a></p></li>
+<li><p>Emacs/ESS: <a href="http://ess.r-project.org/index.php?Section=download" class="uri">http://ess.r-project.org/index.php?Section=download</a></p></li>
+</ul>
+<p>Here is a larger list of interfaces for <code>R</code>: <a href="https://en.wikipedia.org/wiki/R_(programming_language)#Interfaces" class="uri">https://en.wikipedia.org/wiki/R_(programming_language)#Interfaces</a></p>
 </section>
 </section>
 <section id="how-do-we-use-r" class="level2">
 <h2 class="anchored" data-anchor-id="how-do-we-use-r">How do we use <code>R</code></h2>
 <section id="working-with-r" class="level3">
 <h3 class="anchored" data-anchor-id="working-with-r">Working with <strong>R</strong></h3>
-<p>You type commands, also known as `<code>expressions,'' into a text editor or terminal and send them to</code>R<code>for evaluation.</code>R` evaluates the command, prints the command (by default), then the result of the evaluated command, if any.</p>
+<p>You type commands, also known as <em>expressions</em>, into a text editor or terminal and send them to <code>R</code> for evaluation. <code>R</code> evaluates the command and then prints the result, if there is one.</p>
 <p>The simplest expressions equal simple calculations, similar to those we could do on a hand calculator</p>
 <pre><code>&gt;1 + 1
 [1] 2
@@ -544,15 +588,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [1] 6
 &gt;2 / 3
 [1] 0.6666667</code></pre>
-<p>Here we use ‘&gt;’ to denote the R prompt. It is used in the console to indicate that R is ready for a new command. The lines in between is the output given by R.</p>
-<p>But we can also ‘call’ functions on an object. Most of the functionality in R comes from these functions. There are many functions we can use including the standard mathematical ones:</p>
+<p>Here we use <code>&gt;</code> to denote the R prompt. In the console, this prompt indicates that <code>R</code> is ready for a new command. The lines underneath are the output given by <code>R</code>.</p>
+<p>But we can also call functions. Most of the functionality in <code>R</code> comes from these functions. There are many functions we can use, including standard mathematical ones:</p>
 <pre><code>&gt;cos(3.1415)
 [1] -1
 &gt;exp(0)
 [1] 1
 &gt;log(1)
 [1] 0</code></pre>
-<p>The results above are displayed but not stored. To do this we must give a name to the result. That is, we store the result in a variable. The results are now no longer displayed but using the variable name we can refer to it later.</p>
+<p>The results above are displayed but not stored. To store a result, we give it a name. In other words, we assign the result to a variable. Once we have done that, we can refer to it later by using the variable name.</p>
 <p>Assigning a result in a variable is done using <code>&lt;-</code>. For example:</p>
 <pre><code>&gt;five &lt;- 3+2
 &gt; five
@@ -569,55 +613,58 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note that when we write five at the R command promt, R will print the value of the variable, that is the value stored in this variable. When we wanted to print the exact text <code>five</code> we should have put it in quotes, like this:</p>
+<p>Note that when we write <code>five</code> at the <code>R</code> command prompt, <code>R</code> prints the value stored in that variable. If we want the exact text <code>five</code>, we have to put it in quotes:</p>
 <pre><code>&gt; "five" 
 [1] "five"</code></pre>
 </div>
 </div>
-<p>In R it does not matter if you use single or double quotes as long as they match. Working with text values will be further discussed in the next section.</p>
-<p>As we will see an advantage of using R is that we can do calculations on multiple values (or vectors) at once. For example:</p>
+<p>In <code>R</code> it does not matter whether you use single or double quotes, as long as they match. Working with text values will be discussed further in the next section.</p>
+<p>One advantage of using <code>R</code> is that we can do calculations on multiple values, or <strong>vectors</strong>, at once. For example:</p>
 <pre><code>&gt; c(1, 2)  + c(1, 3) 
 [1] 2 5</code></pre>
-<p>This is of course very convinient in the common setting where we are working on a data set with many observations where we want to do the same calculation on all observations. This will be further discussed later.</p>
+<p>This is very convenient when we work with a data set containing many observations and want to do the same calculation for each of them. We will return to this idea later.</p>
 </section>
 <section id="how-we-interact-with-r" class="level3">
 <h3 class="anchored" data-anchor-id="how-we-interact-with-r">How we interact with <code>R</code></h3>
-<p>Not surprisingly everything about <code>R</code> is built on the principle of KISS, i.e., keep it simple stupid. * We get things done in <code>R</code> by typing commands and asking <code>R</code> to execute them with the <kbd aria-hidden="true">ENTER</kbd><span class="visually-hidden">ENTER</span> key. Assuming you know the commands, it couldn’t be any simpler. * The <strong>front end</strong> of <code>R</code>, the part that receives your <em>terminal</em>. You can type your commands directly into the terminal and hit {} to do your work. But if you need thousands of commands for a specific task, or want to share your method, this approach gets tiring fast. * Since the commands are just text, it’s easy to write a series of commands using any program built for working with text, i.e., text editors and word processors, to create <em>code</em> or a <em>script</em>, to get something done. * The easiest, most efficient way to write <code>R</code> code is using a text editor or <strong>integrated development environment</strong>, like RStudio or Emacs/ESS as mentioned earlier.</p>
+<p>Working in <code>R</code> is conceptually simple: we type commands and ask <code>R</code> to execute them with the <kbd aria-hidden="true">ENTER</kbd><span class="visually-hidden">ENTER</span> key.</p>
+<p>You <em>can</em> type commands directly into the console, but once your work becomes longer than a few lines this quickly becomes inconvenient. For that reason, most serious work in <code>R</code> is written in a script file. A script gives you a record of what you did, allows you to rerun your work, and makes it much easier to share your analysis with someone else.</p>
+<p>Since <code>R</code> code is just text, you can write it in any text editor. In practice, the easiest and most efficient way to work is to use an <strong>integrated development environment</strong> (IDE), such as RStudio, where the editor, console, files and plots are all visible together.</p>
 </section>
 <section id="rstudio-the-easiest-way-to-work-with-r" class="level3">
 <h3 class="anchored" data-anchor-id="rstudio-the-easiest-way-to-work-with-r">RStudio: the easiest way to work with <code>R</code></h3>
-<p>For most users, especially those new to <code>R</code>, RStudio is probably the best IDE to use. Like everything about <code>R</code>, you’re free to choose whatever editor you like. For Windows platforms, you could just use the basic editor that’s bundled with the downloadable installer. Let’s have a look at an RStudio ‘session’.</p>
+<p>For most users, especially those new to <code>R</code>, RStudio is probably the easiest IDE to start with. Like everything about <code>R</code>, you are free to choose whichever editor you like. Let’s have a look at an RStudio session.</p>
 <p><img src="Pictures/RStudio.png" class="img-fluid"></p>
 <p>There are four panes:</p>
 <ul>
-<li>The top left is the source pane. <strong>Do your typing in this pane</strong>.</li>
-<li>The bottom left is your console. This is a window looking into what <code>R</code> is actually doing. <strong>Even though it’s fine to type your commands in this pane at the <code>R '&gt;'</code> prompt, avoid this</strong>: your commands are less conveniently stored and rerun than your source code in the editor pane.</li>
-<li>Top right: environment pane</li>
-<li>Bottom left: files pane</li>
+<li>The top left is the source pane. <strong>Do most of your typing in this pane.</strong></li>
+<li>The bottom left is the console. This is where you can see what <code>R</code> is doing and where output appears.</li>
+<li>The top right is the environment pane, which shows the objects currently stored in memory.</li>
+<li>The bottom right usually contains files, plots, packages and help.</li>
 </ul>
-<p>Type your commands in the source pane and send them to <code>R</code> using the keyboard short-cut <kbd aria-hidden="true" data-mac="Cmd+Enter" data-windows="Ctrl+Enter"></kbd><span class="visually-hidden"></span>. This will send the line of code your cursor is on to <code>R</code> if no code is selected; or if there is code selected, then only the selected code is sent. Open RStudio on your PC and try it now. (Alternatively you can also pres the ‘Run’ icon just below the file tabs). Since programming is all about typing commands using a keyboard, not pointing and clicking, you might appreciate lots of keyboard shortcuts. Here’s an awesome cheatsheet of (RStudio keyboard shortcuts)[https://www.rstudio.com/resources/cheatsheets/].</p>
+<p>Type your commands in the source pane and send them to <code>R</code> using the keyboard shortcut <kbd aria-hidden="true" data-mac="Cmd+Enter" data-windows="Ctrl+Enter"></kbd><span class="visually-hidden"></span>. This sends the current line, or the selected code, to the console. Open RStudio on your computer and try it now. Alternatively, you can press the <code>Run</code> button below the file tabs.</p>
+<p>Because programming involves a lot of typing, keyboard shortcuts save a lot of time. A useful reference is the collection of <a href="https://www.rstudio.com/resources/cheatsheets/">RStudio cheatsheets</a>.</p>
 <p>A few other things about RStudio:</p>
 <ul>
-<li>move the focus between panes using the key board shortcuts <kbd aria-hidden="true">Ctrl+1</kbd><span class="visually-hidden">Ctrl+1</span> and <kbd aria-hidden="true">Ctrl+2</kbd><span class="visually-hidden">Ctrl+2</span> for the source and console panes respectively</li>
-<li>the little asterisk next your source code file name indicates unsaved code</li>
+<li>move the focus between panes using the keyboard shortcuts <kbd aria-hidden="true">Ctrl+1</kbd><span class="visually-hidden">Ctrl+1</span> and <kbd aria-hidden="true">Ctrl+2</kbd><span class="visually-hidden">Ctrl+2</span> for the source and console panes respectively</li>
+<li>the little asterisk next to your source code file name indicates unsaved code</li>
 <li><strong>save your source code!</strong></li>
 </ul>
 </section>
 </section>
 <section id="r-packages" class="level2">
 <h2 class="anchored" data-anchor-id="r-packages">R Packages</h2>
-<p>Base <strong>R</strong> has many fuctions but many more are come from various extension packages. These can be installed using <code>install.packages()</code> :</p>
+<p>Base <code>R</code> has many functions, but many more come from extension packages. These can be installed using <code>install.packages()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"packageName"</span>,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">lib =</span> <span class="st">"/directory/to/my custom R library"</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">repos =</span> <span class="st">"http://cran.xl-mirror.nl"</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># usually lib and repos can be omitted (left at the default)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"packageName"</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">lib =</span> <span class="st">"/directory/to/my custom R library"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">repos =</span> <span class="st">"http://cran.xl-mirror.nl"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># usually lib and repos can be omitted (left at the default)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The package name must be quoted when installing.</p>
-<p>Later when you want to use the package you have to load it first using <code>library()</code> :</p>
+<p>Later, when you want to use the package, you have to load it first using <code>library()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"packageName"</span>)      <span class="do">## quotes are optional when loading a package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"packageName"</span>)      <span class="do">## quotes are optional when loading a package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -635,52 +682,59 @@ Note
 </section>
 <section id="comments" class="level2">
 <h2 class="anchored" data-anchor-id="comments">Comments</h2>
-<p>To make your scripts more clear you can add comments, to explain what the code is doing, and why it is doing this. Text that represents a comment is indicated by the hash (#) symbol. For example in the code:</p>
+<p>To make your scripts clearer, you can add comments to explain what the code is doing and why it is doing this. Text that represents a comment is indicated by the hash (<code>#</code>) symbol. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the survival package because we will need the data sets</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the survival package because we will need the data sets</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The first line does not actually do anything (it is skipped by the interpreter). But it explains to the user why the <code>library()</code> call on the next line is included. It is also possible to add comments at the end of a line of code:</p>
+<p>The first line does not actually do anything because it is skipped by the interpreter. However, it explains why the <code>library()</code> call on the next line is included. It is also possible to add comments at the end of a line of code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival) <span class="co"># for data sets</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival) <span class="co"># for data sets</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="backslashes" class="level2">
 <h2 class="anchored" data-anchor-id="backslashes">Backslashes</h2>
-<p>One more thing I want to mention is how <code>R</code> interprets backslashes and forwardslashes, i.e.&nbsp;\ and / respectively, as relates to defining the locations of files on your PC. James McDonald does a better job of clarifying this than I otherwise would http://cran.r-project.org/doc/contrib/Lemon-kickstart/kr_scrpt.html:</p>
-<blockquote class="blockquote">
-<p>Let’s pause to note a little historical bifurcation that has caused Almost as much strife as the question of exactly what the <kbd aria-hidden="true">DELETE</kbd><span class="visually-hidden">DELETE</span> key should do. The convention that the slash (/) character is used as a separator in the notation for a filesystem path is not universal. PC-DOS, for example, used the backslash \. Like Fords vs Chevrolets, French vs English, and whether you crack the egg at the big or small end, it doesn’t really matter a rat’s behind which one you use as long as it works. To make it work in R, however, where the *NIX convention of using the backslash as an escape character is respected, you will have to double backslashes in paths for them to be read properly. Thus if the filename above was: ‘1.R’ I would have to refer to it as: ‘c:\JIM\PSYCH\ADOLDRUG\PARTYUSE1.R’ in an R script.</p>
-</blockquote>
+<p>One more thing worth mentioning is how <code>R</code> interprets backslashes and forward slashes, that is <code>\\</code> and <code>/</code>, when you specify the location of files on your computer.</p>
+<p>On Unix-like systems such as Linux and macOS, the normal separator in file paths is the forward slash (<code>/</code>). Windows often displays file paths using backslashes (<code>\</code>), but in <code>R</code> you can usually still use forward slashes on Windows as well. That is often the simplest option:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>myfile <span class="ot">&lt;-</span> <span class="st">"C:/Users/name/Documents/data.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you do use backslashes in a character string, you usually need to double them:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>myfile <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">name</span><span class="sc">\\</span><span class="st">Documents</span><span class="sc">\\</span><span class="st">data.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The reason is that in <code>R</code> strings, the backslash is also used as an <strong>escape character</strong>. For example, <code>\n</code> means a new line and <code>\t</code> means a tab. If you want an actual backslash character inside a string, you normally have to write it as <code>\\</code>.</p>
+<p>For beginners, the easiest rule is: when typing file paths in <code>R</code>, prefer forward slashes whenever possible.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </section>
 <section id="getting-help" class="level2">
 <h2 class="anchored" data-anchor-id="getting-help">Getting Help</h2>
 <ul>
-<li>Online help. The first place to look. Also works when you’re actually <strong>offline</strong>:</li>
+<li>Online help. This is usually the first place to look. It also works when you are actually <strong>offline</strong>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>?help</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(help)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>?help</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(help)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>??help</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"help"</span>)              <span class="co"># quotes are needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>??help</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"help"</span>)              <span class="co"># quotes are needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>It’s fun, try them out!</p>
+<p>Try them out and get used to reading help pages early.</p>
 <ul>
-<li><p>Google. And when you’re actually <strong>online</strong>, often the <strong>first</strong> place and **last** place you’ll go when you have no idea is <a href="https://www.google.com">Google (https://www.google.com)</a>.</p></li>
-<li><p>Package Vignette’s. Where the online help is devoid of the context often needed to grasp the full potential and logical use of functions, vignette’s is the best place to find such information, with extended examples, and often more. For example, see the limma <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf" class="uri">http://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf</a></p></li>
-<li><p>Mailing Lists. R-help <a href="http://www.r-project.org/mail.html" class="uri">http://www.r-project.org/mail.html</a>. Do check first using Google or the R-help searchable archives <a href="http://tolstoy.newcastle.edu.au/\~rking/R/" class="uri">http://tolstoy.newcastle.edu.au/\~rking/R/</a> first if your question has already been asked and has the answer to solve your issue.</p></li>
+<li><p>Google. When you are actually <strong>online</strong>, this is often where you go when you have no idea where to start: <a href="https://www.google.com">Google</a>.</p></li>
+<li><p>Package vignettes. When the regular help page does not provide enough context, a vignette often gives a longer explanation with examples. For example, see the limma vignette: <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf" class="uri">http://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf</a></p></li>
+<li><p>Mailing lists. R-help: <a href="http://www.r-project.org/mail.html" class="uri">http://www.r-project.org/mail.html</a>. Before posting, check with Google or searchable archives whether your question has already been asked.</p></li>
 <li><p>Other lists: <a href="https://stat.ethz.ch/mailman/listinfo" class="uri">https://stat.ethz.ch/mailman/listinfo</a></p></li>
-<li><p>Stack Overflow <a href="https://stackoverflow.com" class="uri">https://stackoverflow.com</a>. Probably more questions and answers posted here than on the mailing list.</p></li>
+<li><p>Stack Overflow: <a href="https://stackoverflow.com" class="uri">https://stackoverflow.com</a>. There are many <code>R</code> questions and answers there, often with practical examples.</p></li>
 </ul>
 <section id="trouble-shooting" class="level3">
 <h3 class="anchored" data-anchor-id="trouble-shooting">Trouble shooting</h3>
 <ul>
-<li>Clean your environment and start again to be sure your messy environment isn’t the cause of your issue. In RStudio, click the broom in the Environment tab; in any R session you can also run:</li>
+<li>Clean your environment and start again, so that you can be sure a messy workspace is not the cause of your issue. In RStudio, click the broom in the Environment tab; in any R session you can also run:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())                 </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()           <span class="co"># quotes are needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())                 </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()           <span class="co"># quotes are needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout-advanced">
 <p>If the above does not work, try these:</p>
@@ -688,7 +742,7 @@ Note
 <li>Start <code>R</code> without any customisations, i.e., omit loading the <code>.Rprofile</code> and <code>.Renviron</code> customisation files. From the command line:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--vanilla</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--vanilla</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>trace.back()</code> function: very helpful pinpointing the source of an error, and thus its cause.</li>
@@ -712,9 +766,24 @@ Note
 </ul></li>
 <li><p><strong>A First Course in Statistical Programming with R.</strong> W. John Braun and Duncan J. Murdoch. Cambridge University Press, 2007\ I love this book, beautifully explores the programming aspects of <code>R</code>.</p></li>
 </ul>
+</section>
+</section>
+<section id="check-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<p>Before moving on, make sure you can answer the following:</p>
+<ol type="1">
+<li>What is the difference between typing code in the source pane and typing it in the console?</li>
+<li>What is the difference between installing a package and loading a package?</li>
+<li>How would you ask <code>R</code> for help on a function you do not understand?</li>
+</ol>
 
 
 </section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>James McDonald gives a longer historical explanation of slashes and backslashes here: <a href="http://cran.r-project.org/doc/contrib/Lemon-kickstart/kr_scrpt.html" class="uri">http://cran.r-project.org/doc/contrib/Lemon-kickstart/kr_scrpt.html</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

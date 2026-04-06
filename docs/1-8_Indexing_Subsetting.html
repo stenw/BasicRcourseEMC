@@ -397,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -420,23 +420,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -447,7 +436,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#indexing-a-vector" id="toc-indexing-a-vector" class="nav-link active" data-scroll-target="#indexing-a-vector">Indexing a vector</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#a-quick-cheat-sheet" id="toc-a-quick-cheat-sheet" class="nav-link" data-scroll-target="#a-quick-cheat-sheet">A quick cheat sheet</a></li>
+  <li><a href="#indexing-a-vector" id="toc-indexing-a-vector" class="nav-link" data-scroll-target="#indexing-a-vector">Indexing a vector</a>
   <ul class="collapse">
   <li><a href="#using-numeric-values" id="toc-using-numeric-values" class="nav-link" data-scroll-target="#using-numeric-values">Using numeric values</a></li>
   <li><a href="#using-character-values" id="toc-using-character-values" class="nav-link" data-scroll-target="#using-character-values">Using character values</a></li>
@@ -459,6 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#other-useful-functions" id="toc-other-useful-functions" class="nav-link" data-scroll-target="#other-useful-functions">Other useful functions</a></li>
   </ul></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/1-8_Indexing_Subsetting.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -484,8 +476,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Author: {Karl Brand, Elizabeth Ribble and Sten Willemsen</strong></p>
-<p>Often we want to calculate some things only for a specific subgroup of our patient group. (For example we want to calculate the average for the variables age and weight, but only for the women in the data set and not for the men). So it is important to select specific variables and observations. In R making these selections is called indexing. We start by showing how we can make selections within a vector. Afterwards we will see how selecting variables and observations in more complex data structures such as matrices, <code>data.frame</code>s and <code>list</code>s.</p>
+<p><strong>Authors: Karl Brand, Elizabeth Ribble and Sten Willemsen</strong></p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Subsetting is one of the practical skills in <code>R</code> that you end up using all the time. In real analyses, we almost never want the whole data set in exactly the form it arrived. We want to select the adult patients, exclude the rows with missing values, or to use only a few variables for the next step. We want one element from a list, one column from a table, or one slice of a matrix. That is what this chapter is about.</p>
+<p>Once this starts to feel natural, a lot of later work becomes easier. Data cleaning, plotting and modelling (things we will discuss in the next couple of days) all depend on being able to pull out the part you actually need. We will begin with vectors and then move to matrices, arrays, lists and <code>data.frame</code>s, because the basic idea stays the same even though the objects become richer.</p>
+</section>
+<section id="a-quick-cheat-sheet" class="level2">
+<h2 class="anchored" data-anchor-id="a-quick-cheat-sheet">A quick cheat sheet</h2>
+<p>Before diving into the details, it helps to keep the most common patterns in one place:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>x[i]</code></td>
+<td>select element(s) from a vector by position</td>
+</tr>
+<tr class="even">
+<td><code>x[name]</code></td>
+<td>select element(s) from a named vector by name</td>
+</tr>
+<tr class="odd">
+<td><code>x[condition]</code></td>
+<td>select element(s) where the condition is <code>TRUE</code></td>
+</tr>
+<tr class="even">
+<td><code>m[row, col]</code></td>
+<td>select from a matrix</td>
+</tr>
+<tr class="odd">
+<td><code>a[i, j, k]</code></td>
+<td>select from an array</td>
+</tr>
+<tr class="even">
+<td><code>lst[i]</code></td>
+<td>select element(s) from a list and keep the result as a list</td>
+</tr>
+<tr class="odd">
+<td><code>lst[[i]]</code></td>
+<td>extract a single list element itself</td>
+</tr>
+<tr class="even">
+<td><code>lst$name</code></td>
+<td>extract a named list element</td>
+</tr>
+<tr class="odd">
+<td><code>df[row, col]</code></td>
+<td>select rows and columns from a <code>data.frame</code></td>
+</tr>
+<tr class="even">
+<td><code>df["col"]</code></td>
+<td>select one column as a <code>data.frame</code></td>
+</tr>
+<tr class="odd">
+<td><code>df[["col"]]</code> or <code>df$col</code></td>
+<td>select one column as a vector</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A common source of confusion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Two pieces of code can look almost the same but return different kinds of objects:</p>
+<ul>
+<li><code>df["age"]</code> returns a one-column <code>data.frame</code></li>
+<li><code>df[["age"]]</code> returns the vector itself</li>
+<li><code>df[, "age"]</code> often returns a vector</li>
+<li><code>df[, "age", drop = FALSE]</code> keeps the result as a <code>data.frame</code></li>
+</ul>
+<p>When in doubt, check with <code>class(...)</code> or <code>str(...)</code>.</p>
+</div>
+</div>
+</section>
 <section id="indexing-a-vector" class="level2">
 <h2 class="anchored" data-anchor-id="indexing-a-vector">Indexing a vector</h2>
 <p>There are three ways in which we can make a selection:</p>
@@ -496,7 +574,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="using-numeric-values" class="level3">
 <h3 class="anchored" data-anchor-id="using-numeric-values">Using numeric values</h3>
-<p>The easiest way of selecting elements in a vector is by specify positions or <strong>indices i</strong> in numbers of the data we wish to select using square brackets which are the <code>extract' function, i.e.,</code>object[i]`.</p>
+<p>The easiest way of selecting elements in a vector is by specifying positions, or <strong>indices</strong> <code>i</code>, using square brackets, that is <code>object[i]</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">15</span>, <span class="dv">9</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>v[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -530,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 11 17 15  9</code></pre>
 </div>
 </div>
-<p>Note that positive and negative indexes cannot be combined.</p>
+<p>Note that positive and negative indices cannot be combined.</p>
 </section>
 <section id="using-character-values" class="level3">
 <h3 class="anchored" data-anchor-id="using-character-values">Using character values</h3>
@@ -620,7 +698,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 2 3</code></pre>
 </div>
 </div>
-<p>Note that when we aply filtering on a factor variable the possible levels are not changed:</p>
+<p>Note that when we apply filtering on a factor variable the possible levels are not changed:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sex[sex <span class="sc">==</span> <span class="st">'Female'</span>] )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -631,7 +709,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="making-selections-in-a-matrix-or-array" class="level2">
 <h2 class="anchored" data-anchor-id="making-selections-in-a-matrix-or-array">Making selections in a matrix or array</h2>
-<p>Making selections on a matrix works more or less the same as for vectors. But because we have two dimensions we need two indices, the first for the rows and the second for columns</p>
+<p>Making selections on a matrix works more or less the same as for vectors. However, because a matrix has two dimensions, we need two indices: the first for the rows and the second for the columns.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>), <span class="at">ncol =</span> <span class="dv">3</span>)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">1</span>, ] <span class="co"># first row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -659,7 +737,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [2,]    4    8   12</code></pre>
 </div>
 </div>
-<p>Note that when a single row or column is selected the object is converted to a vector; a frequent source of errors. if you want to prevent this you can use <code>drop=FALSE</code>.</p>
+<p>Note that when a single row or column is selected, the object is converted to a vector. This is a frequent source of errors. If you want to prevent this, you can use <code>drop = FALSE</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">1</span>, , drop<span class="ot">=</span><span class="cn">FALSE</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -683,7 +761,7 @@ D    4    8   12</code></pre>
 <pre><code>[1] 1 5 9</code></pre>
 </div>
 </div>
-<p>As shown above we usually use two indices to select elements in a matrix. However, there it is also possible to use a single index. In this case R treats the matrix as a vector by stacking the columns on top of each other.</p>
+<p>As shown above, we usually use two indices to select elements in a matrix. However, it is also possible to use a single index. In this case, <code>R</code> treats the matrix as a vector by stacking the columns on top of each other.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -694,7 +772,7 @@ D    4    8   12</code></pre>
 <div class="callout-advanced">
 <section id="using-a-single-index" class="level2">
 <h2 class="anchored" data-anchor-id="using-a-single-index">Using a single index</h2>
-<p>There exist a special way of using a matrix with two columns to select individual elements out of a matrix based on their two-dimensional coordinates.</p>
+<p>There is a special way of using a matrix with two columns to select individual elements from another matrix based on two-dimensional coordinates.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -823,7 +901,11 @@ $baz[[2]]
 [1] "a" "b"</code></pre>
 </div>
 </div>
-<p>We can also use double square brackets and the dollar sign for a <code>list</code>. There are two important differences between using single and double square brackets: 1. Using double square brackets only allows us to select a single element from the <code>list</code>. 2. The result of a selection with double brackets is the element itself, while if we make the selection with single brackets the result is a <code>list</code> consisting of the selected elements.</p>
+<p>We can also use double square brackets and the dollar sign for a <code>list</code>. There are two important differences between using single and double square brackets:</p>
+<ol type="1">
+<li>Using double square brackets only allows us to select a single element from the <code>list</code>.</li>
+<li>The result of a selection with double brackets is the element itself, while if we make the selection with single brackets the result is a <code>list</code> consisting of the selected elements.</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>mylist[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -862,11 +944,11 @@ $baz[[2]]
 <pre><code>[1] 1 2 3 4 5</code></pre>
 </div>
 </div>
-<p>It is not possible to select more than one element using double brackets; The result will always be a vector (instead of a <code>data.frame</code>)</p>
+<p>It is not possible to select more than one element using double brackets. The result will be the extracted element itself, rather than a <code>data.frame</code> or <code>list</code>.</p>
 </section>
 <section id="selecting-observations-and-variables-in-a-data.frame" class="level2">
 <h2 class="anchored" data-anchor-id="selecting-observations-and-variables-in-a-data.frame">Selecting observations and variables in a <code>data.frame</code></h2>
-<p>making selections in a <code>data.frame</code> sometimes behaves in a similar way as making selections in a matrix, but sometimes it behaves like a list. When we use a double index selecting observations and variables in a <code>data.frame</code> works more or less the same for <code>data.frames</code> as for a <code>matrix</code>. Because a <code>data.frame</code> is two dimensional we can two indices between the square brackets. The first one corresponds to the observations (rows) and the second corresponds to the variables (columns). So, as an example, we can select the first two observations from the third variable in the <code>data.frame</code> using the syntax:</p>
+<p>Making selections in a <code>data.frame</code> sometimes behaves like making selections in a matrix, but sometimes it behaves like selecting from a list. When we use a double index, selecting observations and variables in a <code>data.frame</code> works much like in a matrix. Because a <code>data.frame</code> is two-dimensional, we can place two indices between the square brackets. The first corresponds to the observations (rows) and the second corresponds to the variables (columns). For example, we can select the first two observations from the third variable in the <code>data.frame</code> using:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>),</span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sex=</span><span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">'M'</span>, <span class="st">'F'</span>, <span class="st">'M'</span>, <span class="st">'F'</span>, <span class="st">'F'</span>)),</span>
@@ -923,7 +1005,7 @@ Levels: F M</code></pre>
 2  2   F     44</code></pre>
 </div>
 </div>
-<p>We can also use a single index between the square brackets. This works as if the <code>data.frame</code> was a list of variables (it’s columns).</p>
+<p>We can also use a single index between the square brackets. This works as if the <code>data.frame</code> were a list of variables, that is, its columns.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>mydata[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1112,9 +1194,19 @@ HOXA     12    13    65</code></pre>
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="check-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<p>Before moving on, make sure you can answer the following:</p>
+<ol type="1">
+<li>What is the difference between <code>x[2]</code> and <code>x[c(2, 3)]</code>?</li>
+<li>What is the difference between <code>df["age"]</code>, <code>df[["age"]]</code> and <code>df[, "age"]</code>?</li>
+<li>Why is <code>drop = FALSE</code> sometimes important?</li>
+<li>When would you use a logical condition inside brackets?</li>
+</ol>
+
+
 </section>
 
 </main> <!-- /main -->

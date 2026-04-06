@@ -363,7 +363,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -386,30 +386,27 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#a-familiar-problem" id="toc-a-familiar-problem" class="nav-link active" data-scroll-target="#a-familiar-problem">A familiar problem</a></li>
+  <li><a href="#tools-for-reproducible-work" id="toc-tools-for-reproducible-work" class="nav-link" data-scroll-target="#tools-for-reproducible-work">Tools for reproducible work</a></li>
+  <li><a href="#what-quarto-does" id="toc-what-quarto-does" class="nav-link" data-scroll-target="#what-quarto-does">What Quarto does</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/4-1_represearch.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -433,12 +430,42 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>An analysis is reproducible when all information is available (for somebody) to do your analysis and obtain the same results. This includes the data, code and the documentation. This somebody else can even be your future self.</p>
-<p>When data is reproducible it makes it easier to go back and figure out what you did, perform checks and make adjustments. It also makes collaboration with other people easier.</p>
-<p>There are some software tools that make it easier to do your amalyses in a reproducible way. In this course, we will talk about Quarto and Git.</p>
-<p>Quarto is a program that allows you to combine code and documentation in a single text document. The code is then run and included in the document which is then converted an output format. There are many different options for the output format and they include such things as a pdf, an html file or a word-document.</p>
+<p>Reproducible research sounds a bit grand at first, but the underlying idea is very practical. If somebody else repeats your work using the same data, code and documentation, they should be able to get back to the same result. Quite often that “somebody else” is you, two months later, trying to remember why one table has a different number in it.</p>
+<p>Once you have experienced a project where the code sits in one place, the interpretation in another, and the final figures are pasted in by hand, the appeal becomes obvious. Reproducible work is easier to check, easier to update and much easier to trust. This is where Quarto starts to become genuinely useful, because it lets the explanation, the code and the output live together instead of drifting apart.</p>
+<section id="a-familiar-problem" class="level2">
+<h2 class="anchored" data-anchor-id="a-familiar-problem">A familiar problem</h2>
+<p>Many students and researchers have experienced some version of this situation:</p>
+<ul>
+<li>the analysis code is saved in one file</li>
+<li>the interpretation is written somewhere else</li>
+<li>figures are copied manually into a report</li>
+<li>later, one number changes and now everything has to be updated by hand</li>
+</ul>
+<p>This is exactly the kind of workflow we want to avoid.</p>
+</section>
+<section id="tools-for-reproducible-work" class="level2">
+<h2 class="anchored" data-anchor-id="tools-for-reproducible-work">Tools for reproducible work</h2>
+<p>There are several tools that make reproducible analysis easier. In this course, the two most important are:</p>
+<ul>
+<li><strong>Quarto</strong>, for combining code, text and output in one document</li>
+<li><strong>Git</strong>, for tracking changes and collaborating safely</li>
+</ul>
+<p>In this part of the reader we will focus mainly on Quarto, because it lets you write explanations and run code in the same file.</p>
+</section>
+<section id="what-quarto-does" class="level2">
+<h2 class="anchored" data-anchor-id="what-quarto-does">What Quarto does</h2>
+<p>Quarto allows you to combine code and documentation in a single text document. When the document is rendered, the code is run and the results can be inserted directly into the output. That output can then be converted to different formats such as HTML, PDF or Word.</p>
+<p>This means that one source document can contain:</p>
+<ul>
+<li>your narrative explanation</li>
+<li>the code used for the analysis</li>
+<li>tables and figures produced by that code</li>
+<li>the final rendered report</li>
+</ul>
+<p>That is why Quarto is such a useful tool for reproducible work: the report and the analysis are no longer separated from each other.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1022,4 +1049,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/4-1_represearch.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/4-1_represearch.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

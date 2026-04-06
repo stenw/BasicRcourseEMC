@@ -397,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -420,23 +420,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -449,8 +438,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#code-blocks" id="toc-code-blocks" class="nav-link" data-scroll-target="#code-blocks">Code blocks</a></li>
+  <li><a href="#chunk-options" id="toc-chunk-options" class="nav-link" data-scroll-target="#chunk-options">Chunk Options</a></li>
   <li><a href="#inline-code" id="toc-inline-code" class="nav-link" data-scroll-target="#inline-code">Inline code</a></li>
   <li><a href="#yaml-header" id="toc-yaml-header" class="nav-link" data-scroll-target="#yaml-header">YAML header</a></li>
+  <li><a href="#what-to-remember" id="toc-what-to-remember" class="nav-link" data-scroll-target="#what-to-remember">What to remember</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/4-3_codeblocks.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -478,54 +470,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>The main feature of quarto is that we can interweave the text with code blocks. These code blocks are the point of discussion of this section.</p>
+<p>The real power of Quarto shows up when text and code start living in the same document. That is the step from “a nicely formatted note” to “a report that can actually run the analysis it describes.” Once you have that, you can write an explanation, insert a code block, render the document, and have the output appear in the right place without any copying and pasting.</p>
+<p>So this section is about the mechanics that make that possible. We will look at code chunks, what rendering actually does, how chunk options change what runs and what gets shown, and how short bits of inline code can keep the prose tied to the analysis.</p>
 </section>
 <section id="code-blocks" class="level2">
 <h2 class="anchored" data-anchor-id="code-blocks">Code blocks</h2>
-<p>When we include a code block (also called chunk) we start by writing three backticks (```) followed by the name of the language you use in the code block (we will only use R) surrounded with braces. The chunk again is ended by writing three backticks. So the whole thing looks like this</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Optionally you can also include a chunk name after the name of the language. This helps if there are any errors as the chunk name will be included in the error message. Additionally figures that are created within the code will use the chunk name in the name of the figure.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r examplename}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>By default, when the document is rendered the code in the chunks will be executed and both the contents of the code block as the output will be included in the document. Execution of the code, insertion of the code and insertion of the output can be suppressed by so-called chunk options (see below). A given ducument can include manu code chunks that all will be executed in order. Variables that are defined in a certain code block can be used in the following ones, just as if the code would have formed a single R-script.</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Chunk Options</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>It is possible to modify the behavior of how the code blocks are executed. This is done by including special comments at the top of the code blocks. Alternatively we can include them between the braces. That is we can either write</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<p>When we include a code block, also called a <strong>chunk</strong>, we start by writing three backticks followed by the name of the language in braces. In this course, that language will almost always be <code>r</code>. The chunk is then closed with another line of three backticks.</p>
+<p>The basic structure looks like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>::: {.cell}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{.r .cell-code}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>::: {.cell-output .cell-output-stdout}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">[1] 2</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When the document is rendered, Quarto will run this code and insert the result into the final output unless you tell it not to.</p>
+<p>Optionally, you can also include a chunk name after the language. This helps when errors occur, because the chunk name can appear in error messages. In addition, figures created inside the chunk may use that name in their file names.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>::: {.cell}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{.r .cell-code}</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">summary(c(1, 2, 3))</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>::: {.cell-output .cell-output-stdout}</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">    1.0     1.5     2.0     2.0     2.5     3.0 </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in"># some code</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>or </span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">```` markdown</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo=FALSE}</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="in"># some code</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By default, when the document is rendered, the code in the chunks will be executed and both the source code and the output will be included in the document. A document can contain many code chunks, and they are executed in order. Variables defined in one chunk can usually be used in later chunks, just as if the code were part of a single <code>R</code> script.</p>
+</section>
+<section id="chunk-options" class="level2">
+<h2 class="anchored" data-anchor-id="chunk-options">Chunk Options</h2>
+<p>It is possible to modify how code blocks behave. This is done with <strong>chunk options</strong>. These options let you control whether code is executed, whether code is shown, whether messages appear, and so on.</p>
+<p>One way is to include the options as special comments at the top of the chunk:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>::: {.cell}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternatively, we can include options directly in the chunk header:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>::: {.cell}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Some options that are often used are:</p>
 <dl>
 <dt>eval</dt>
 <dd>
-<p>when TRUE (the default) the code is evaluated when FALSE it is not</p>
+<p>when TRUE (the default), the code is evaluated. When FALSE, it is not.</p>
 </dd>
 <dt>echo</dt>
 <dd>
-<p>when TRUE (default) the source is displayed in the output decument. When it is FALSE it is not.</p>
+<p>when TRUE (default), the source code is displayed in the output document. When it is FALSE, it is not.</p>
 </dd>
 <dt>results</dt>
 <dd>
-<p>specifies how the resuls are displayed. When it is ‘markup’ it is displayed as a code-block. When it is <code>asis</code> it will not be modified. A situation in which this is convinient when the R functions formats its output in html. When ‘hide’ or FALSE the results are not shown at all.</p>
+<p>specifies how the results are displayed. When it is <code>markup</code>, the result is displayed as a code block. When it is <code>asis</code>, it will not be modified. This is convenient when an <code>R</code> function already formats its output in markdown or HTML. When it is <code>hide</code> or <code>FALSE</code>, the results are not shown.</p>
 </dd>
 <dt>warning</dt>
 <dd>
@@ -537,32 +547,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt>include</dt>
 <dd>
-<p>When TRUE the output is shown in the document when FALSE all output is suppressed but the code is still executed</p>
+<p>when TRUE, the output is shown in the document. When FALSE, all output is suppressed, but the code is still executed.</p>
 </dd>
 <dt>file</dt>
 <dd>
-<p>the code content is read from an external file that is named in the option</p>
+<p>the code content is read from an external file named in the option</p>
 </dd>
 <dt>child</dt>
 <dd>
 <p>the content of an external file is inserted in place</p>
 </dd>
 </dl>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A practical way to think about chunk options
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Chunk options answer questions such as:</p>
+<ul>
+<li>Should this code run?</li>
+<li>Should the reader see the code?</li>
+<li>Should the reader see the output?</li>
+<li>Should warnings and messages be shown?</li>
+</ul>
+<p>These decisions help you balance transparency and readability in the final report.</p>
+</div>
+</div>
 </section>
 <section id="inline-code" class="level2">
 <h2 class="anchored" data-anchor-id="inline-code">Inline code</h2>
-<p>Beside complete code blocks it is also possible to include short bits of R code in the running text. The code should be included between <code>`r</code> and <code>`</code> , for example <code>`r nrow(data_set)`</code>.</p>
+<p>Besides complete code blocks, it is also possible to include short bits of <code>R</code> code in the running text. The code should be included between <code>`r</code> and <code>`</code>, for example <code>32</code>.</p>
+<p>This is useful when you want a sentence in the report to update automatically, for example:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>The data set contains 32 observations.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When you use inline code, make sure the object you refer to already exists earlier in the document. Otherwise the document will fail to render.</p>
+<p>Inline code is often one of the nicest features of Quarto because it lets your text and your results stay synchronized.</p>
 </section>
 <section id="yaml-header" class="level2">
 <h2 class="anchored" data-anchor-id="yaml-header">YAML header</h2>
-<p>Each markdown document starts with a header that specifies such things as the title, author, date and output format. For example</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "My document"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Sten Willemsen"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "21 May 2023"</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Besides html we can also create word documents by using <code>output: docx</code> and pdf documents by specifying <code>output: pdf</code>. The last option requires TeX to be installed.</p>
+<p>Each Quarto document starts with a header that specifies things such as the title, author, date and output format. This header is written in YAML and appears at the top of the file. For example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "My document"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Sten Willemsen"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "21 May 2023"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Besides HTML we can also create Word documents and PDF documents. The PDF option usually requires a TeX installation.</p>
+</section>
+<section id="what-to-remember" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-remember">What to remember</h2>
+<p>Markdown gives structure to the text of the report, while code blocks allow the analysis itself to be executed inside the document. Together, these are the two core ingredients of Quarto.</p>
+</section>
+<section id="check-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<p>Before moving on, make sure you can answer the following:</p>
+<ol type="1">
+<li>What is the basic structure of a Quarto code chunk?</li>
+<li>What is the difference between <code>echo: false</code> and <code>include: false</code>?</li>
+<li>Why can inline code be useful in a report?</li>
+<li>What is the purpose of the YAML header?</li>
+</ol>
 
 
 </section>

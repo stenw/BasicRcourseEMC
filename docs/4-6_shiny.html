@@ -399,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -422,23 +422,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -456,6 +445,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#input-controls" id="toc-input-controls" class="nav-link" data-scroll-target="#input-controls">Input controls</a></li>
   <li><a href="#the-server-function" id="toc-the-server-function" class="nav-link" data-scroll-target="#the-server-function">The server function</a></li>
   <li><a href="#output-controls" id="toc-output-controls" class="nav-link" data-scroll-target="#output-controls">Output controls</a></li>
+  <li><a href="#what-to-remember" id="toc-what-to-remember" class="nav-link" data-scroll-target="#what-to-remember">What to remember</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/4-6_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -481,21 +472,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level3">
-<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
-<p>Shiny is a tool that allows you to quickly make interactive applications using R that nicely works together with RStudio. You can run the apps on your own computer or host them on a server (for example using Posit Cloud). Before you can run Shiny apps you need to install the <code>shiny</code> package (but if you do not RStudio will prompt you to install it).</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Up to this point, most of our work has produced fixed output: tables, figures and reports that say, “here are the results.” Shiny is interesting because it lets you move one step further and build a small tool that responds to user input. Instead of preparing one answer, you can let somebody explore several scenarios for themselves.</p>
+<p>That is useful more often than people think. Sometimes the same calculation needs to be repeated with different settings. Sometimes a result is easier to understand when you can move a slider or choose a subgroup. And sometimes the most practical way to share an analysis is not as a static report, but as a simple app.</p>
+<p>Shiny is the package in <code>R</code> that makes that possible. It works well together with RStudio, and once the <code>shiny</code> package is installed you can run apps locally on your own computer or host them elsewhere, for example using Posit Cloud.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shiny"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="creating-an-app" class="level3">
-<h3 class="anchored" data-anchor-id="creating-an-app">Creating an app</h3>
-<p>There are several ways of creating an shiny application. The easiest way is to use the menus in RSTudio. Click File &gt; New File &gt; Shiny Webb App. You are then presented with a dialog screen where you are asked to give the application a name and create a directory for the app. Nowadays the usual process is that a file <code>app.R</code> is created that contains the code for the user interface and the back end (this is explained later). These two parts used to have their own separate files (<code>ui.R</code> and <code>server.R</code>) and you can still choose this option in the dialog screen. For larger application splitting the code over several files can make it easier to manage so this may still be an interesting option.</p>
+<section id="creating-an-app" class="level2">
+<h2 class="anchored" data-anchor-id="creating-an-app">Creating an app</h2>
+<p>There are several ways to create a Shiny application. The easiest way is to use the menus in RStudio. Click <code>File &gt; New File &gt; Shiny Web App</code>. You will then be asked to choose an application name and a directory for the app.</p>
+<p>Nowadays, the usual process is to create a file called <code>app.R</code> that contains both the user interface and the back end. In older Shiny apps, these two parts were often stored in separate files called <code>ui.R</code> and <code>server.R</code>. You can still encounter that structure, but in this course we will use the single-file <code>app.R</code> approach.</p>
 <p>When you are more experienced you can also start building an app by creating an <code>app.R</code> file in an empty directory yourself. You can quickly enter the boilerplate code typing <code>shinyapp</code> and pressing <kbd aria-hidden="true">Shift-Tab</kbd><span class="visually-hidden">Shift-Tab</span>.</p>
 </section>
-<section id="parts-of-an-app-user-interface-and-back-end" class="level3">
-<h3 class="anchored" data-anchor-id="parts-of-an-app-user-interface-and-back-end">Parts of an app: user interface and back end</h3>
-<p>If you inspect the code of the shiny app you see that it consists of two parts: a user interface and the back end (server) part.</p>
+<section id="parts-of-an-app-user-interface-and-back-end" class="level2">
+<h2 class="anchored" data-anchor-id="parts-of-an-app-user-interface-and-back-end">Parts of an app: user interface and back end</h2>
+<p>If you inspect the code of a simple Shiny app, you will see that it consists of two main parts:</p>
+<ul>
+<li>a <strong>user interface</strong> (<code>ui</code>), which controls what the user sees</li>
+<li>a <strong>server</strong> function, which controls what the app does</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -509,15 +507,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>In other words, the user interface is the visible part of the app, while the server contains the logic behind it.</p>
 </section>
-<section id="starting-and-stopping-the-application" class="level3">
-<h3 class="anchored" data-anchor-id="starting-and-stopping-the-application">Starting and stopping the application</h3>
-<p>When you want to run the app you can click on the Run App button in the tool bar of the source pane. You can also use the shortcut <kbd aria-hidden="true">Ctrl-Shift-Enter</kbd><span class="visually-hidden">Ctrl-Shift-Enter</span>. As a last option you can use the <code>runApp()</code> function giving the directory of the application as an argument.</p>
-<p>To stop the application you can press the stop sign in the toolbar of the console pane, press escape when the R console pane is selected or simply close the application window.</p>
+<section id="starting-and-stopping-the-application" class="level2">
+<h2 class="anchored" data-anchor-id="starting-and-stopping-the-application">Starting and stopping the application</h2>
+<p>When you want to run the app, you can click the <code>Run App</code> button in the toolbar of the source pane. You can also use the shortcut <kbd aria-hidden="true">Ctrl-Shift-Enter</kbd><span class="visually-hidden">Ctrl-Shift-Enter</span>. As another option, you can use the <code>runApp()</code> function and provide the directory of the application as an argument.</p>
+<p>To stop the application, you can press the stop sign in the toolbar of the console pane, press <kbd aria-hidden="true">ESC</kbd><span class="visually-hidden">ESC</span> when the console pane is selected, or simply close the application window.</p>
 </section>
-<section id="input-controls" class="level3">
-<h3 class="anchored" data-anchor-id="input-controls">Input controls</h3>
-<p>We want our application to receive input from a user and be able to show results (that are based on this inputs) back to the user. These things are done using <strong>controls</strong> that are placed on the interface.</p>
+<section id="input-controls" class="level2">
+<h2 class="anchored" data-anchor-id="input-controls">Input controls</h2>
+<p>We want our application to receive input from a user and show results based on that input. These things are done using <strong>controls</strong> placed in the user interface.</p>
 <p>Let us first look at input controls and change the <code>ui</code> to look like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
@@ -525,16 +524,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Enter a number:"</span>,</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">min =</span> <span class="dv">1</span>,</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">max =</span> <span class="dv">10</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">value =</span> <span class="dv">2</span>),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">'hello there'</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">value =</span> <span class="dv">2</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here <code>ui</code> takes a value from <code>fluidpage</code>. This is an example of a <strong>layout function</strong> that is a function that creates the layout of our application. A fluid page layout is a application layout that structures its elements in rows which may in turn have columns. Often the layout is given more structure by using further layout functions. Here we place a single input control on the fluid page which allows the user to select a number between 1 and 10 using a slider. The first argument to the function is the <code>inputID</code>, this is the name that we can use to refer to the value that the user has selected. The second argument is the <code>label</code> which is just that text that is displayed just above the slider. It is used to inform the reader what the function of the control is.</p>
+<p>Here <code>ui</code> uses <code>fluidPage()</code>. This is a <strong>layout function</strong>, meaning that it controls the overall layout of the app. A fluid page layout structures elements in rows and columns and is often a good starting point for a simple app.</p>
+<p>Inside the page we place a <code>sliderInput()</code>, which allows the user to select a number between 1 and 10.</p>
+<p>The most important arguments are:</p>
+<ul>
+<li>the <code>inputId</code>, which is the name we use in the server code</li>
+<li>the <code>label</code>, which tells the user what the control is for</li>
+<li>the <code>min</code>, <code>max</code> and <code>value</code>, which define the range and default setting</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What makes Shiny special
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The control itself does not yet do anything interesting. The important point is that once the app is running, the selected value becomes available to the server as <code>input$n</code>.</p>
+</div>
+</div>
 </section>
-<section id="the-server-function" class="level3">
-<h3 class="anchored" data-anchor-id="the-server-function">The server function</h3>
-<p>The function does not do anything at the moment. This is because the <code>server</code> function is empty. If we want to add functionality we need to add this to the body of this function. Let’s simulate the results of the total from some dice throws.</p>
+<section id="the-server-function" class="level2">
+<h2 class="anchored" data-anchor-id="the-server-function">The server function</h2>
+<p>The app does not do anything useful yet because the <code>server</code> function is still empty. If we want to add functionality, we need to define outputs inside that function. Let us simulate the total from a number of dice throws.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>total <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
@@ -542,11 +559,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  })</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here we are defining an output that is called <code>total</code>. This is done using a <strong>render function</strong> a function that tells R how a results should be displayed. The <code>renderText function can be used for R object that can be displayed as text. As an argument to the function we give it the code that can be used to calculate the result.  Within this code we refer to</code>input$n` which is de number we have entered using the slider.</p>
+<p>Here we define an output called <code>total</code>. This is done using a <strong>render function</strong>, which tells Shiny how the result should be computed and displayed. The <code>renderText()</code> function is used when the output can be shown as text.</p>
+<p>Inside that code we refer to <code>input$n</code>, which is the value currently selected with the slider.</p>
 </section>
-<section id="output-controls" class="level3">
-<h3 class="anchored" data-anchor-id="output-controls">Output controls</h3>
-<p>When we actually want to show the output we need to add the <code>total</code> output control to the user interface. This can been done as follows:</p>
+<section id="output-controls" class="level2">
+<h2 class="anchored" data-anchor-id="output-controls">Output controls</h2>
+<p>When we actually want to show the output, we need to add a matching output control to the user interface. This can be done as follows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(<span class="st">"n"</span>,</span>
@@ -558,6 +576,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The key idea is that outputs are defined in the server and displayed in the user interface. The name has to match: <code>output$total</code> in the server is paired with <code>textOutput("total")</code> in the UI.</p>
+</section>
+<section id="what-to-remember" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-remember">What to remember</h2>
+<p>Every simple Shiny app has the same basic pattern:</p>
+<ol type="1">
+<li>create a user interface</li>
+<li>define inputs in the UI</li>
+<li>refer to those inputs in the server</li>
+<li>create outputs in the server</li>
+<li>place output controls in the UI</li>
+</ol>
+<p>In the practical, you will build exactly this pattern step by step.</p>
+</section>
+<section id="check-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<p>Before moving on, make sure you can answer the following:</p>
+<ol type="1">
+<li>What is the difference between the <code>ui</code> and the <code>server</code> in a Shiny app?</li>
+<li>What does <code>input$n</code> mean?</li>
+<li>Why do we need both <code>renderText()</code> and <code>textOutput()</code>?</li>
+<li>What changes when the app becomes reactive rather than static?</li>
+</ol>
 
 
 </section>
@@ -1129,8 +1170,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./4-5_basic_markdown_practicals_solution.html" class="pagination-link" aria-label="Solution Rmarkdown">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Solution Rmarkdown</span>
+      <a href="./4-5_basic_markdown_practicals_solution.html" class="pagination-link" aria-label="Analysis of Intellectual Disabilities">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Analysis of Intellectual Disabilities</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

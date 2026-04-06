@@ -432,7 +432,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -455,23 +455,12 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -530,7 +519,16 @@ window.Quarto = {
 
 <section id="preface" class="level2" data-progressive="FALSE">
 <h2 data-progressive="FALSE" class="anchored" data-anchor-id="preface">Preface</h2>
-<p>Open Rstudio to do the practicals. Note that tasks with * are optional.</p>
+<p>Open RStudio to do the practicals. Note that tasks with <code>*</code> are optional.</p>
+<p>This answer file follows the same structure as the practical. Use it to check both your code and your understanding. Try to compare your own script with the solutions before copying anything over directly.</p>
+<p>By the end of this practical, you should be able to:</p>
+<ul>
+<li>use <code>R</code> as a calculator</li>
+<li>assign results to variables</li>
+<li>create simple vectors</li>
+<li>load a package and read help pages</li>
+<li>save, load and remove objects from your workspace</li>
+</ul>
 <section id="r-packages" class="level3">
 <h3 class="anchored" data-anchor-id="r-packages">R packages</h3>
 <p>In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:</p>
@@ -545,6 +543,20 @@ window.Quarto = {
 <p>https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html</p>
 <p>https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html</p>
 <p>We will learn more about the format of data sets (or <code>data.frame</code>s) later.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try to solve the tasks on your own first. If you get stuck, look at the hints and try to understand the code in the hints. If you still do not understand, ask for help. When you work on the the tasks, place your code in a script. This way you can save your work and rerun it later. Also you build good habits right from the start.</p>
+<p>As you work through the tasks, occasionally look at the Environment pane in RStudio. It is a useful way to connect the code you run to the objects that now exist in your session.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="basic-calculations" class="level2">
@@ -578,6 +590,7 @@ window.Quarto = {
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span><span class="sc">^</span><span class="dv">4</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Notice that each expression is evaluated immediately. At this stage, you are not storing anything yet; you are simply using <code>R</code> to calculate results.</p>
 </div>
 </div>
 </div>
@@ -612,6 +625,7 @@ window.Quarto = {
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(d)</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Here the important thing is not only the final value of <code>d</code>, but also the fact that the intermediate values are stored and can be reused later.</p>
 </div>
 </div>
 </div>
@@ -631,11 +645,12 @@ window.Quarto = {
 </div>
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
 <div class="cell" data-solution="true">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>) <span class="co"># the c(.) fucntion combines the arguments 3 and 4 into a vector</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>) <span class="co"># the c(.) function combines the arguments 3 and 4 into a vector</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>v1<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">+</span> v2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>This task introduces a key idea in <code>R</code>: many operations work on whole vectors at once.</p>
 </div>
 </div>
 </div>
@@ -657,7 +672,21 @@ window.Quarto = {
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">9</span>, <span class="at">by=</span><span class="dv">2</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span><span class="sc">:</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The point here is to see that <code>R</code> has several convenient ways to generate sequences.</p>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Milestone
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At this point, your script should contain a few simple calculations, some assignments and at least one vector. If you rerun the script from the top, it should work without errors.</p>
 </div>
 </div>
 </section>
@@ -682,6 +711,7 @@ window.Quarto = {
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library("survival") is an alternative in this case </span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># require(survival) is another alternative which does not give an error if the package cannot be found</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The key habit here is to load packages explicitly at the top of your script.</p>
 </div>
 </div>
 </div>
@@ -702,6 +732,7 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="st">"heart"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>?retinopathy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Both forms open documentation. It is useful to become comfortable with both.</p>
 </div>
 </div>
 </div>
@@ -712,7 +743,7 @@ window.Quarto = {
 <p>Also ask for help on the <code>c</code>, <code>ls</code>, <code>rm</code> and <code>seq</code> functions. Check if you can also obtain the documentation for the <code>c</code> function if you use <code>??combine</code></p>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<p>Use the <code>help(...)</code> fuction, and <code>?</code> or <code>??</code>.</p>
+<p>Use the <code>help(...)</code> function, and <code>?</code> or <code>??</code>.</p>
 </div>
 <div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
 <div class="cell" data-solution="true">
@@ -723,7 +754,26 @@ window.Quarto = {
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>??combine</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># or use help.search('...')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The main lesson is that you do not need to memorise everything. A large part of learning <code>R</code> is learning how to find help efficiently.</p>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Milestone
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have now used three important habits of good <code>R</code> work:</p>
+<ul>
+<li>loading packages explicitly</li>
+<li>checking documentation when you do not remember syntax</li>
+<li>exploring functions before using them</li>
+</ul>
 </div>
 </div>
 </section>
@@ -749,11 +799,12 @@ window.Quarto = {
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>treatment <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"yes"</span>, <span class="st">"yes"</span>, <span class="st">"no"</span>, <span class="st">"no"</span>, <span class="st">"no"</span>, <span class="st">"yes"</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(numbers, numbers_2, treatment, <span class="at">file =</span> <span class="st">"new_vectors.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>This saves several objects together in a single <code>.RData</code> file.</p>
 </div>
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Task 2 *</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false"><em>Hint 2</em> *</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false">Solution 2 *</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Task 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false"><em>Hint 2</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false">Solution 2</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <p>Save the vectors <code>events &lt;- heart$event</code> and <code>eyes &lt;- retinopathy$eye</code>. Use the name <code>vectors_survival</code>.</p>
@@ -767,6 +818,7 @@ window.Quarto = {
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>eyes <span class="ot">&lt;-</span> retinopathy<span class="sc">$</span>eye</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(events, eyes, <span class="at">file =</span> <span class="st">"vectors_survival.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>This is similar to the previous task, but now the saved objects come from real data sets rather than values you typed yourself.</p>
 </div>
 </div>
 </div>
@@ -787,10 +839,12 @@ window.Quarto = {
 <div class="cell" data-solution="true">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"new_vectors.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>After loading, the saved object names reappear directly in the workspace.</p>
 </div>
 </div>
 </div>
 <p>At this point it is interesting to check the objects that are in the workspace. To do so look at the Environment tab in the upper-right hand pane. You can also use the <code>ls()</code> function to list all objects in the workspace.</p>
+<p>Try to answer this question before moving on: which objects came from your earlier code, and which appeared only after loading the saved file?</p>
 </section>
 <section id="remove-your-work" class="level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills anchored" data-anchor-id="remove-your-work">Remove your work</h3>
@@ -808,11 +862,12 @@ window.Quarto = {
 <div class="cell" data-solution="true">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(numbers, numbers_2, treatment)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><code>rm()</code> removes objects from the current workspace, but it does not delete your script file or the saved <code>.RData</code> file on disk.</p>
 </div>
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">Task 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false"><em>Hint 2</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-3" role="tab" aria-controls="tabset-12-3" aria-selected="false">Solution 2</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">Task 2 *</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false"><em>Hint 2</em> *</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-3" role="tab" aria-controls="tabset-12-3" aria-selected="false">Solution 2 *</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
 <p>Remove the vectors <code>events</code> and <code>eyes</code>.</p>
@@ -824,10 +879,28 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(events, eyes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Again, this only removes the objects from memory in the current session.</p>
 </div>
 </div>
 </div>
-<p>At this point you can inspect the History tab in the upper-right hand pane to see the commands you have executed. If you have made a syntax file check if you can run it in it’s entirety without any errors (if you have not you can piece it together from the history). Save the file to disk.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Final check
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you finish this practical:</p>
+<ul>
+<li>inspect the History tab in the upper-right pane</li>
+<li>if you wrote a script to work on this practical, check whether your script runs from top to bottom without errors. Also do dot forget to save it to disk!</li>
+<li>make sure you understand which objects are still present in the workspace and why</li>
+</ul>
+</div>
+</div>
 
 
 </section>

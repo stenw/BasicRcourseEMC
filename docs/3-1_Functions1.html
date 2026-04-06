@@ -397,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -420,23 +420,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -541,8 +530,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.9173590 -0.2796783 -0.8843109 -3.0079292 -1.1864300 -1.2540028
- [7] -0.1296658  0.5773156 -0.1504950  0.9502812</code></pre>
+<pre><code> [1] -1.8451719  1.6001074  1.0012568  0.6315470  0.1441242  0.4411872
+ [7]  0.3743323  1.3422099  0.0850811  0.6654296</code></pre>
 </div>
 </div>
 <p>For a (very long) list of all named functions available in base-R have a look at this website:</p>
@@ -758,22 +747,22 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Ages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  52  37  60  51  36  28  44  39  43  51  55  48  52  57  45 -50  43  39  42
-[20]  44  52  44  56  43  36</code></pre>
+<pre><code> [1]  39  50  41  41  45  25  44  42  51  39  47  49  58  39  35 -50  38  44  49
+[20]  51  50  45  47  30  44</code></pre>
 </div>
 </div>
 <p>There is one value <code>-50</code>, that is clearly an error.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 45.70833</code></pre>
+<pre><code>[1] 43.45833</code></pre>
 </div>
 </div>
 <p>Compare the output with using the standard function <code>mean()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 41.88</code></pre>
+<pre><code>[1] 39.72</code></pre>
 </div>
 </div>
 <p>In the standard <code>mean</code> function, the negative outlier is included and influences the mean!</p>
@@ -789,7 +778,7 @@ Tip
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  28.00   41.25   44.00   45.71   52.00   60.00 </code></pre>
+  25.00   39.00   44.00   43.46   49.00   58.00 </code></pre>
 </div>
 </div>
 <p>Again, let’s compare the output to the standard <code>summary()</code> function.</p>
@@ -797,7 +786,7 @@ Tip
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -50.00   39.00   44.00   41.88   52.00   60.00 </code></pre>
+ -50.00   39.00   44.00   39.72   49.00   58.00 </code></pre>
 </div>
 </div>
 <p>If you have multiple objects to return, you have to put them in an object container, like a list, vector, array or data.frame. It is not possible to return multiple individual objects like this:</p>
@@ -822,7 +811,7 @@ Tip
 [1] 1
 
 [[2]]
-[1] 45.70833</code></pre>
+[1] 43.45833</code></pre>
 </div>
 </div>
 <p>There was <code>1</code> value below zero, as provided by the first element in the list.</p>

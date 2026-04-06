@@ -367,7 +367,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -390,23 +390,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -454,7 +443,19 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="preface" class="level2" data-progressive="FALSE">
 <h2 data-progressive="FALSE" class="anchored" data-anchor-id="preface">Preface</h2>
-<p>Open Rstudio to do the practicals. Note that tasks with * are optional.</p>
+<p>Open RStudio to do the practicals. Note that tasks with <code>*</code> are optional.</p>
+<p>By the end of this practical, you should be able to:</p>
+<ul>
+<li>select rows and columns from a <code>data.frame</code></li>
+<li>extract values from matrices and arrays</li>
+<li>use logical conditions to create meaningful subsets</li>
+<li>combine subsetting with summary functions to answer simple data questions</li>
+</ul>
+<p>Try to keep your work in a single script. For each task, it is useful to ask yourself two questions:</p>
+<ol type="1">
+<li>What kind of object will this code return?</li>
+<li>Why is this subset scientifically or practically interesting?</li>
+</ol>
 <section id="r-packages" class="level3">
 <h3 class="anchored" data-anchor-id="r-packages">R packages</h3>
 <p>In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:</p>
@@ -468,6 +469,19 @@ ul.task-list li input[type="checkbox"] {
 <p>For this practical, we will use the <strong>heart</strong> and <strong>retinopathy</strong> data sets from the <code>survival</code> package. More details about the data sets can be found in:</p>
 <p>https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html</p>
 <p>https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you subset an object, do not only look at the values that come back. Also check the class of the result when that is not obvious.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="indexing-and-subsetting" class="level2">
@@ -494,7 +508,7 @@ ul.task-list li input[type="checkbox"] {
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Task 2</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<p>Create a matrix that takes the values 1:6 and has 3 rows and 2 columns. You can name Using the <strong>heart</strong> data set:<br>
+<p>Using the <strong>heart</strong> data set:<br>
 </p>
 <ul>
 <li>Select the column <code>surgery</code> of the <code>data.frame</code> in multiple ways:<br>
@@ -506,7 +520,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li>As a vector using single square brackets and a double index.<br>
 </li>
-<li>Using the dolar sign (<code>$</code>) operator.<br>
+<li>Using the dollar sign (<code>$</code>) operator.<br>
 </li>
 <li>Verify the class of the returned objects in each case using the <code>class()</code> function.</li>
 </ul>
@@ -517,8 +531,27 @@ ul.task-list li input[type="checkbox"] {
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Task 3</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<p>Create a matrix that takes the values 1:6 and has 3 rows and 2 columns. You can name this object <code>mat</code>. - Select the second row of all columns. - Select the first column. - Select the element in the 3rd row and 2nd column.</p>
+<p>Create a matrix that takes the values 1:6 and has 3 rows and 2 columns. You can name this object <code>mat</code>. - Select the second row of all columns. - Select the first column. - Select the element in the 3rd row and 2nd column. - If you have time, also select the first and second row of the second column.</p>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Milestone
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At this point, you should feel comfortable with the idea that very similar subsetting expressions can return different kinds of objects.</p>
+<p>In particular, make sure you can explain the difference between:</p>
+<ul>
+<li>selecting a column as a <code>data.frame</code></li>
+<li>selecting a column as a vector</li>
+<li>selecting one value from a matrix versus a whole row or column</li>
+</ul>
 </div>
 </div>
 <div class="callout-advanced">
@@ -638,6 +671,51 @@ ul.task-list li input[type="checkbox"] {
 <p>Using the <strong>retinopathy</strong> data set:<br>
 - Calculate the mean risk score for the treated eyes. - Calculate the mean age of patients for which the variable age is not missing. - Create a <code>summary</code> of the juvenile patients.</p>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Milestone
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You are now using subsetting for its real purpose: answering questions about specific groups in the data.</p>
+</div>
+</div>
+<div class="callout-advanced">
+<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Task 4</a></li></ul>
+<div class="tab-content nav-pills">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<ul>
+<li>Why does <code>colnames(retinopathy[1])</code> return <code>id</code>, while <code>colnames(retinopathy[[1]])</code> returns <code>NULL</code>?</li>
+<li>Without executing the code, try to determine what the output of <code>colnames(retinopathy[,1])</code> would be.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Final check
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you finish this practical:</p>
+<ul>
+<li>identify one example where subsetting returned a vector</li>
+<li>identify one example where subsetting returned a <code>data.frame</code></li>
+<li>check whether you can explain why they differ</li>
+<li>If you made a script, remember to rerun the script from top to bottom and see whether everything still works</li>
+</ul>
 </div>
 </div>
 

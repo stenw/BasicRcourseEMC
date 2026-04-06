@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Loose ends – Basic R Course</title>
+<title>Tidyverse – Basic R Course</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./4-10_tidyverse.html" rel="next">
 <link href="./4-8_shiny_practicals_solution.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -84,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./4-9_looseends.html">Loose ends</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./4-9_looseends.html">Tidyverse</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -363,7 +396,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -386,37 +419,42 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#a-note-on-style" id="toc-a-note-on-style" class="nav-link" data-scroll-target="#a-note-on-style">A note on style</a></li>
+  <li><a href="#tibble" id="toc-tibble" class="nav-link" data-scroll-target="#tibble">tibble</a></li>
+  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr">dplyr</a></li>
+  <li><a href="#readr" id="toc-readr" class="nav-link" data-scroll-target="#readr">readr</a></li>
+  <li><a href="#purrr" id="toc-purrr" class="nav-link" data-scroll-target="#purrr">purrr</a></li>
+  <li><a href="#forcats" id="toc-forcats" class="nav-link" data-scroll-target="#forcats">forcats</a></li>
+  <li><a href="#stringr" id="toc-stringr" class="nav-link" data-scroll-target="#stringr">stringr</a></li>
+  <li><a href="#tidyr" id="toc-tidyr" class="nav-link" data-scroll-target="#tidyr">tidyr</a></li>
+  <li><a href="#what-to-remember" id="toc-what-to-remember" class="nav-link" data-scroll-target="#what-to-remember">What to remember</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/4-9_looseends.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Loose ends</h1>
+<h1 class="title">Tidyverse</h1>
 </div>
 
 
@@ -433,9 +471,201 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>As an appendix to this course we also discuss the tidyverse. This is a collection of packages that replicates some of the core functionality of R.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Throughout this course we have mostly used base <code>R</code>, and I still think that is the best way to learn the basics. But the tidyverse is too widely used to ignore. If you search for help online, read a blog post, open somebody else’s analysis or join a team with existing code, there is a good chance you will run into it. So it helps to know what you are looking at.</p>
+<p>The tidyverse is a collection of related <code>R</code> packages, many of them developed by the same group that also created RStudio, now called Posit. You have already met one of them in this course: <code>ggplot2</code>. Several of the others tackle jobs that base <code>R</code> can also do, but in a style that aims to be more uniform from task to task. You do not need to decide that one style is “better” before you can benefit from recognising the patterns.</p>
+<p>This section is meant to give you that recognition. We will look at a few of the packages that come up most often, what they are for, and how tidyverse code tends to read when you first encounter it.</p>
+</section>
+<section id="a-note-on-style" class="level2">
+<h2 class="anchored" data-anchor-id="a-note-on-style">A note on style</h2>
+<p>One reason the tidyverse feels different from base <code>R</code> is that tidyverse code often reads as a sequence of small steps. A data set is passed into one function, then into the next, then into the next again.</p>
+<p>A lot of that style comes from the pipe operator, usually written as <code>%&gt;%</code>. You can read it informally as “then”. For example, instead of nesting several functions inside one another, tidyverse code often says: take this data set, then select some columns, then filter some rows, then calculate a summary. The result is often easier to scan because the steps are written in the order you think about them.</p>
+<p>This means tidyverse code often answers questions like:</p>
+<ul>
+<li>which columns do I want to keep?</li>
+<li>which rows do I want to filter?</li>
+<li>how do I want to group the data?</li>
+<li>which summary do I want to calculate?</li>
+</ul>
+<p>That step-by-step style is especially visible when the pipe operator is used.</p>
+</section>
+<section id="tibble" class="level2">
+<h2 class="anchored" data-anchor-id="tibble">tibble</h2>
+<p>The package <code>tibble</code> provides the <code>tibble</code> class and some functions to work with it. A <code>tibble</code> is an alternative to a <code>data.frame</code> and is mostly, though not completely, compatible with that class.</p>
+<p>The most important differences are the following:</p>
+<ul>
+<li>unlike a <code>data.frame</code>, a <code>tibble</code> does not use row names</li>
+<li>when a single column is selected from a <code>data.frame</code> using <code>[,]</code>, the result is often simplified to a vector; this does not happen with a <code>tibble</code></li>
+<li>when a <code>tibble</code> is printed, only a few rows and columns are shown</li>
+</ul>
+<p><code>tibble</code> is an important package because most other tidyverse packages return <code>tibble</code>s rather than plain <code>data.frame</code>s.</p>
+<p>In other words, if you see an object printed in a compact table format with column types shown underneath the names, you are probably looking at a <code>tibble</code>.</p>
+</section>
+<section id="dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="dplyr">dplyr</h2>
+<p>The <code>dplyr</code> package provides functions for data manipulation. These include selecting variables, filtering rows, sorting data, grouping observations and creating summaries.</p>
+<p>It is also strongly associated with the pipe operator <code>%&gt;%</code>, which takes the output of the expression on the left-hand side and uses it as input for the function on the right-hand side, by default as the first argument. This often makes long sequences of transformations much easier to read.</p>
+<p>Common <code>dplyr</code> verbs include:</p>
+<ul>
+<li><code>select()</code> to choose columns</li>
+<li><code>filter()</code> to keep rows that satisfy a condition</li>
+<li><code>arrange()</code> to sort rows</li>
+<li><code>mutate()</code> to create or change variables</li>
+<li><code>group_by()</code> to define groups</li>
+<li><code>summarise()</code> to calculate grouped summaries</li>
+</ul>
+<p>In the example below, we take the <code>starwars</code> data set, keep a few variables, create groups, filter within those groups, and then produce a summary.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mass, height, gender, homeworld) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender, homeworld) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mass <span class="sc">&gt;</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">min_height=</span><span class="fu">min</span>(height,<span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">n=</span><span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'gender'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 4
+# Groups:   gender [2]
+  gender    homeworld min_height     n
+  &lt;chr&gt;     &lt;chr&gt;          &lt;int&gt; &lt;int&gt;
+1 feminine  Mirial           170     1
+2 masculine Corellia         180     1
+3 masculine Kamino           229     1
+4 masculine Kashyyyk         234     1
+5 masculine Naboo            170     3
+6 masculine Tatooine         178     2
+7 masculine &lt;NA&gt;             193     2</code></pre>
+</div>
+</div>
+<p>You can compare this way of working to doing several consecutive subsetting and aggregation operations in base <code>R</code>. The main difference is that the tidyverse version makes the sequence of steps very explicit.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A note on pipes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Modern base <code>R</code> also has its own pipe operator, written as <code>|&gt;</code>. In this appendix you may still see <code>%&gt;%</code>, because that is the operator that appears in many tidyverse examples and older teaching materials.</p>
+</div>
+</div>
+</section>
+<section id="readr" class="level2">
+<h2 class="anchored" data-anchor-id="readr">readr</h2>
+<p>The <code>readr</code> package is used to read text-based data files such as comma-separated or tab-separated files. It provides functions like <code>read_csv()</code> and <code>read_tsv()</code>.</p>
+<p>These functions are often faster and more convenient than older base-<code>R</code> import functions, and they return <code>tibble</code>s by default. That means a tidyverse-style workflow often begins with <code>readr</code> and then continues with <code>dplyr</code> or other packages.</p>
+</section>
+<section id="purrr" class="level2">
+<h2 class="anchored" data-anchor-id="purrr">purrr</h2>
+<p>The package <code>purrr</code> makes functional programming in <code>R</code> easier. In practice, that means it provides tools for applying functions repeatedly to elements of a list or vector, while keeping the code readable.</p>
+<p>This is especially helpful when:</p>
+<ul>
+<li>you want to fit the same model to several subsets of a data set</li>
+<li>you want to repeat the same calculation for many objects</li>
+<li>you want to extract the same kind of result from several models or lists</li>
+</ul>
+<p>Here is a very common pattern. Suppose you want to fit the same regression model separately for several groups in your data, and then collect the coefficients in one table. That is awkward if you try to do it by hand for each group one by one. It is exactly the kind of task where <code>purrr</code> is useful.</p>
+<p>An example is shown below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"ToothGrowth"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ToothGrowth <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>supp) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="cf">function</span>(x) <span class="fu">lm</span>(len <span class="sc">~</span> dose, <span class="at">data=</span>x)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(coef) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  `(Intercept)`  dose
+          &lt;dbl&gt; &lt;dbl&gt;
+1         11.5   7.81
+2          3.29 11.7 </code></pre>
+</div>
+</div>
+<p>Here the data are split into groups, a model is fitted within each group, the coefficients are extracted, and the results are combined again into one table.</p>
+</section>
+<section id="forcats" class="level2">
+<h2 class="anchored" data-anchor-id="forcats">forcats</h2>
+<p>The <code>forcats</code> package makes working with <code>factor</code>s easier. This is useful when you want to:</p>
+<ul>
+<li>reorder factor levels, for example with <code>fct_relevel()</code> or <code>fct_infreq()</code></li>
+<li>combine rare categories, for example with <code>fct_lump()</code></li>
+<li>rename levels more clearly, for example with <code>fct_recode()</code></li>
+<li>make sure categories appear in a sensible order in tables or plots</li>
+</ul>
+<p>This can be especially helpful before making figures with <code>ggplot2</code>, where the order of factor levels often determines the order shown in the plot.</p>
+<p>For example, imagine a variable that contains treatment groups <code>"control"</code>, <code>"low dose"</code> and <code>"high dose"</code>. You might want those to appear in that exact order in a figure rather than alphabetically. Or suppose a categorical variable contains many rare job titles or diagnostic groups; you may want to combine the uncommon ones into a single <code>"Other"</code> category before plotting or reporting the data. <code>forcats</code> is built for that kind of clean-up.</p>
+</section>
+<section id="stringr" class="level2">
+<h2 class="anchored" data-anchor-id="stringr">stringr</h2>
+<p>The <code>stringr</code> package helps you work with character data, also called strings. It includes functions for tasks such as:</p>
+<ul>
+<li>detecting patterns in text, for example with <code>str_detect()</code></li>
+<li>extracting parts of a string, for example with <code>str_extract()</code></li>
+<li>replacing text, for example with <code>str_replace()</code></li>
+<li>splitting a string into pieces, for example with <code>str_split()</code></li>
+<li>joining strings together, for example with <code>str_c()</code></li>
+</ul>
+<p>These tasks can also be done in base <code>R</code>, but <code>stringr</code> provides a more regular naming system and is often easier to remember once you get used to it.</p>
+<p>Common uses include checking whether an ID starts with a certain prefix, pulling a date or postcode out of a longer text field, replacing awkward labels, or splitting a full name into separate pieces. In data cleaning work, these small string operations come up surprisingly often.</p>
+</section>
+<section id="tidyr" class="level2">
+<h2 class="anchored" data-anchor-id="tidyr">tidyr</h2>
+<p>The <code>tidyr</code> package can be used to make <code>data.frame</code>s or <code>tibble</code>s tidy. In this context, tidy means that each variable has its own column and each observation has its own row. This is the structure expected by many functions in <code>R</code>.</p>
+<p>However, many real data sets, especially from Excel or manually prepared spreadsheets, do not have that structure. <code>tidyr</code> helps fix that. It contains functions to:</p>
+<ul>
+<li>reshape data from wide to long format and back again</li>
+<li>separate one column into several columns</li>
+<li>unite several columns into one</li>
+<li>fill in missing combinations or values</li>
+</ul>
+<p>This package is particularly useful when the data are in the wrong shape for analysis or plotting.</p>
+</section>
+<section id="what-to-remember" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-remember">What to remember</h2>
+<p>The tidyverse is best thought of as a family of packages rather than a single thing. Different packages focus on different tasks, but they share a similar style and often work well together.</p>
+<p>If you remember only a few things from this appendix, let them be these:</p>
+<ul>
+<li><code>tibble</code> gives a modern table-like object</li>
+<li><code>dplyr</code> is central for data manipulation</li>
+<li><code>%&gt;%</code> is used to express a sequence of operations</li>
+<li><code>readr</code>, <code>purrr</code>, <code>forcats</code>, <code>stringr</code> and <code>tidyr</code> each solve common practical problems</li>
+<li>you do not need to abandon base <code>R</code> to understand tidyverse code</li>
+</ul>
+</section>
+<section id="check-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<p>Before moving on, make sure you can answer the following:</p>
+<ol type="1">
+<li>What is a <code>tibble</code>, and how does it differ from a <code>data.frame</code>?</li>
+<li>What kind of tasks is <code>dplyr</code> designed for?</li>
+<li>Why do many tidyverse examples use <code>%&gt;%</code>?</li>
+<li>Which package would you expect to use for factors, strings and reshaping data?</li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1009,9 +1239,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./4-10_tidyverse.html" class="pagination-link" aria-label="Tidyverse">
-        <span class="nav-page-text">Tidyverse</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -1019,4 +1246,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/4-9_looseends.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/4-9_looseends.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

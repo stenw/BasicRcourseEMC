@@ -430,7 +430,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4-5_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution Rmarkdown</span></a>
+ <span class="menu-text">Analysis of Intellectual Disabilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -453,23 +453,12 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -519,7 +508,14 @@ window.Quarto = {
 
 <section id="preface" class="level2" data-progressive="FALSE">
 <h2 data-progressive="FALSE" class="anchored" data-anchor-id="preface">Preface</h2>
-<p>By the end of this practical, you will be able to: - Create vectors of different data types (numeric, character, logical) - Identify and work with different R object types (vectors, matrices, data frames, lists) Open Rstudio to do the practicals.</p>
+<p>Open RStudio to do the practicals. Note that tasks with <code>*</code> or <code>🎓</code> are optional.</p>
+<p>By the end of this practical, you should be able to:</p>
+<ul>
+<li>Create vectors of different data types (numeric, character, logical)</li>
+<li>Identify and work with different R object types (vectors, matrices, data frames, lists)</li>
+<li>Inspect objects using functions such as <code>class()</code>, <code>mode()</code>, <code>length()</code>, <code>dim()</code> and <code>str()</code></li>
+</ul>
+<p>Try to keep your work in a single script file. As you create each object, do not just print it: also inspect it and ask yourself what kind of object it is.</p>
 <section id="r-packages" class="level3">
 <h3 class="anchored" data-anchor-id="r-packages">R packages</h3>
 <p>In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:</p>
@@ -534,6 +530,19 @@ window.Quarto = {
 <p>https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html</p>
 <p>https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html</p>
 <p>Always check your data.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As you compare your work with the solutions, keep using inspection functions such as <code>class(...)</code>, <code>mode(...)</code>, <code>length(...)</code>, <code>dim(...)</code> and <code>str(...)</code>. In this chapter, those checks are often just as important as the code that creates the object. The most frustrating bugs in R happen when an object looks right but has the wrong ‘shape’ or <code>class</code> for a function. Using these checks as you go turns a guessing game into a precise audit of why your code works (or why it doesn’t).</p>
+</div>
+</div>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Task 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Hint 1</a></li></ul>
 <div class="tab-content nav-pills">
@@ -545,6 +554,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>After looking at the first and last rows, ask yourself: which variables seem numeric, and which look categorical?</p>
 </section>
 </section>
 <section id="common-r-objects" class="level2">
@@ -564,6 +574,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>After printing them, check whether both are stored in the same way.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Task 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><em>Hint 2</em></a></li></ul>
 <div class="tab-content nav-pills">
@@ -608,6 +619,25 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>Once you have made these vectors, compare them. Which are numeric, which are character, and how can you tell?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Milestone
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At this point, you should have created several vectors of different kinds. Make sure you can tell the difference between:</p>
+<ul>
+<li>a vector you typed yourself</li>
+<li>a vector extracted from a data set</li>
+<li>a numeric vector and a character vector</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="matrices-and-data-frames" class="level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills anchored" data-anchor-id="matrices-and-data-frames">Matrices and Data Frames</h3>
@@ -632,6 +662,20 @@ window.Quarto = {
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
 <p>Use the function data.frame(…).</p>
 </div>
+</div>
+</div>
+<p>After both tasks, inspect the results and compare them. How is a matrix different from a <code>data.frame</code>, even when they look similar on screen?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Milestone
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have now created objects that are all rectangular, but not identical. Make sure you can explain why a matrix and a <code>data.frame</code> are not the same thing.</p>
 </div>
 </div>
 </section>
@@ -660,6 +704,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>After creating each list, inspect it with <code>str(...)</code>. Which parts are vectors, and how does <code>R</code> show that they are inside a list?</p>
 </section>
 <section id="arrays" class="level3 tabset tabset-fade tabset-pills callout-advanced">
 <h3 class="tabset tabset-fade tabset-pills anchored" data-anchor-id="arrays">Arrays 🎓</h3>
@@ -708,6 +753,23 @@ window.Quarto = {
 </div>
 </div>
 </section>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Final check
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you finish this practical:</p>
+<ul>
+<li>check that you know which inspection functions are most useful for vectors, matrices, <code>data.frame</code>s, lists and arrays</li>
+<li>rerun the script from top to bottom and see whether everything still works</li>
+</ul>
+</div>
+</div>
 
 
 </section>
