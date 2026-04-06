@@ -1,22 +1,31 @@
 # Shiny {.unnumbered}
 
-### Introduction
+## Introduction
 
-Shiny is a tool that allows you to quickly make interactive applications using R that nicely works together with RStudio. You can run the apps on your own computer or host them on a server (for example using Posit Cloud). Before you can run Shiny apps you need to install the `shiny` package (but if you do not RStudio will prompt you to install it).
+Up to this point, most of our work has produced fixed output: tables, figures and reports that say, "here are the results." Shiny is interesting because it lets you move one step further and build a small tool that responds to user input. Instead of preparing one answer, you can let somebody explore several scenarios for themselves.
+
+That is useful more often than people think. Sometimes the same calculation needs to be repeated with different settings. Sometimes a result is easier to understand when you can move a slider or choose a subgroup. And sometimes the most practical way to share an analysis is not as a static report, but as a simple app.
+
+Shiny is the package in `R` that makes that possible. It works well together with RStudio, and once the `shiny` package is installed you can run apps locally on your own computer or host them elsewhere, for example using Posit Cloud.
 
 ```{r installation, eval=FALSE}
 install.packages("shiny")
 ```
 
-### Creating an app
+## Creating an app
 
-There are several ways of creating an shiny application. The easiest way is to use the menus in RSTudio. Click File \> New File \> Shiny Webb App. You are then presented with a dialog screen where you are asked to give the application a name and create a directory for the app. Nowadays the usual process is that a file `app.R` is created that contains the code for the user interface and the back end (this is explained later). These two parts used to have their own separate files (`ui.R` and `server.R`) and you can still choose this option in the dialog screen. For larger application splitting the code over several files can make it easier to manage so this may still be an interesting option.
+There are several ways to create a Shiny application. The easiest way is to use the menus in RStudio. Click `File > New File > Shiny Web App`. You will then be asked to choose an application name and a directory for the app.
+
+Nowadays, the usual process is to create a file called `app.R` that contains both the user interface and the back end. In older Shiny apps, these two parts were often stored in separate files called `ui.R` and `server.R`. You can still encounter that structure, but in this course we will use the single-file `app.R` approach.
 
 When you are more experienced you can also start building an app by creating an `app.R` file in an empty directory yourself. You can quickly enter the boilerplate code typing `shinyapp` and pressing {{< kbd Shift-Tab >}}.
 
-### Parts of an app: user interface and back end
+## Parts of an app: user interface and back end
 
-If you inspect the code of the shiny app you see that it consists of two parts: a user interface and the back end (server) part.
+If you inspect the code of a simple Shiny app, you will see that it consists of two main parts:
+
+- a **user interface** (`ui`), which controls what the user sees
+- a **server** function, which controls what the app does
 
 ```{r uiserver, eval=FALSE}
 library(shiny)
@@ -32,15 +41,17 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-### Starting and stopping the application
+In other words, the user interface is the visible part of the app, while the server contains the logic behind it.
 
-When you want to run the app you can click on the Run App button in the tool bar of the source pane. You can also use the shortcut {{< kbd Ctrl-Shift-Enter >}}. As a last option you can use the `runApp()` function giving the directory of the application as an argument.
+## Starting and stopping the application
 
-To stop the application you can press the stop sign in the toolbar of the console pane, press escape when the R console pane is selected or simply close the application window.
+When you want to run the app, you can click the `Run App` button in the toolbar of the source pane. You can also use the shortcut {{< kbd Ctrl-Shift-Enter >}}. As another option, you can use the `runApp()` function and provide the directory of the application as an argument.
 
-### Input controls
+To stop the application, you can press the stop sign in the toolbar of the console pane, press {{< kbd ESC >}} when the console pane is selected, or simply close the application window.
 
-We want our application to receive input from a user and be able to show results (that are based on this inputs) back to the user. These things are done using **controls** that are placed on the interface.
+## Input controls
+
+We want our application to receive input from a user and show results based on that input. These things are done using **controls** placed in the user interface.
 
 Let us first look at input controls and change the `ui` to look like this:
 
@@ -50,18 +61,30 @@ ui <- fluidPage(
               "Enter a number:",
               min = 1,
               max = 10,
-              value = 2),
-  print('hello there')
-
+              value = 2)
 )
 
 ```
 
-Here `ui` takes a value from `fluidpage`. This is an example of a **layout function** that is a function that creates the layout of our application. A fluid page layout is a application layout that structures its elements in rows which may in turn have columns. Often the layout is given more structure by using further layout functions. Here we place a single input control on the fluid page which allows the user to select a number between 1 and 10 using a slider. The first argument to the function is the `inputID`, this is the name that we can use to refer to the value that the user has selected. The second argument is the `label` which is just that text that is displayed just above the slider. It is used to inform the reader what the function of the control is.
+Here `ui` uses `fluidPage()`. This is a **layout function**, meaning that it controls the overall layout of the app. A fluid page layout structures elements in rows and columns and is often a good starting point for a simple app.
 
-### The server function
+Inside the page we place a `sliderInput()`, which allows the user to select a number between 1 and 10.
 
-The function does not do anything at the moment. This is because the `server` function is empty. If we want to add functionality we need to add this to the body of this function. Let's simulate the results of the total from some dice throws.
+The most important arguments are:
+
+- the `inputId`, which is the name we use in the server code
+- the `label`, which tells the user what the control is for
+- the `min`, `max` and `value`, which define the range and default setting
+
+::: callout-note
+### What makes Shiny special
+
+The control itself does not yet do anything interesting. The important point is that once the app is running, the selected value becomes available to the server as `input$n`.
+:::
+
+## The server function
+
+The app does not do anything useful yet because the `server` function is still empty. If we want to add functionality, we need to define outputs inside that function. Let us simulate the total from a number of dice throws.
 
 ```{r dice, eval=FALSE}
 server <- function(input, output, session) {
@@ -72,11 +95,13 @@ server <- function(input, output, session) {
 
 ```
 
-Here we are defining an output that is called `total`. This is done using a **render function** a function that tells R how a results should be displayed. The `renderText function can be used for R object that can be displayed as text. As an argument to the function we give it the code that can be used to calculate the result.  Within this code we refer to`input\$n\` which is de number we have entered using the slider.
+Here we define an output called `total`. This is done using a **render function**, which tells Shiny how the result should be computed and displayed. The `renderText()` function is used when the output can be shown as text.
 
-### Output controls
+Inside that code we refer to `input$n`, which is the value currently selected with the slider.
 
-When we actually want to show the output we need to add the `total` output control to the user interface. This can been done as follows:
+## Output controls
+
+When we actually want to show the output, we need to add a matching output control to the user interface. This can be done as follows:
 
 ```{r addsoutput, eval=FALSE}
 ui <- fluidPage(
@@ -90,3 +115,26 @@ ui <- fluidPage(
 )
 
 ```
+
+The key idea is that outputs are defined in the server and displayed in the user interface. The name has to match: `output$total` in the server is paired with `textOutput("total")` in the UI.
+
+## What to remember
+
+Every simple Shiny app has the same basic pattern:
+
+1. create a user interface
+2. define inputs in the UI
+3. refer to those inputs in the server
+4. create outputs in the server
+5. place output controls in the UI
+
+In the practical, you will build exactly this pattern step by step.
+
+## Check yourself
+
+Before moving on, make sure you can answer the following:
+
+1. What is the difference between the `ui` and the `server` in a Shiny app?
+2. What does `input$n` mean?
+3. Why do we need both `renderText()` and `textOutput()`?
+4. What changes when the app becomes reactive rather than static?

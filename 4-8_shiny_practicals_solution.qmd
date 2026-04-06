@@ -29,16 +29,16 @@ options(width = 100)
  
 ::: callout-note
 ## About These Solutions
- 
+  
 The goal of this practical is to create a Shiny application that displays the [Hoftiezer Birthweight curves](https://www.perined.nl/geboortegewichtcurven) and uses these curves to determine the birthweight percentile of a given infant.
- 
-These solutions provide complete working code for each question. Try to work through the questions yourself first before consulting the solutions!
+  
+These solutions provide complete working code for each question. Try to work through the questions yourself first before consulting the solutions.
 :::
  
 ::: {.panel-tabset .nav-pills}
 #### Solution 1
  
-Download the `hoftiezer.R` file from canvas to get started. This file contains two functions you can use: `phoftiezer` and `qhoftiezer`.
+Download the `hoftiezer.R` file from Canvas to get started. This file contains two functions you can use: `phoftiezer` and `qhoftiezer`.
  
 **Part 1**: Calculate the birthweight percentile of a boy with gestational age of 200 days that weighs 1500 grams:
  
@@ -81,6 +81,8 @@ p05_detailed <- data.frame(
 )
 print(p05_detailed)
 ```
+
+This first step is important because it separates the clinical calculation from the Shiny machinery. Once the calculation works outside the app, it is much easier to place it inside the app.
 :::
  
 ::: {.panel-tabset .nav-pills}
@@ -105,6 +107,12 @@ shinyApp(ui = ui, server = server)
 ```
  
 When you save this file, a green "Run App" button should appear in the RStudio toolbar. Click it to launch your app!
+
+::: callout-note
+## Milestone
+
+At this point, you should have a working but very simple Shiny app that launches successfully.
+:::
 :::
  
 ::: {.panel-tabset .nav-pills}
@@ -175,6 +183,12 @@ shinyApp(ui = ui, server = server)
 ```
  
 The app now has a sidebar on the left where users can input birthweight, and a main panel on the right. Currently the main panel still shows a static value.
+
+::: callout-note
+## Milestone
+
+At this point, your app should have a proper layout with a sidebar and a main panel, even if the result is still static.
+:::
 :::
  
 ::: {.panel-tabset .nav-pills}
@@ -220,6 +234,12 @@ shinyApp(ui = ui, server = server)
 ```
  
 Now the app responds to changes in the birthweight input! Try entering different values and watch the percentile update.
+
+::: callout-note
+## Milestone
+
+At this point, your app should react when the user changes the birthweight.
+:::
 :::
  
 ::: {.panel-tabset .nav-pills}
@@ -277,6 +297,16 @@ shinyApp(ui = ui, server = server)
 ```
  
 The app now allows full customization! Try different combinations of birthweight, gestational age, and sex.
+
+::: callout-note
+## Milestone
+
+At this point, your app should respond to three user inputs:
+
+- birthweight
+- gestational age
+- sex
+:::
 :::
  
 ::: {.panel-tabset .nav-pills}
@@ -375,10 +405,10 @@ The app is now complete! It displays:
 - The calculated percentile as text
 - A plot showing the P05, P50 (median), and P95 curves
 - The user's input highlighted as a green point on the plot
- 
+  
 Try moving the sliders and watch how the point moves on the curve!
 :::
- 
+
 ::: callout-tip
 ## Enhancements to Try
  
@@ -391,5 +421,14 @@ Once you have the basic app working, consider these improvements:
 5. **Make it responsive**: Use `plotly` package for interactive plots where users can hover over points
 6. **Add data table**: Show percentile values at different gestational ages in a table
 :::
- 
-Update Todos
+
+::: callout-note
+## Final check
+
+Before you finish this practical:
+
+- run the app once more from top to bottom
+- check that the app starts without errors
+- verify that the text output changes when the controls change
+- verify that the plotted point moves when the controls change
+:::

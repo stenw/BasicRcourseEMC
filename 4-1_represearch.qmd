@@ -1,9 +1,38 @@
 # Reproducible research {.unnumbered}
 
-An analysis is reproducible when all information is available (for somebody) to do your analysis and obtain the same results. This includes the data, code and the documentation. This somebody else can even be your future self.
+Reproducible research sounds a bit grand at first, but the underlying idea is very practical. If somebody else repeats your work using the same data, code and documentation, they should be able to get back to the same result. Quite often that "somebody else" is you, two months later, trying to remember why one table has a different number in it.
 
-When data is reproducible it makes it easier to go back and figure out what you did, perform checks and make adjustments. It also makes collaboration with other people easier.
+Once you have experienced a project where the code sits in one place, the interpretation in another, and the final figures are pasted in by hand, the appeal becomes obvious. Reproducible work is easier to check, easier to update and much easier to trust. This is where Quarto starts to become genuinely useful, because it lets the explanation, the code and the output live together instead of drifting apart.
 
-There are some software tools that make it easier to do your amalyses in a reproducible way. In this course, we will talk about Quarto and Git.
+## A familiar problem
 
-Quarto is a program that allows you to combine code and documentation in a single text document. The code is then run and included in the document which is then converted an output format. There are many different options for the output format and they include such things as a pdf, an html file or a word-document.
+Many students and researchers have experienced some version of this situation:
+
+- the analysis code is saved in one file
+- the interpretation is written somewhere else
+- figures are copied manually into a report
+- later, one number changes and now everything has to be updated by hand
+
+This is exactly the kind of workflow we want to avoid.
+
+## Tools for reproducible work
+
+There are several tools that make reproducible analysis easier. In this course, the two most important are:
+
+- **Quarto**, for combining code, text and output in one document
+- **Git**, for tracking changes and collaborating safely
+
+In this part of the reader we will focus mainly on Quarto, because it lets you write explanations and run code in the same file.
+
+## What Quarto does
+
+Quarto allows you to combine code and documentation in a single text document. When the document is rendered, the code is run and the results can be inserted directly into the output. That output can then be converted to different formats such as HTML, PDF or Word.
+
+This means that one source document can contain:
+
+- your narrative explanation
+- the code used for the analysis
+- tables and figures produced by that code
+- the final rendered report
+
+That is why Quarto is such a useful tool for reproducible work: the report and the analysis are no longer separated from each other.

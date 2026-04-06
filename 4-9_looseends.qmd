@@ -1,3 +1,168 @@
-# Loose ends {.unnumbered}
+# Tidyverse {.unnumbered}
 
-As an appendix to this course we also discuss the tidyverse. This is a collection of packages that replicates some of the core functionality of R.
+## Introduction
+
+Throughout this course we have mostly used base `R`, and I still think that is the best way to learn the basics. But the tidyverse is too widely used to ignore. If you search for help online, read a blog post, open somebody else's analysis or join a team with existing code, there is a good chance you will run into it. So it helps to know what you are looking at.
+
+The tidyverse is a collection of related `R` packages, many of them developed by the same group that also created RStudio, now called Posit. You have already met one of them in this course: `ggplot2`. Several of the others tackle jobs that base `R` can also do, but in a style that aims to be more uniform from task to task. You do not need to decide that one style is "better" before you can benefit from recognising the patterns.
+
+This section is meant to give you that recognition. We will look at a few of the packages that come up most often, what they are for, and how tidyverse code tends to read when you first encounter it.
+
+## A note on style
+
+One reason the tidyverse feels different from base `R` is that tidyverse code often reads as a sequence of small steps. A data set is passed into one function, then into the next, then into the next again.
+
+A lot of that style comes from the pipe operator, usually written as `%>%`. You can read it informally as "then". For example, instead of nesting several functions inside one another, tidyverse code often says: take this data set, then select some columns, then filter some rows, then calculate a summary. The result is often easier to scan because the steps are written in the order you think about them.
+
+This means tidyverse code often answers questions like:
+
+- which columns do I want to keep?
+- which rows do I want to filter?
+- how do I want to group the data?
+- which summary do I want to calculate?
+
+That step-by-step style is especially visible when the pipe operator is used.
+
+## tibble
+
+The package `tibble` provides the `tibble` class and some functions to work with it. A `tibble` is an alternative to a `data.frame` and is mostly, though not completely, compatible with that class.
+
+The most important differences are the following:
+
+- unlike a `data.frame`, a `tibble` does not use row names
+- when a single column is selected from a `data.frame` using `[,]`, the result is often simplified to a vector; this does not happen with a `tibble`
+- when a `tibble` is printed, only a few rows and columns are shown
+
+`tibble` is an important package because most other tidyverse packages return `tibble`s rather than plain `data.frame`s.
+
+In other words, if you see an object printed in a compact table format with column types shown underneath the names, you are probably looking at a `tibble`.
+
+## dplyr
+
+The `dplyr` package provides functions for data manipulation. These include selecting variables, filtering rows, sorting data, grouping observations and creating summaries.
+
+It is also strongly associated with the pipe operator `%>%`, which takes the output of the expression on the left-hand side and uses it as input for the function on the right-hand side, by default as the first argument. This often makes long sequences of transformations much easier to read.
+
+Common `dplyr` verbs include:
+
+- `select()` to choose columns
+- `filter()` to keep rows that satisfy a condition
+- `arrange()` to sort rows
+- `mutate()` to create or change variables
+- `group_by()` to define groups
+- `summarise()` to calculate grouped summaries
+
+In the example below, we take the `starwars` data set, keep a few variables, create groups, filter within those groups, and then produce a summary.
+
+```{r dplyr example}
+library(dplyr)
+starwars %>% 
+  select(mass, height, gender, homeworld) %>% 
+  group_by(gender, homeworld) %>% 
+  filter(mass > mean(mass, na.rm = TRUE)) %>% 
+  summarise(min_height=min(height,na.rm = TRUE), n=n())
+
+```
+
+You can compare this way of working to doing several consecutive subsetting and aggregation operations in base `R`. The main difference is that the tidyverse version makes the sequence of steps very explicit.
+
+::: callout-note
+### A note on pipes
+
+Modern base `R` also has its own pipe operator, written as `|>`. In this appendix you may still see `%>%`, because that is the operator that appears in many tidyverse examples and older teaching materials.
+:::
+
+## readr
+
+The `readr` package is used to read text-based data files such as comma-separated or tab-separated files. It provides functions like `read_csv()` and `read_tsv()`.
+
+These functions are often faster and more convenient than older base-`R` import functions, and they return `tibble`s by default. That means a tidyverse-style workflow often begins with `readr` and then continues with `dplyr` or other packages.
+
+## purrr
+
+The package `purrr` makes functional programming in `R` easier. In practice, that means it provides tools for applying functions repeatedly to elements of a list or vector, while keeping the code readable.
+
+This is especially helpful when:
+
+- you want to fit the same model to several subsets of a data set
+- you want to repeat the same calculation for many objects
+- you want to extract the same kind of result from several models or lists
+
+Here is a very common pattern. Suppose you want to fit the same regression model separately for several groups in your data, and then collect the coefficients in one table. That is awkward if you try to do it by hand for each group one by one. It is exactly the kind of task where `purrr` is useful.
+
+An example is shown below:
+
+```{r}
+library(dplyr)
+library(purrr)
+data("ToothGrowth")
+ToothGrowth %>% 
+  split(.$supp) %>% 
+  map(function(x) lm(len ~ dose, data=x)) %>% 
+  map(coef) %>% 
+  bind_rows()
+
+```
+
+Here the data are split into groups, a model is fitted within each group, the coefficients are extracted, and the results are combined again into one table.
+
+## forcats
+
+The `forcats` package makes working with `factor`s easier. This is useful when you want to:
+
+- reorder factor levels, for example with `fct_relevel()` or `fct_infreq()`
+- combine rare categories, for example with `fct_lump()`
+- rename levels more clearly, for example with `fct_recode()`
+- make sure categories appear in a sensible order in tables or plots
+
+This can be especially helpful before making figures with `ggplot2`, where the order of factor levels often determines the order shown in the plot.
+
+For example, imagine a variable that contains treatment groups `"control"`, `"low dose"` and `"high dose"`. You might want those to appear in that exact order in a figure rather than alphabetically. Or suppose a categorical variable contains many rare job titles or diagnostic groups; you may want to combine the uncommon ones into a single `"Other"` category before plotting or reporting the data. `forcats` is built for that kind of clean-up.
+
+## stringr
+
+The `stringr` package helps you work with character data, also called strings. It includes functions for tasks such as:
+
+- detecting patterns in text, for example with `str_detect()`
+- extracting parts of a string, for example with `str_extract()`
+- replacing text, for example with `str_replace()`
+- splitting a string into pieces, for example with `str_split()`
+- joining strings together, for example with `str_c()`
+
+These tasks can also be done in base `R`, but `stringr` provides a more regular naming system and is often easier to remember once you get used to it.
+
+Common uses include checking whether an ID starts with a certain prefix, pulling a date or postcode out of a longer text field, replacing awkward labels, or splitting a full name into separate pieces. In data cleaning work, these small string operations come up surprisingly often.
+
+## tidyr
+
+The `tidyr` package can be used to make `data.frame`s or `tibble`s tidy. In this context, tidy means that each variable has its own column and each observation has its own row. This is the structure expected by many functions in `R`.
+
+However, many real data sets, especially from Excel or manually prepared spreadsheets, do not have that structure. `tidyr` helps fix that. It contains functions to:
+
+- reshape data from wide to long format and back again
+- separate one column into several columns
+- unite several columns into one
+- fill in missing combinations or values
+
+This package is particularly useful when the data are in the wrong shape for analysis or plotting.
+
+## What to remember
+
+The tidyverse is best thought of as a family of packages rather than a single thing. Different packages focus on different tasks, but they share a similar style and often work well together.
+
+If you remember only a few things from this appendix, let them be these:
+
+- `tibble` gives a modern table-like object
+- `dplyr` is central for data manipulation
+- `%>%` is used to express a sequence of operations
+- `readr`, `purrr`, `forcats`, `stringr` and `tidyr` each solve common practical problems
+- you do not need to abandon base `R` to understand tidyverse code
+
+## Check yourself
+
+Before moving on, make sure you can answer the following:
+
+1. What is a `tibble`, and how does it differ from a `data.frame`?
+2. What kind of tasks is `dplyr` designed for?
+3. Why do many tidyverse examples use `%>%`?
+4. Which package would you expect to use for factors, strings and reshaping data?

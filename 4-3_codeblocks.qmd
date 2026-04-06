@@ -2,60 +2,74 @@
 
 ## Introduction
 
-The main feature of quarto is that we can interweave the text with code blocks. These code blocks are the point of discussion of this section.
+The real power of Quarto shows up when text and code start living in the same document. That is the step from "a nicely formatted note" to "a report that can actually run the analysis it describes." Once you have that, you can write an explanation, insert a code block, render the document, and have the output appear in the right place without any copying and pasting.
+
+So this section is about the mechanics that make that possible. We will look at code chunks, what rendering actually does, how chunk options change what runs and what gets shown, and how short bits of inline code can keep the prose tied to the analysis.
 
 ## Code blocks
 
-When we include a code block (also called chunk) we start by writing three backticks (\`\`\`) followed by the name of the language you use in the code block (we will only use R) surrounded with braces. The chunk again is ended by writing three backticks. So the whole thing looks like this
+When we include a code block, also called a **chunk**, we start by writing three backticks followed by the name of the language in braces. In this course, that language will almost always be `r`. The chunk is then closed with another line of three backticks.
 
-```{{r}}
+The basic structure looks like this:
+
+```` markdown
+```{r}
 1 + 1
 ```
-
-Optionally you can also include a chunk name after the name of the language. This helps if there are any errors as the chunk name will be included in the error message. Additionally figures that are created within the code will use the chunk name in the name of the figure.
-
-````` markdown
-```{{r examplename}}
 ````
 
-By default, when the document is rendered the code in the chunks will be executed and both the contents of the code block as the output will be included in the document. Execution of the code, insertion of the code and insertion of the output can be suppressed by so-called chunk options (see below). A given ducument can include manu code chunks that all will be executed in order. Variables that are defined in a certain code block can be used in the following ones, just as if the code would have formed a single R-script.
+When the document is rendered, Quarto will run this code and insert the result into the final output unless you tell it not to.
+
+Optionally, you can also include a chunk name after the language. This helps when errors occur, because the chunk name can appear in error messages. In addition, figures created inside the chunk may use that name in their file names.
+
+```` markdown
+```{r examplename}
+summary(c(1, 2, 3))
+```
+````
+
+By default, when the document is rendered, the code in the chunks will be executed and both the source code and the output will be included in the document. A document can contain many code chunks, and they are executed in order. Variables defined in one chunk can usually be used in later chunks, just as if the code were part of a single `R` script.
 
 ## Chunk Options
 
-It is possible to modify the behavior of how the code blocks are executed. This is done by including special comments at the top of the code blocks. Alternatively we can include them between the braces. That is we can either write
+It is possible to modify how code blocks behave. This is done with **chunk options**. These options let you control whether code is executed, whether code is shown, whether messages appear, and so on.
+
+One way is to include the options as special comments at the top of the chunk:
 
 
-```{{r}}
+```` markdown
+```{r}
 #| echo: false
 
 # some code
 
 ```
+````
 
 
-or 
+Alternatively, we can include options directly in the chunk header:
 
 ```` markdown
-```{{r echo=FALSE}}
+```{r, echo=FALSE}
 
 # some code
 
 ```
-`````
+````
 
 Some options that are often used are:
 
 eval
 
-:   when TRUE (the default) the code is evaluated when FALSE it is not
+:   when TRUE (the default), the code is evaluated. When FALSE, it is not.
 
 echo
 
-:   when TRUE (default) the source is displayed in the output decument. When it is FALSE it is not.
+:   when TRUE (default), the source code is displayed in the output document. When it is FALSE, it is not.
 
 results
 
-:   specifies how the resuls are displayed. When it is 'markup' it is displayed as a code-block. When it is `asis` it will not be modified. A situation in which this is convinient when the R functions formats its output in html. When 'hide' or FALSE the results are not shown at all.
+:   specifies how the results are displayed. When it is `markup`, the result is displayed as a code block. When it is `asis`, it will not be modified. This is convenient when an `R` function already formats its output in markdown or HTML. When it is `hide` or `FALSE`, the results are not shown.
 
 warning
 
@@ -67,23 +81,46 @@ message
 
 include
 
-:   When TRUE the output is shown in the document when FALSE all output is suppressed but the code is still executed
+:   when TRUE, the output is shown in the document. When FALSE, all output is suppressed, but the code is still executed.
 
 file
 
-:   the code content is read from an external file that is named in the option
+:   the code content is read from an external file named in the option
 
 child
 
 :   the content of an external file is inserted in place
 
+::: callout-note
+### A practical way to think about chunk options
+
+Chunk options answer questions such as:
+
+- Should this code run?
+- Should the reader see the code?
+- Should the reader see the output?
+- Should warnings and messages be shown?
+
+These decisions help you balance transparency and readability in the final report.
+:::
+
 ## Inline code
 
-Beside complete code blocks it is also possible to include short bits of R code in the running text. The code should be included between `` `r `` and `` ` `` , for example `` `r nrow(data_set)` ``.
+Besides complete code blocks, it is also possible to include short bits of `R` code in the running text. The code should be included between `` `r `` and `` ` ``, for example `` `r nrow(mtcars)` ``.
+
+This is useful when you want a sentence in the report to update automatically, for example:
+
+```` markdown
+The data set contains `r nrow(mtcars)` observations.
+````
+
+When you use inline code, make sure the object you refer to already exists earlier in the document. Otherwise the document will fail to render.
+
+Inline code is often one of the nicest features of Quarto because it lets your text and your results stay synchronized.
 
 ## YAML header
 
-Each markdown document starts with a header that specifies such things as the title, author, date and output format. For example
+Each Quarto document starts with a header that specifies things such as the title, author, date and output format. This header is written in YAML and appears at the top of the file. For example:
 
 ``` markdown
 ---
@@ -94,4 +131,17 @@ format: html
 ---
 ```
 
-Besides html we can also create word documents by using `output: docx` and pdf documents by specifying `output: pdf`. The last option requires TeX to be installed.
+Besides HTML we can also create Word documents and PDF documents. The PDF option usually requires a TeX installation.
+
+## What to remember
+
+Markdown gives structure to the text of the report, while code blocks allow the analysis itself to be executed inside the document. Together, these are the two core ingredients of Quarto.
+
+## Check yourself
+
+Before moving on, make sure you can answer the following:
+
+1. What is the basic structure of a Quarto code chunk?
+2. What is the difference between `echo: false` and `include: false`?
+3. Why can inline code be useful in a report?
+4. What is the purpose of the YAML header?

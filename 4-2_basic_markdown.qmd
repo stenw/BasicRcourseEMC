@@ -1,10 +1,14 @@
 # Basic Markdown {.unnumbered}
 
-### Markdown
+Quarto files contain both code and markdown. The code does the analytical work; markdown is what makes the result readable for an actual human being. It gives you headings, emphasis, links, images, lists, tables and bits of code that are shown as examples rather than executed. Without it, a report is just a pile of output.
 
-Quarto files consist of code and markdown. We have discussed how to code in the previous chapters and will discuss markdown here. Markdown is a specific kind of markup language. What we mean by that is that the text in the document also indicates how it should be formatted in the result (For example if we surround a word by double asterikses (like so \*\*bold\*\*) it will **bold** in the resulting output. Below we will discuss the different types of markup that you can use.
+The nice thing about markdown is that it stays close to plain text. You do not have to learn a heavy formatting system before you can write a decent report. A few small pieces of syntax go a long way, and once you get used to them, you can shape a document quickly without losing sight of the content.
 
-#### Basic Formatting
+## Markdown
+
+### Basic formatting
+
+The most common formatting choices are useful for emphasis inside ordinary text.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(tibble)
@@ -22,7 +26,9 @@ kable(tt)
 
 ```
 
-#### Headings
+### Headings
+
+Headings structure the document and make it much easier to read. In practice, headings are often one of the most important parts of markdown because they help readers understand the flow of your report.
 
 +--------------------+-----------------------------------+
 | Syntax             | Output                            |
@@ -61,7 +67,9 @@ kable(tt)
 }
 </style>
 ```
-#### Links
+### Links
+
+Links are useful when you want to point to a website, a source, or another resource for the reader.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(tibble)
@@ -74,15 +82,17 @@ kable(tt)
 
 ```
 
-#### Images
+### Images
+
+Images can be inserted directly in markdown. In a Quarto report, this is useful for logos, diagrams or figures that are not being generated from code.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(tibble)
 library(knitr)
 tt <- tribble(~Syntax, ~Output,
-              "  !\\[Caption\\](Logo.svg) ", " ![Caption](assets/Logo.svg) ",
-              '  !\\[Caption\\](Logo.svg) "hovertext"', ' ![Caption](assets/Logo.svg "hovertext") ',
-              '  !\\[Caption\\](Logo.svg){fig-alt="Alt text"} ', ' ![Caption](assets/Logo.svg){fig-alt="Alt text"} '
+              "  !\\[Caption\\](Logo.svg) ", " ![Caption](Pictures/Logo.svg) ",
+              '  !\\[Caption\\](Logo.svg) "hovertext"', ' ![Caption](Pictures/Logo.svg "hovertext") ',
+              '  !\\[Caption\\](Logo.svg){fig-alt="Alt text"} ', ' ![Caption](Pictures/Logo.svg){fig-alt="Alt text"} '
               )
 kable(tt)
 
@@ -90,7 +100,9 @@ kable(tt)
 
 It is also possible to include images in links (as in `[![Caption](Logo.svg)](https://www.erasmusmc.nl/)`).
 
-#### Lists
+### Lists
+
+Lists are very useful for conclusions, protocols, assumptions or short sets of instructions.
 
 +------------------------------------+---------------------------------+
 | Markdown Syntax                    | Output                          |
@@ -123,11 +135,11 @@ It is also possible to include images in links (as in `[![Caption](Logo.svg)](ht
 |                                    |     ```                         |
 +------------------------------------+---------------------------------+
 
-#### Tables
+### Tables
 
-There are multiple ways to make tables
+There are multiple ways to make tables.
 
-The easiest way is to use a so called pipe-table like this:
+The easiest way is to use a so-called pipe table like this:
 
 ```         
  | foo|  bar  | Left align | Right Align | Center |
@@ -147,7 +159,7 @@ The result is:
 
 : an optional caption
 
-These tables use the pipe character (|) to separate columns and they use dashes (-) to separate the header from the rest of the table. As shown in the example the header seperator can also include colons (:) to indicate left, right or center alignment of the columns.
+These tables use the pipe character (`|`) to separate columns and dashes (`-`) to separate the header from the rest of the table. As shown in the example, the header separator can also include colons (`:`) to indicate left, right or centre alignment of the columns.
 
 The first and last pipe character at each row are optional, the ones separating the columns are not although they do not have to be aligned. The header cannot be omitted in a pipe table. The relative width is determined by the number of dashes. An alternative way to specify the relative column widths is by including the attribute after the caption, like this:
 
@@ -155,11 +167,11 @@ The first and last pipe character at each row are optional, the ones separating 
 : an optional caption {tbl-colwidths="[40,15,15,15,15]"} 
 ```
 
-Sometimes it is easiest to directly make the tables from R code.
+Sometimes it is easiest to create tables directly from `R` code rather than typing them by hand.
 
-#### Source code
+### Source code
 
-You can use delimited blocks with three backticks to use source code formatting. The syntax:
+Sometimes you want to show code as code, without running it. For that, you can use a fenced code block with three backticks. The syntax:
 
 \`\`\`\`
 
@@ -173,7 +185,7 @@ Becomes:
 foo <- bar
 ```
 
-It is possible to add an R to indicate the R language is used and apply apropriate highlighting:
+It is possible to add `r` to indicate that the `R` language is used and apply appropriate syntax highlighting:
 
 ```` markdown
 ``` R
@@ -189,10 +201,11 @@ foo <- bar
 
 ::: callout-advanced
 
-#### Math
+### Math
 
-You can use **TeX**-like syntax to format mathematical expressions. This creates good looking formulas and equations in your documents. Note that TeX is a comprehensive typesetting system with extensive capabilities. We cannot posibly cover all of it in this section. Therefore we only provide the bare essentials. For advanced LaTeX features, consult the resources listed at the end of this section.
-Inline formulas (i.e. formulas that appear in the running text) are delimited by single \$s and display math (i.e. formulas that appear on a line of their own) uses double \$\$s.
+You can use **TeX**-like syntax to format mathematical expressions. This creates clear formulas and equations in your documents. Note that TeX is a large typesetting system with extensive capabilities. We cannot possibly cover all of it here, so we only introduce the basics. For more advanced LaTeX features, consult a dedicated resource.
+
+Inline formulas, that is formulas that appear in the running text, are delimited by single `$` symbols. Display math, that is formulas that appear on a line of their own, uses double `$$`.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(tibble)
@@ -205,11 +218,23 @@ kable(tt)
 
 ```
 
-Geek characters can be created by writing their names preceded by a backslash. For example `\alpha` produces $\alpha$, `\beta` produces $\beta$ and so on. Capitals can be generated by writing the first letter of their name in uppercase  (So `\Omega` for $\Omega$). 
+Greek characters can be created by writing their names preceded by a backslash. For example `\alpha` produces $\alpha$, `\beta` produces $\beta$ and so on. Capitals can be generated by writing the first letter of the name in uppercase, for example `\Omega` for $\Omega$.
 
 Superscripts can be created using the caret `^` and subscripts using the underscore `_`. For example `x_i` produces $x_i$ and `x^{n}` produces $x^{n}$.
 Fractions can be created using `\frac{numerator}{denominator}`. For example `\frac{a}{b}` produces $\frac{a}{b}$. Use `\sqrt{expression}` to create square roots. For example `\sqrt{x}` produces $\sqrt{x}$. Sums and integrals can be created using `\sum` and `\int` respectively. For example `\int_{a}^{b} f(x) dx` produces $\int_{a}^{b} f(x) dx$.
 
-When you want to learn more about TeX, a good resource is the [The LaTeX Companion](https://www.amazon.nl/-/en/Mittelbach-Frank/dp/0201362996).
+When you want to learn more about TeX, a good resource is [The LaTeX Companion](https://www.amazon.nl/-/en/Mittelbach-Frank/dp/0201362996).
 
 :::
+
+## What to remember
+
+Markdown is the part of a Quarto file that makes your analysis readable to another human being. A good report does not only contain correct code; it also contains clear headings, readable explanations and well-presented output.
+
+## Check yourself
+
+Before moving on, make sure you can answer the following:
+
+1. When would you use markdown instead of a code chunk?
+2. How do headings help the structure of a report?
+3. What is the difference between showing code as source and executing code in a document?

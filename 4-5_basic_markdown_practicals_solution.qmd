@@ -1,5 +1,24 @@
 ## Markdown: Solution {.unnumbered}
 
+This practical builds one complete analysis document rather than many isolated short tasks. For that reason, the solution is presented as a **model report** instead of a separate answer after every question.
+
+Use this model solution in the following way:
+
+- first compare the overall structure of your document with the model
+- then compare specific sections such as the data transformation, descriptives and analysis
+- finally compare the tone and readability of the text, not just the code
+
+::: callout-note
+## What to look for
+
+As you compare your own work to the model solution, pay attention to:
+
+- the YAML header and overall document structure
+- how code chunks and prose are interwoven
+- how the analysis is explained in ordinary language
+- which chunks are shown and which are hidden
+:::
+
 ```{=markdown}
 ~~~markdown
 {{< include Solution_Rmarkdown.Rmd >}}

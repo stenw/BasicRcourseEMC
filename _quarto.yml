@@ -53,9 +53,7 @@ book:
         - 4-6_shiny.qmd
         - 4-7_shiny_practicals_questions.qmd
         - 4-8_shiny_practicals_solution.qmd
-    - part: 4-9_looseends.qmd
-      chapters:
-        - 4-10_tidyverse.qmd
+    - 4-9_looseends.qmd
   repo-url: https://github.com/dnieuw/BasicRcourseEMC
   repo-actions: [edit]
   downloads: [pdf]
