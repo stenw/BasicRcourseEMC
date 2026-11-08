@@ -57,7 +57,9 @@ book:
     - 4-9_looseends.qmd
   repo-url: https://github.com/dnieuw/BasicRcourseEMC
   repo-actions: [edit]
-  downloads: [pdf]
+  sidebar:
+    header: |
+      [PDF download temporarily unavailable]{.text-body-secondary}
 
 format:
   html:
