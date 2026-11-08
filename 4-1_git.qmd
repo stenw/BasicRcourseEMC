@@ -1,0 +1,305 @@
+# Git for Local Version Control {.unnumbered}
+
+::: callout-important
+## Optional and somewhat advanced
+
+This section is entirely optional. You do not need Git in order to continue with the rest of the course.
+
+That said, Git becomes very useful once you start writing longer scripts, revising reports, or working on a project over several weeks. If you have ever ended up with files called `analysis_final.R`, `analysis_final2.R`, and `analysis_final_reallyfinal.R`, then you have already run into the problem Git is meant to solve.
+:::
+
+## Introduction
+
+In the previous section I mentioned Git as one of the tools that can support reproducible work. Quarto helps by keeping code and explanation together in one document. Git helps in a different way: it keeps track of how your files change over time.
+
+You do not need GitHub in order to benefit from Git. Even if you only work on your own computer, Git can still be useful. It gives you a structured history of your project, lets you see what changed, and makes it much easier to go back to an earlier version if you realise you broke something.
+
+For this course, that local use is the main point. We are not going to focus on GitHub or online collaboration here. Think of this section as an introduction to Git as a safer way to manage your own project files.
+
+## What Git is actually tracking
+
+Git is a **version control system**. In practice, that means it records snapshots of a folder over time. That folder is called a **repository**, often shortened to **repo**.
+
+When Git is active in a project, it does not continuously save every keystroke. Instead, you choose meaningful points at which to record the current state of the files. Those saved snapshots are called **commits**.
+
+A good way to think about Git is this:
+
+- your project folder contains the current working files
+- Git notices which files have changed
+- you decide which of those changes belong together
+- you save them as a commit with a short message
+
+That gives you a project history that is much more informative than keeping ten differently named copies of the same script.
+
+## Why use Git locally?
+
+Even without any online service, Git helps with very practical questions:
+
+- What changed since yesterday?
+- Which version of the script produced this table?
+- Can I safely try a risky edit and go back if it fails?
+- What did I change in this Quarto file before the results stopped looking right?
+
+For students, Git is especially helpful once a project contains several files, such as:
+
+- one or more `R` scripts
+- a Quarto document
+- data-cleaning code
+- figures or output files
+
+At that point, local Git often becomes more reliable than ad hoc file naming.
+
+## A simple mental model
+
+There are three ideas that matter most at the beginning:
+
+1. The **working directory** is the current state of your files.
+2. The **staging area** is where you tell Git which changes should go into the next commit.
+3. A **commit** is a saved snapshot with a message.
+
+That middle step, staging, is what often feels strange at first. But it is useful because it lets you decide which edits belong together. If you corrected a typo and also rewrote part of an analysis, Git does not force you to save those as one big lump.
+
+## Starting Git in a project
+
+For most students in this course, RStudio is the most practical place to start.
+
+If you prefer using RStudio, there are two common routes:
+
+- for a new project, create an RStudio project and make sure `Create a Git repository` is selected
+- for an existing project, use `Tools > Version Control > Project Setup` and select Git
+
+Once Git is enabled, RStudio usually shows a **Git** tab in the upper-right pane. That is enough for many common tasks and is probably the best place to begin if you are new to version control.
+
+The command-line route is also worth knowing, because you will often see Git described that way and it helps explain what RStudio is doing behind the scenes.
+
+If you already have a project folder, the command-line way to turn it into a Git repository is:
+
+```bash
+git init
+```
+
+After that, the folder contains a hidden `.git` directory where Git stores its metadata.
+
+## The basic local workflow
+
+Here is the core workflow you need at the beginning:
+
+1. Edit one or more files.
+2. Ask Git what changed.
+3. Stage the changes you want to keep together.
+4. Commit them with a short message.
+
+In RStudio, this is often the easiest way to think about it:
+
+1. Edit a script, Quarto file or other text file.
+2. Open the **Git** tab and look at the changed files.
+3. Tick the files you want to stage.
+4. Click `Commit`.
+5. Review the diff, write a message, and confirm the commit.
+
+The Git pane is especially useful because it lets you see the file list and the differences side by side. For many students, that visual feedback is what makes Git start to click.
+
+On the command line, that often looks like this:
+
+```bash
+git status
+git add 4-1_represearch.qmd
+git commit -m "Add section on reproducible workflows"
+```
+
+If you are using RStudio, the same basic pattern appears in the Git pane:
+
+- changed files are listed there
+- you tick the files you want to stage
+- you click `Commit`
+- you write a message and confirm the commit
+
+## What to look at in RStudio
+
+When Git is enabled in an RStudio project, the Git tab becomes the main place where you interact with it.
+
+The most important things visible there are:
+
+- the list of changed files
+- whether a file is staged or not
+- the diff viewer, which shows what changed line by line
+- the buttons for committing, pulling and pushing
+
+For this course, the first three are the ones that matter most. If you are only using Git locally, you can already get a lot of value from the Git pane without touching any remote features.
+
+## The commands worth knowing first
+
+You do not need dozens of commands to get started. A small handful goes a long way.
+
+### `git status`
+
+This is the single most useful beginner command.
+
+```bash
+git status
+```
+
+It tells you:
+
+- which branch you are on
+- which files have changed
+- which files are staged
+- which files are still untracked
+
+When in doubt, run `git status`. It is often the fastest way to understand what Git thinks is happening.
+
+### `git add`
+
+This stages changes for the next commit.
+
+```bash
+git add myscript.R
+```
+
+You can also stage several files at once:
+
+```bash
+git add 4-1_represearch.qmd 4-2_basic_markdown.qmd
+```
+
+Staging does not create a commit yet. It only says: these are the changes I want to include next.
+
+### `git commit`
+
+This records the staged changes as a snapshot.
+
+```bash
+git commit -m "Revise chapter 4 introduction"
+```
+
+Good commit messages are short but informative. They should make sense when you read them later in a list. Usually a message describing the change is enough.
+
+### `git log`
+
+This shows the history of commits.
+
+```bash
+git log --oneline
+```
+
+This is useful when you want to see the sequence of earlier versions and the messages attached to them.
+
+### `git diff`
+
+This shows the actual changes in text form.
+
+```bash
+git diff
+```
+
+Plain `git diff` compares your working files with the staging area. It shows tracked changes you have yet to stage. Use `git diff --staged` to compare the staging area with the last commit and see what the next commit will include.
+
+This is very useful for scripts and Quarto files, because Git is especially good at tracking line-by-line text changes.
+
+## Untracked, modified, staged
+
+These words appear often in Git, so it helps to be clear about them.
+
+- **Untracked** means Git sees a file, but it has never been added before.
+- **Modified** means Git knows the file and sees that it changed.
+- **Staged** means the current version of that change has been marked for the next commit.
+
+For example, if you create a new Quarto file called `notes.qmd`, Git will first show it as untracked. Once you use `git add notes.qmd`, it becomes staged. After the commit, it becomes part of the repository history.
+
+## A very small example
+
+Suppose you create a project with a file `analysis.R`. At first, Git might say:
+
+```bash
+git status
+```
+
+and report that `analysis.R` is untracked.
+
+You then stage and commit it:
+
+```bash
+git add analysis.R
+git commit -m "Add initial analysis script"
+```
+
+Later you change two lines in `analysis.R`. Now `git status` reports that the file is modified. If you run `git diff`, you can inspect the exact edits before deciding whether to commit them.
+
+That is already enough to make Git useful.
+
+## Local branching
+
+Branches are a more advanced topic, but it is worth knowing the basic idea. A branch gives you a separate line of development inside the same repository.
+
+That sounds abstract, but the practical use is simple: you can try a larger change without disturbing the main version of your project.
+
+For example, suppose you want to:
+
+- rewrite a Quarto chapter
+- try a new plotting strategy
+- reorganise a data-cleaning script
+
+Start on your main branch and run `git status`. If you have changes in progress, commit the work you want to keep before starting the experiment. Once Git reports a clean working tree, create a new branch:
+
+```bash
+git switch -c new-idea
+```
+
+Try an edit to `analysis.R` on the new branch. Review it with `git diff`, then stage and commit it before switching back:
+
+```bash
+git add analysis.R
+git commit -m "Try a different analysis"
+git switch main
+```
+
+Use your project's main branch name if it differs. The experiment stays in the history of `new-idea`, and you can return to it later. If you switch with uncommitted edits, Git may carry them across or refuse the switch.
+
+For beginners, it is perfectly fine to ignore branching at first. But once you understand commits, branches are the next feature that often feels genuinely powerful.
+
+## Git in RStudio versus the command line
+
+Both approaches are valid.
+
+RStudio is often the easiest place to begin because it gives you:
+
+- a file list with checkboxes for staging
+- a visual diff viewer
+- a commit dialog
+- simple branch actions
+
+The command line, however, makes Git easier to describe precisely and is useful once you want more control. In practice, many people use both: RStudio for day-to-day work inside an `R` project and the command line when they need a specific operation.
+
+## What Git does not do automatically
+
+Git is very helpful, but it does not remove the need for judgment.
+
+- It does not tell you *when* to make a commit.
+- It does not decide which files should or should not be tracked.
+- It does not automatically make a messy project reproducible.
+
+The best results come when you use Git together with the habits discussed elsewhere in this chapter: clear scripts, sensible file organisation, and reports that can be rerun.
+
+## A sensible starting point for students
+
+If you want to try Git without getting lost in the details, this is enough:
+
+1. Use Git in one small project.
+2. Learn `git status`, `git add`, `git commit`, `git log`, and `git diff`.
+3. Make small, meaningful commits instead of huge ones.
+4. Do not worry about GitHub yet.
+
+That is already enough to make your work safer and easier to manage.
+
+## Further reading
+
+If you want a friendly and much more complete guide, *Happy Git with R* is an excellent resource. The parts most relevant to this section are the setup where you use Git without GitHub and the basic local workflow: [Happy Git with R](https://happygitwithr.com/) and especially the section on [common remote setups](https://happygitwithr.com/common-remote-setups.html), which includes a "No GitHub" setup.
+
+## Check yourself
+
+Before moving on, make sure you can answer the following:
+
+1. What problem is Git solving in a local project?
+2. What is the difference between a modified file and a staged file?
+3. What do `git status`, `git add`, and `git commit` each do?
+4. Why might you create a branch, even if you are working alone?

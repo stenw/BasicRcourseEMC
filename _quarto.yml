@@ -46,6 +46,7 @@ book:
         - 3-6_Functions2_answers.qmd
     - part: 4-1_represearch.qmd
       chapters:
+        - 4-1_git.qmd
         - 4-2_basic_markdown.qmd
         - 4-3_codeblocks.qmd
         - 4-4_basic_markdown_practicals_questions.qmd

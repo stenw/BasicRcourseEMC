@@ -67,7 +67,7 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 Always check your data.
 
 ::: callout-tip
-As you compare your work with the solutions, keep using inspection functions such as `class(...)`, `mode(...)`, `length(...)`, `dim(...)` and `str(...)`. In this chapter, those checks are often just as important as the code that creates the object.
+As you compare your work with the solutions, keep using inspection functions such as `class(...)`, `mode(...)`, `length(...)`, `dim(...)` and `str(...)`. In this chapter, those checks are often just as important as the code that creates the object. The most frustrating bugs in R happen when an object looks right but has the wrong 'shape' or `class` for a function. Using these checks as you go turns a guessing game into a precise audit of why your code works (or why it doesn't).
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -410,7 +410,6 @@ This is a good example of using inspection functions not just to check values, b
 
 Before you finish this practical:
 
-- identify one example of a vector, matrix, `data.frame`, list and array from your script
-- check that you know which inspection functions are most useful for each one
+- check that you know which inspection functions are most useful for vectors, matrices, `data.frame`s, lists and arrays
 - rerun the script from top to bottom and see whether everything still works
 :::
