@@ -653,7 +653,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Write a function called ‘evenOrOdd’ involving <code>if</code> and <code>else</code> that takes an argument <code>x</code> and returns “Even” or “Odd” depending on whether or not <code>x</code> is divisible by 2. (Do not use the ifelse() function).</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Try <code>%%</code> on one even number and one odd number. What remainder should make the condition in <code>if</code> true?</p>
+<p><code>%%</code> gives the remainder after division. For example, <code>7 %% 2</code> gives 1. What remainder should make the condition in <code>if</code> true?</p>
 </div>
 </div>
 </div>
@@ -717,14 +717,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Question 17</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Hint</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
-<p>Write a function <code>ratio()</code> that takes two arguments, <code>x</code> and <code>y</code>, and attempts to compute the ratio <code>x/y</code>.</p>
+<p>Write a function <code>ratio()</code> that takes two single numbers, <code>x</code> and <code>y</code>, and attempts to compute <code>x/y</code>.</p>
 <p>If both <code>x == 0 &amp; y == 0</code>, the function should stop and print an error message about dividing 0 by 0.</p>
-<p>If <code>y == 0</code> (but not x), the function should print a warning message about dividing by 0, and then return <code>x/y</code> (which will be <code>Inf</code>).</p>
+<p>If <code>y</code> is zero and <code>x</code> is nonzero, the function should warn about dividing by zero and return <code>x/y</code>, which is <code>Inf</code> or <code>-Inf</code> depending on the sign of <code>x</code>.</p>
 <p>In all other cases, it should return <code>x/y</code>.</p>
 <p>Test your <code>ratio()</code> function first using two nonzero values for <code>x</code> and <code>y</code>, then using a nonzero <code>x</code> but <code>y = 0</code>, and finally using <code>x = 0</code> and <code>y = 0</code>.</p>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<p>Check the most specific case first. If you test only <code>y == 0</code> first, that also matches <code>0 / 0</code>. Put the division where the warning case can still reach it and the error case cannot.</p>
+<p>Put the <code>0/0</code> check first. <code>stop()</code> ends the function immediately. After <code>warning()</code>, the function continues and can still run the division.</p>
 </div>
 </div>
 </div>
@@ -817,6 +817,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
 <p><code>tapply()</code> takes a vector to summarize, the grouping variables, and a function. Put both grouping vectors in a single list so the result has a row and column for the two groups.</p>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">Question 23 🎓 (optional)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">Hint</a></li></ul>
+<div class="tab-content">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<p>The built-in <code>airquality</code> data frame contains daily air measurements from New York from May to September 1973. Some values are missing.</p>
+<ol type="a">
+<li><p>Run <code>sapply(airquality, mean)</code>. What do you notice? Pass <code>na.rm = TRUE</code> through <code>sapply()</code> and run it again. Arguments after the function in <code>sapply()</code> are passed to that function.</p></li>
+<li><p>Write a function <code>clean_summary(x, min_ok = -Inf, max_ok = Inf, max_dropped = 0.2)</code> that:</p>
+<ul>
+<li>stops with an error message if <code>x</code> is not numeric (use <code>stopifnot()</code>),</li>
+<li>ignores missing values and values outside the inclusive range from <code>min_ok</code> to <code>max_ok</code>,</li>
+<li>warns if the fraction of ignored values exceeds <code>max_dropped</code>,</li>
+<li>returns a named list with <code>mean</code>, <code>n_used</code> and <code>n_dropped</code>.</li>
+</ul></li>
+<li><p>Test the function on <code>airquality$Temp</code>, on <code>airquality$Ozone</code>, on <code>airquality$Wind</code> with <code>max_ok = 15</code>, and on the text <code>"a"</code>. What does the Ozone warning say? Use <code>$</code> to extract just the mean from the Ozone result.</p>
+<p>If a result looks wrong, assign <code>x &lt;- airquality$Ozone</code> and set the other arguments to their defaults in the console. Run the body one line at a time and print each intermediate result.</p></li>
+<li><p>Use <code>lapply()</code> to apply <code>clean_summary()</code> to the first four columns of <code>airquality</code>. The Ozone warning is expected. Build a data frame called <code>summary_df</code> with columns <code>variable</code>, <code>mean</code> and <code>n_dropped</code>. Use a function written inside the <code>sapply()</code> call to extract each result, for example <code>sapply(res, function(r) r$mean)</code>.</p></li>
+<li><p>Write a function <code>clean_hist(x, ...)</code> that drops missing values and <strong>returns</strong> a ggplot2 histogram. In the title, report how many values were dropped. Pass <code>...</code> to <code>geom_histogram()</code> so that <code>clean_hist(airquality$Ozone, bins = 20, fill = "steelblue")</code> works. Save the plot object in <code>p</code>, update it with <code>p &lt;- p + labs(x = "Ozone (ppb)")</code>, and save it to a file with <code>ggsave()</code>. Pass the filename and <code>plot = p</code> explicitly.</p></li>
+<li><p><em>Bonus.</em> Save both functions in <code>cleaning.R</code>. Restart R, load the script with <code>source("cleaning.R")</code>, and try the functions again.</p></li>
+</ol>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<ul>
+<li><code>stopifnot("x must be numeric" = is.numeric(x))</code> stops with that message if the condition is false.</li>
+<li>What is <code>NA &gt;= 0</code>? An <code>NA</code> in a logical index leaves an <code>NA</code> in the result. Check your index with <code>anyNA()</code>, and put <code>!is.na(x) &amp;</code> before the range checks.</li>
+<li><code>sapply(res, function(r) r$n_dropped)</code> extracts <code>n_dropped</code> from each list element.</li>
+<li>Put <code>...</code> in the arguments to <code>clean_hist()</code> and again in the call to <code>geom_histogram()</code>.</li>
+</ul>
 </div>
 </div>
 </div>

@@ -135,5 +135,5 @@ Plot the histograms side by side in the same graphic window and make sure they h
 
 ### Hint
 
-Use `hist(..., plot = FALSE)` to get each histogram's `counts` without drawing it. Use the larger of the two maximum counts to set one common `ylim`, then draw both histograms in a one-row layout.
+Use `hist(..., plot = FALSE)` to get each histogram's counts without drawing it. For example, `hist(Puromycin$conc, plot = FALSE)$counts` gives the counts for the default bins. Use the larger of the two maximum counts to set one common `ylim`, then draw both histograms in a one-row layout.
 :::

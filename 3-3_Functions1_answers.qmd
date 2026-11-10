@@ -101,29 +101,42 @@ The class is `function`.
 ::: panel-tabset
 ### Question 7
 
-Determine the class of the value output in Q4 using `class()`.
+Save the result from Q4 in a variable. Use `class()` and `str()` to inspect it. What does each tell you?
 
 ### Answer
 
 ```{r}
-class(mean(c(1, 2, NA, 6), 0, TRUE))
+result <- mean(c(1, 2, NA, 6), 0, TRUE)
+class(result)
+str(result)
 ```
 
-The class is `numeric`
+`class()` reports `"numeric"`. `str()` shows that the result is a single number, 3.
 :::
 
 ::: panel-tabset
 ### Question 8
 
-Determine the class of the value output in Q4 using str().
+Write `summarise_values(x, na.rm = FALSE)` to return the mean and median in a named list. Test it on `scores` with and without `na.rm = TRUE` and then reuse it on `times`.
 
 ### Answer
 
 ```{r}
-str(mean(c(1, 2, NA, 6), 0, TRUE))
+summarise_values <- function(x, na.rm = FALSE) {
+  list(
+    mean = mean(x, na.rm = na.rm),
+    median = median(x, na.rm = na.rm)
+  )
+}
+
+scores <- c(1, 2, NA, 6)
+times <- c(4, 8, 10, 18)
+summarise_values(scores)
+summarise_values(scores, na.rm = TRUE)
+summarise_values(times)
 ```
 
-The `num` means the class is `numeric`.
+The default keeps the missing value, so both summaries of `scores` are `NA`. With `na.rm = TRUE`, the mean is 3 and the median is 2.
 :::
 
 ## Function environment and scoping
@@ -164,7 +177,7 @@ b)  This will return 6 because `w` is reassigned as 4 inside the function and we
 ::: panel-tabset
 ### Question 10
 
-Among the variables `w`, `d`, and `y`, which are global to `f()` and which are local? What is the value of z when executing `f(w)`
+Among `w`, `d`, and `y`, which are global and which are local to `f()`? What is the value of `z` when you run `f(w)`?
 
 ```{r}
 w <- 2
@@ -181,13 +194,13 @@ f <- function(y) {
 
 The object `w` is global to `f()` while `d` and `y` are local to `f()`.
 
-`z` is 2, because it takes the value of `y` when executing `h(y)` in function `f()`, which takes the value of global variable `w` when executing `f(w)`
+`f(w)` passes 2 to `y`, then `h(y)` passes 2 to `z`. The helper `h()` is defined inside `f()`, so it finds `d = 3` in that call to `f()`. It returns 5, and `f(w)` returns 10.
 :::
 
 ::: panel-tabset
 ### Question 11
 
-Do the following in R:
+Start in a fresh R session. Predict what each call will do, then run it to check.
 
 a)  Try:
 
@@ -218,7 +231,7 @@ What happens?
 
 ### Answer
 
-a)  We get an error message because `a` and `b` are local to `myFun1` so the function `myFun2` can't find them in the global environment.
+a)  `myFun2()` receives 10 as its argument `y`. When R looks for `a` and `b`, it starts in `myFun2()` and then goes to the global environment, where `myFun2()` was defined. In a fresh session, the lookup for `a` fails first with `object 'a' not found`.
 
-b)  We get get the value 13 because the values `a` and `b` are global so `myFun2` can find them and use them in its commands.
+b)  R now finds the global values `a = 1` and `b = 2`. The result is `10 + 1 + 2`, or 13. The local `b = 3` belongs to the call to `myFun1()`.
 :::

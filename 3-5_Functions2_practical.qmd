@@ -9,7 +9,7 @@ Write a function called 'evenOrOdd' involving `if` and `else` that takes an argu
 
 ### Hint
 
-Try `%%` on one even number and one odd number. What remainder should make the condition in `if` true?
+`%%` gives the remainder after division. For example, `7 %% 2` gives 1. What remainder should make the condition in `if` true?
 :::
 
 ::: panel-tabset
@@ -66,11 +66,11 @@ What happens when you pass `noNegMean()` a vector containing all negative values
 ::: panel-tabset
 ### Question 17
 
-Write a function `ratio()` that takes two arguments, `x` and `y`, and attempts to compute the ratio `x/y`.
+Write a function `ratio()` that takes two single numbers, `x` and `y`, and attempts to compute `x/y`.
 
 If both `x == 0 & y == 0`, the function should stop and print an error message about dividing 0 by 0.
 
-If `y == 0` (but not x), the function should print a warning message about dividing by 0, and then return `x/y` (which will be `Inf`).
+If `y` is zero and `x` is nonzero, the function should warn about dividing by zero and return `x/y`, which is `Inf` or `-Inf` depending on the sign of `x`.
 
 In all other cases, it should return `x/y`.
 
@@ -78,7 +78,7 @@ Test your `ratio()` function first using two nonzero values for `x` and `y`, the
 
 ### Hint
 
-Check the most specific case first. If you test only `y == 0` first, that also matches `0 / 0`. Put the division where the warning case can still reach it and the error case cannot.
+Put the `0/0` check first. `stop()` ends the function immediately. After `warning()`, the function continues and can still run the division.
 :::
 
 ## Looping using for() loops and the apply functions
@@ -170,4 +170,36 @@ Load the `diamonds` dataset by running `library(ggplot2)` and calculate the aver
 ### Hint
 
 `tapply()` takes a vector to summarize, the grouping variables, and a function. Put both grouping vectors in a single list so the result has a row and column for the two groups.
+:::
+
+::: panel-tabset
+### Question 23 🎓 (optional)
+
+The built-in `airquality` data frame contains daily air measurements from New York from May to September 1973. Some values are missing.
+
+a)  Run `sapply(airquality, mean)`. What do you notice? Pass `na.rm = TRUE` through `sapply()` and run it again. Arguments after the function in `sapply()` are passed to that function.
+
+b)  Write a function `clean_summary(x, min_ok = -Inf, max_ok = Inf, max_dropped = 0.2)` that:
+
+    -   stops with an error message if `x` is not numeric (use `stopifnot()`),
+    -   ignores missing values and values outside the inclusive range from `min_ok` to `max_ok`,
+    -   warns if the fraction of ignored values exceeds `max_dropped`,
+    -   returns a named list with `mean`, `n_used` and `n_dropped`.
+
+c)  Test the function on `airquality$Temp`, on `airquality$Ozone`, on `airquality$Wind` with `max_ok = 15`, and on the text `"a"`. What does the Ozone warning say? Use `$` to extract just the mean from the Ozone result.
+
+    If a result looks wrong, assign `x <- airquality$Ozone` and set the other arguments to their defaults in the console. Run the body one line at a time and print each intermediate result.
+
+d)  Use `lapply()` to apply `clean_summary()` to the first four columns of `airquality`. The Ozone warning is expected. Build a data frame called `summary_df` with columns `variable`, `mean` and `n_dropped`. Use a function written inside the `sapply()` call to extract each result, for example `sapply(res, function(r) r$mean)`.
+
+e)  Write a function `clean_hist(x, ...)` that drops missing values and **returns** a ggplot2 histogram. In the title, report how many values were dropped. Pass `...` to `geom_histogram()` so that `clean_hist(airquality$Ozone, bins = 20, fill = "steelblue")` works. Save the plot object in `p`, update it with `p <- p + labs(x = "Ozone (ppb)")`, and save it to a file with `ggsave()`. Pass the filename and `plot = p` explicitly.
+
+f)  *Bonus.* Save both functions in `cleaning.R`. Restart R, load the script with `source("cleaning.R")`, and try the functions again.
+
+### Hint
+
+-   `stopifnot("x must be numeric" = is.numeric(x))` stops with that message if the condition is false.
+-   What is `NA >= 0`? An `NA` in a logical index leaves an `NA` in the result. Check your index with `anyNA()`, and put `!is.na(x) &` before the range checks.
+-   `sapply(res, function(r) r$n_dropped)` extracts `n_dropped` from each list element.
+-   Put `...` in the arguments to `clean_hist()` and again in the call to `geom_histogram()`.
 :::

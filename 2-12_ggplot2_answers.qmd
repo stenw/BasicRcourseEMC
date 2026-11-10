@@ -23,11 +23,9 @@ help(diamonds)
 ::: panel-tabset
 ### Question 2
 
-Use ggplot to plot a scatterplot of the relationship between the diamonds' carat and their price
+Use ggplot to make a scatterplot of diamond price versus carat.
 
 ### Answer 2
-
-Use ggplot to plot a scatterplot of the relationship between the diamonds' carat and their price
 
 ```{r, eval=F}
 ggplot() + geom_point(data=diamonds, aes(x=carat, y=price))

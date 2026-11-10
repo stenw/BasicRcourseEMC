@@ -762,7 +762,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Plot the histograms side by side in the same graphic window and make sure they have the same range on the y-axis. Does this make it easier to answer the question of how the two histograms differ?</p>
 </div>
 <div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
-<p>Use <code>hist(..., plot = FALSE)</code> to get each histogram’s <code>counts</code> without drawing it. Use the larger of the two maximum counts to set one common <code>ylim</code>, then draw both histograms in a one-row layout.</p>
+<p>Use <code>hist(..., plot = FALSE)</code> to get each histogram’s counts without drawing it. For example, <code>hist(Puromycin$conc, plot = FALSE)$counts</code> gives the counts for the default bins. Use the larger of the two maximum counts to set one common <code>ylim</code>, then draw both histograms in a one-row layout.</p>
 </div>
 </div>
 </div>

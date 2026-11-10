@@ -11,7 +11,7 @@ Make sure that you try the exercises yourself first before looking at the answer
 
 Write a function called 'evenOrOdd' involving `if` and `else` that takes an argument `x` and returns "Even" or "Odd" depending on whether or not `x` is divisible by 2. (Do not use the ifelse() function).
 
-### Anwser
+### Answer
 
 ```{r}
 evenOrOdd <- function(x) {
@@ -40,9 +40,8 @@ w <- c(3, 6, 6, 4, 7, 9, 11, 6)
 evenOrOdd(w)
 ```
 
+The condition `w %% 2 == 0` gives one logical value per element. A single `if` needs exactly one logical value, so the call gives an error.
 :::
-
-An error is given, because x in `if(x %% 2 == 0)` is longer than 1. :::
 
 ::: panel-tabset 
 ### Question 14
@@ -101,18 +100,18 @@ What happens when you pass `noNegMean()` a vector containing all negative values
 noNegMean(c(-1,-1,-1))
 ```
 
-We get the error message and nothing is returned. :::
+The function stops with the error message before reaching `mean(x)`.
 
 :::
 
 ::: panel-tabset 
 ### Question 17
 
-Write a function `ratio()` that takes two arguments, `x` and `y`, and attempts to compute the ratio `x/y`.
+Write a function `ratio()` that takes two single numbers, `x` and `y`, and attempts to compute `x/y`.
 
 If both `x == 0 & y == 0`, the function should stop and print an error message about dividing 0 by 0.
 
-If `y == 0` (but not x), the function should print a warning message about dividing by 0, and then return `x/y` (which will be `Inf`).
+If `y` is zero and `x` is nonzero, the function should warn about dividing by zero and return `x/y`, which is `Inf` or `-Inf` depending on the sign of `x`.
 
 In all other cases, it should return `x/y`.
 
@@ -121,26 +120,24 @@ Test your `ratio()` function first using two nonzero values for `x` and `y`, the
 ### Answer
 
 ```{r}
-ratio <- function(x,y) {
-  if(x == 0 & y == 0) {
+ratio <- function(x, y) {
+  if (x == 0 && y == 0) {
     stop("Cannot divide zero by zero.")
   }
   
-  if(y == 0) {
-    warning("Cannot divide by zero.")
+  if (y == 0) {
+    warning("Dividing by zero.")
   }
   
-  ratio <- x/y
-  return(ratio)
+  x / y
 }
 ```
 
 ```{r, error=T}
-ratio(2,3)
-
-ratio(0,0)
-
-ratio(1,0)
+ratio(2, 3)
+ratio(1, 0)
+ratio(-1, 0)
+ratio(0, 0)
 ```
 
 :::
@@ -263,7 +260,7 @@ class(result)
 ::: panel-tabset 
 ### Question 22
 
-Load the "diamonds" dataset from the ggplot2 package by running `library(gglot2)` and calculate the average price of diamonds by color and clarity using the `tapply()` function.
+Load the `diamonds` dataset by running `library(ggplot2)` and calculate the average price by colour and clarity with `tapply()`.
 
 ### Answer
 
@@ -272,4 +269,89 @@ library(ggplot2)
 tapply(diamonds$price, list(diamonds$color, diamonds$clarity), mean)
 ```
 
+:::
+
+::: panel-tabset
+### Question 23 🎓 (optional)
+
+Summarise and plot the `airquality` data using functions that handle missing values.
+
+### Answer
+
+**a) Pass on an argument.** The first call returns `NA` for Ozone and Solar.R. The second passes `na.rm = TRUE` to `mean()` for every column.
+
+```{r}
+sapply(airquality, mean)
+sapply(airquality, mean, na.rm = TRUE)
+```
+
+**b) Write the summary function.**
+
+```{r}
+clean_summary <- function(x, min_ok = -Inf, max_ok = Inf, max_dropped = 0.2) {
+  stopifnot("x must be numeric" = is.numeric(x))
+  keep <- !is.na(x) & x >= min_ok & x <= max_ok
+  n_dropped <- sum(!keep)
+
+  if (length(x) > 0 && n_dropped / length(x) > max_dropped) {
+    warning(n_dropped, " of ", length(x), " values dropped")
+  }
+
+  list(mean = mean(x[keep]), n_used = sum(keep), n_dropped = n_dropped)
+}
+```
+
+**c) Try the function.** The Ozone warning reports that 37 of 153 values were dropped. The mean of the remaining values is about 42.13 ppb.
+
+```{r}
+clean_summary(airquality$Temp)
+ozone_summary <- clean_summary(airquality$Ozone)
+ozone_summary$mean
+clean_summary(airquality$Wind, max_ok = 15)
+```
+
+```{r}
+#| error: true
+clean_summary("a")
+```
+
+**d) Build the summary data frame.** Each inline function extracts one field from a summary.
+
+```{r}
+res <- lapply(airquality[, 1:4], clean_summary)
+summary_df <- data.frame(
+  variable = names(res),
+  mean = sapply(res, function(r) r$mean),
+  n_dropped = sapply(res, function(r) r$n_dropped),
+  row.names = NULL
+)
+summary_df
+```
+
+**e) Return a plot and save it.** The function returns the plot object, so you can add a layer before saving it.
+
+```{r}
+clean_hist <- function(x, ...) {
+  kept <- x[!is.na(x)]
+  ggplot(data.frame(value = kept), aes(x = value)) +
+    geom_histogram(...) +
+    labs(x = NULL, title = paste(length(x) - length(kept), "missing values dropped"))
+}
+
+p <- clean_hist(airquality$Ozone, bins = 20, fill = "steelblue", colour = "white")
+p <- p + labs(x = "Ozone (ppb)")
+p
+```
+
+```{r, eval=FALSE}
+ggsave("ozone-histogram.png", plot = p, width = 6, height = 4, dpi = 300)
+```
+
+**f) Bonus.** Save the two function definitions in `cleaning.R` and add `library(ggplot2)` at the top so the plot function also works in a fresh session. Restart R, then run:
+
+```{r, eval=FALSE}
+source("cleaning.R")
+clean_summary(airquality$Temp)
+clean_hist(airquality$Ozone, bins = 20)
+```
 :::

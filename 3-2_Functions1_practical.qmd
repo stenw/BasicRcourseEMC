@@ -59,13 +59,29 @@ Determine the class of `mean()` using `str()`.
 ::: panel-tabset
 ### Question 7
 
-Determine the class of the value output in Q4 using `class()`.
+Save the result from Q4 in a variable. Use `class()` and `str()` to inspect it. What does each tell you?
 :::
 
 ::: panel-tabset
 ### Question 8
 
-Determine the class of the value output in Q4 using str().
+Suppose you want the mean and median of several vectors. The same two calculations come up each time.
+
+```{r, eval=FALSE}
+scores <- c(1, 2, NA, 6)
+times <- c(4, 8, 10, 18)
+
+mean(scores, na.rm = TRUE)
+median(scores, na.rm = TRUE)
+mean(times, na.rm = TRUE)
+median(times, na.rm = TRUE)
+```
+
+Write a function `summarise_values(x, na.rm = FALSE)` that returns the two results in a named list with elements `mean` and `median`. Call it on `scores` with and without `na.rm = TRUE`. Then reuse it on `times`.
+
+### Hint
+
+Pass `na.rm = na.rm` to both calculations. Use `list()` with a name for each result.
 :::
 
 ## Function environment and scoping
@@ -104,7 +120,9 @@ For each call, write down the value of `y`, then look for `w` inside the functio
 ::: panel-tabset
 ### Question 10
 
-Among the variables `w`, `d`, and `y`, which are global to `f()` and which are local? What is the value of z when executing `f(w)`
+The function `f()` defines a helper function `h()` inside its body. When `f()` runs, it creates `h()` and then calls it. The helper has its own argument, `z`, and can look in the enclosing call to `f()` for `d`.
+
+Among `w`, `d`, and `y`, which are global and which are local to `f()`? What is the value of `z` when you run `f(w)`?
 
 ```{r}
 w <- 2
@@ -125,7 +143,7 @@ Trace the two calls separately. `f(w)` supplies a value for `y`, and `h(y)` supp
 ::: panel-tabset
 ### Question 11
 
-Do the following in R:
+Start in a fresh R session. Predict what each call will do, then run it to check.
 
 a)  Try:
 
@@ -156,5 +174,5 @@ What happens?
 
 ### Hint
 
-Draw one box for each function call and one for the global environment. `y` gets a value from the argument to `myFun2()`. To find `a` and `b` inside `myFun2()`, ask where `myFun2()` was defined.
+R looks for a name in the running function first, including its arguments and local variables. It then looks in the environment where the function was defined and works outward through enclosing environments. For these functions, the next place is the global environment. Trace where `myFun2()` gets `y` and where it looks for `a` and `b`.
 :::
