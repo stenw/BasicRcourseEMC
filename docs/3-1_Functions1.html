@@ -710,8 +710,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -1.25911346  1.24450036 -0.60299175 -0.54270872 -0.40348510 -0.29475445
- [7]  1.39766174 -0.31913759 -0.82591785 -0.02932508</code></pre>
+<pre><code> [1]  0.16263369  0.71343136  1.23622976  1.33600730 -0.35145713 -0.37530089
+ [7]  0.09552346 -0.21828233  0.83655961 -1.60018229</code></pre>
 </div>
 </div>
 <p>For a (very long) list of all named functions available in base-R have a look at this website:</p>
@@ -927,22 +927,22 @@ Tip
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Ages</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  48  41  56  53  40  34  45  52  42  43  36  38  42  38  42 -50  54  37  32
-[20]  41  34  19  47  25  39</code></pre>
+<pre><code> [1]  31  50  32  55  43  52  44  54  31  41  52  56  39  40  39 -50  49  48  30
+[20]  39  51  52  44  62  30</code></pre>
 </div>
 </div>
 <p>There is one value <code>-50</code>, that is clearly an error.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 40.75</code></pre>
+<pre><code>[1] 44.33333</code></pre>
 </div>
 </div>
 <p>Compare the output with using the standard function <code>mean()</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data<span class="sc">$</span>Ages)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 37.12</code></pre>
+<pre><code>[1] 40.56</code></pre>
 </div>
 </div>
 <p>In the standard <code>mean</code> function, the negative outlier is included and influences the mean!</p>
@@ -958,7 +958,7 @@ Tip
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  19.00   36.75   41.00   40.75   45.50   56.00 </code></pre>
+  30.00   39.00   44.00   44.33   52.00   62.00 </code></pre>
 </div>
 </div>
 <p>Again, let’s compare the output to the standard <code>summary()</code> function.</p>
@@ -966,7 +966,7 @@ Tip
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data<span class="sc">$</span>Ages)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -50.00   36.00   41.00   37.12   45.00   56.00 </code></pre>
+ -50.00   39.00   44.00   40.56   52.00   62.00 </code></pre>
 </div>
 </div>
 <p>If you have multiple objects to return, you have to put them in an object container, like a list, vector, array or data.frame. It is not possible to return multiple individual objects like this:</p>
@@ -991,7 +991,7 @@ Tip
 [1] 1
 
 [[2]]
-[1] 40.75</code></pre>
+[1] 44.33333</code></pre>
 </div>
 </div>
 <p>There was <code>1</code> value below zero, as provided by the first element in the list.</p>
@@ -1047,12 +1047,12 @@ Tip
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">objects</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Ages"                   "calc4"                  "data"                  
- [4] "f"                      "mean_vector"            "mean_x"                
- [7] "mean_xy"                "mean_xy_2"              "mean_xy_3"             
-[10] "my_descriptives"        "my_descriptives2"       "my_descriptives2_wrong"
-[13] "myFun"                  "PatientID"              "w"                     
-[16] "x"                     </code></pre>
+<pre><code> [1] "Ages"                   "PatientID"              "calc4"                 
+ [4] "data"                   "f"                      "mean_vector"           
+ [7] "mean_x"                 "mean_xy"                "mean_xy_2"             
+[10] "mean_xy_3"              "myFun"                  "my_descriptives"       
+[13] "my_descriptives2"       "my_descriptives2_wrong" "pandoc_dir"            
+[16] "quarto_bin_path"        "w"                      "x"                     </code></pre>
 </div>
 </div>
 <section id="global-and-local-variables" class="level3">

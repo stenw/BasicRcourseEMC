@@ -17,7 +17,7 @@ Explore the data set using dim(), str() and help(), which variables are continuo
 ::: panel-tabset
 ### Question 2
 
-Use ggplot to plot a scatterplot of the relationship between the diamonds' carat a
+Use ggplot to make a scatterplot of diamond price versus carat.
 :::
 
 ::: panel-tabset
@@ -30,6 +30,10 @@ Make all dots darkblue and set the alpha value to 0.1
 ### Question 4
 
 Visualize the influence of the color of a diamond on its price by mapping the diamond color to the color aesthetic
+
+### Hint
+
+Question 3 used a single colour for every point. Here a column controls colour, so put the colour mapping inside `aes()`.
 :::
 
 ::: panel-tabset
@@ -42,6 +46,10 @@ Use a ggplot barplot to visualize diamond clarity depending on color, map diamon
 ### Question 6
 
 Create a boxplot of the carat of a diamond based on its clarity and add whiskers using stat_boxplot
+
+### Hint
+
+Map the grouping variable to `x` and the measurement to `y` in `ggplot()` so both layers inherit them. The boxplot already draws whiskers. Use `stat_boxplot()` with the `errorbar` geometry to add the caps.
 :::
 
 ::: panel-tabset
@@ -54,18 +62,30 @@ Add a geom_point layer to the previous plot mapping the diamonds price to the co
 ### Question 8
 
 Create a histogram of the price of the diamonds and separate the histograms into facets using diamond color, choose a good binwith or number of bins
+
+### Hint
+
+Build one histogram first. Then use `facet_wrap()` to split it by colour and keep the same bin width across panels so the shapes are easier to compare.
 :::
 
 ::: panel-tabset
 ### Question 9
 
 Create a grid of facets of the same histogram by comparing both color and cut
+
+### Hint
+
+Keep the histogram layer from Question 8. In a `facet_grid()` formula, the variable on the left of `~` defines the rows and the variable on the right defines the columns.
 :::
 
 ::: panel-tabset
 ### Question 10
 
-Use `aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)` to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by cut and color using geom_tile
+Use `aggregate()` to calculate the mean price for each combination of cut and colour. Create a heatmap of those means with `geom_tile()`.
+
+### Hint
+
+Before plotting, check that your summary has one row per cut and colour combination. In the formula interface to `aggregate()`, put the measurement on the left of `~` and join the grouping columns with `+` on the right. Which column should control each tile's fill?
 :::
 
 ::: panel-tabset
@@ -78,6 +98,10 @@ Change the title of the heatmap to "Average prices"
 ### Question 12
 
 Change the gradient of the fill scale using 'scale_fill_gradient2'. Have it go from darkblue to white to darkred, set the midpoint to 4500
+
+### Hint
+
+Add the scale to the heatmap with `+`. The three colour arguments are `low`, `mid`, and `high`. `midpoint` is a value on the price scale, so the middle colour should correspond to a price of 4500.
 :::
 
 ::: panel-tabset

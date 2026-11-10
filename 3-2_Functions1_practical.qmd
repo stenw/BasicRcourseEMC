@@ -38,6 +38,10 @@ Do Q2 again but rearrange the arguments.
 ### Question 4
 
 Do Q2 again using positional matching.
+
+### Hint
+
+Look at the argument order for `mean.default` on the `?mean` help page. If you leave out argument names, which position must you fill before you can supply the setting for missing values?
 :::
 
 ::: panel-tabset
@@ -91,6 +95,10 @@ f <- function(y) {
 }
 f(y = 2)
 ```
+
+### Hint
+
+For each call, write down the value of `y`, then look for `w` inside the function body. If you find a local `w`, use that value. Otherwise, look in the environment where `f()` was defined.
 :::
 
 ::: panel-tabset
@@ -108,6 +116,10 @@ f <- function(y) {
   return(y * h(y))
 }
 ```
+
+### Hint
+
+Trace the two calls separately. `f(w)` supplies a value for `y`, and `h(y)` supplies a value for `z`. Since `h()` is defined inside `f()`, it can look in that call to find `d`.
 :::
 
 ::: panel-tabset
@@ -141,4 +153,8 @@ myFun1(10)
 ```
 
 What happens?
+
+### Hint
+
+Draw one box for each function call and one for the global environment. `y` gets a value from the argument to `myFun2()`. To find `a` and `b` inside `myFun2()`, ask where `myFun2()` was defined.
 :::

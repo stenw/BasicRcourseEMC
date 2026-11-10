@@ -156,16 +156,14 @@ ggplot(diamonds, aes(x=price)) +
 ::: panel-tabset
 ### Question 10
 
-Use `aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)` to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by cut and color using geom_tile
+Use `aggregate()` to calculate the mean price for each combination of cut and colour. Create a heatmap of those means with `geom_tile()`.
 
 ### Answer 10
 
-Use `aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)` to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by cut and color using geom_tile
+Summarize price first so each tile has one value.
 
 ```{r, eval=F}
-#Aggregate uses a function (in this case mean) to aggregate all variables 
-#in a given data.frame by a list of variables given in "by"
-mean.price <- aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)
+mean.price <- aggregate(price ~ cut + color, data = diamonds, FUN = mean)
 
 ggplot(mean.price, aes(x=cut, y=color, fill=price)) + 
 	geom_tile()

@@ -6,6 +6,10 @@
 ### Question 12
 
 Write a function called 'evenOrOdd' involving `if` and `else` that takes an argument `x` and returns "Even" or "Odd" depending on whether or not `x` is divisible by 2. (Do not use the ifelse() function).
+
+### Hint
+
+Try `%%` on one even number and one odd number. What remainder should make the condition in `if` true?
 :::
 
 ::: panel-tabset
@@ -16,6 +20,10 @@ Is your function 'evenOrOdd' vectorized? Check by passing it the vector:
 ```{r}
 w <- c(3, 6, 6, 4, 7, 9, 11, 6)
 ```
+
+### Hint
+
+Run just the condition from inside your function on `w` and check the length of the result. How many logical values does a single `if` need?
 :::
 
 ::: panel-tabset
@@ -67,6 +75,10 @@ If `y == 0` (but not x), the function should print a warning message about divid
 In all other cases, it should return `x/y`.
 
 Test your `ratio()` function first using two nonzero values for `x` and `y`, then using a nonzero `x` but `y = 0`, and finally using `x = 0` and `y = 0`.
+
+### Hint
+
+Check the most specific case first. If you test only `y == 0` first, that also matches `0 / 0`. Put the division where the warning case can still reach it and the error case cannot.
 :::
 
 ## Looping using for() loops and the apply functions
@@ -104,6 +116,10 @@ mat <- matrix(1:100, nrow=10)
 Use the `apply()` function to calculate the prime number for each number in the matrix.
 
 What numbers from 1 until 100 are prime numbers?
+
+### Hint
+
+In `apply()`, the margin controls what gets passed to the function. What margin visits each cell? Pass `isPrime` without parentheses, then use the logical result to select values from the original matrix.
 :::
 
 ::: panel-tabset
@@ -128,6 +144,10 @@ Kennedys <- list(
 ```
 
 Use a `for()` loop to loop over the list of the first generation of Kennedys, keeping track of how many children each one has in a vector.
+
+### Hint
+
+Create a result vector with one slot per list element. Use `seq_along()` to visit the slots and `[[i]]` to get the children in the current slot. What does `length()` return for an empty character vector?
 :::
 
 ::: panel-tabset
@@ -145,5 +165,9 @@ Answer Question 20 again using the `sapply()` function. What is the class of the
 ::: panel-tabset
 ### Question 22
 
-Load the "diamonds" dataset from the ggplot2 package by running `library(gglot2)` and calculate the average price of diamonds by color and clarity using the `tapply()` function.
+Load the `diamonds` dataset by running `library(ggplot2)` and calculate the average price by colour and clarity with `tapply()`.
+
+### Hint
+
+`tapply()` takes a vector to summarize, the grouping variables, and a function. Put both grouping vectors in a single list so the result has a row and column for the two groups.
 :::
